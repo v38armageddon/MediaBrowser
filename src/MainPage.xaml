@@ -36,30 +36,7 @@
 
             </PivotItem>
             <PivotItem Header="Tasks">
-                <Border Margin="0">
-                    <controls:Carousel x:Name="CarouselControl"
-                  InvertPositive="True"
-                  ItemDepth="1000"
-                  ItemMargin="0"
-                  ItemRotationX="0"
-                  ItemRotationY="0"
-                  ItemRotationZ ="0"
-                  Orientation="Horizontal"
-                  SelectedIndex="4">
-                        <controls:Carousel.EasingFunction>
-                            <CubicEase EasingMode="EaseOut" />
-                        </controls:Carousel.EasingFunction>
-                        <controls:Carousel.ItemTemplate>
-                            <DataTemplate>
-                                <Image Width="200"
-                  Height="200"
-                  VerticalAlignment="Bottom"
-                  Source="{Binding Thumbnail}"
-                  Stretch="Uniform" />
-                            </DataTemplate>
-                        </controls:Carousel.ItemTemplate>
-                    </controls:Carousel>
-                </Border>
+               
             </PivotItem>
         </Pivot>
 
@@ -75,7 +52,7 @@
         </CommandBar>
         <muxc:ProgressRing IsActive="False" Height="139" Width="139" />
         <muxc:InfoBar
-            IsOpen="True"
+            IsOpen="False"
             Severity="Informational"
             Title="Title"
             Message="Essential app message for your users to be informed of, acknowledge, or take action on."
