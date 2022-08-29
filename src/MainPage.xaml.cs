@@ -26,14 +26,17 @@ namespace FM_Center
         }
 
         // Top
-        private void buttonReduce_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         private void buttonWindow_Click(object sender, RoutedEventArgs e)
         {
-
+            var currentSize = ApplicationView.GetForCurrentView();
+            if (!currentSize.IsFullScreenMode)
+            {
+                currentSize.TryEnterFullScreenMode();
+            }
+            else
+            {
+                currentSize.ExitFullScreenMode();
+            }
         }
 
         private void buttonClose_Click(object sender, RoutedEventArgs e)
