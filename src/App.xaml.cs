@@ -23,6 +23,12 @@ namespace MediaBrowser
         public App()
         {
             this.InitializeComponent();
+            if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Xbox")
+            {
+                MainPage mainPage = new MainPage();
+                mainPage.buttonWindow.Visibility = Visibility.Collapsed;
+                this.RequiresPointerMode = Windows.UI.Xaml.ApplicationRequiresPointerMode.WhenRequested;
+            }
             this.Suspending += OnSuspending;
         }
 

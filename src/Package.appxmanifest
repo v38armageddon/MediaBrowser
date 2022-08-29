@@ -8,11 +8,11 @@
   IgnorableNamespaces="uap mp uap3">
 
   <Identity
-    Name="b0362956-3377-4b20-8582-2ad1e213be9d"
-    Publisher="CN=v38armageddon"
+    Name="34823v38armageddon.268037BDE8D5B"
+    Publisher="CN=EF25BC35-CB3A-4D06-953A-49E6117D3FA3"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="b0362956-3377-4b20-8582-2ad1e213be9d" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="1d5812b6-847f-4ddb-88fb-039e71245445" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>MediaBrowser</DisplayName>

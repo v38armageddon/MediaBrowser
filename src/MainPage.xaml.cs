@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Activation;
+using Windows.Devices.Enumeration;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.System;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -42,6 +45,11 @@ namespace MediaBrowser
         private void buttonClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();
+        }
+
+        private void buttonReturn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

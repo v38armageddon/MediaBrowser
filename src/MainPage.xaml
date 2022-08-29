@@ -2,27 +2,29 @@
     x:Class="MediaBrowser.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:FM_Center"
+    xmlns:local="using:MediaBrowser"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Background="#303952">
         <!--Top-->
         <CommandBar Background="#596275" IsOpen="False" OverflowButtonVisibility="Collapsed">
-            <AppBarButton x:Name="buttonWindow" Icon="BackToWindow" Click="buttonWindow_Click"/>
+            <AppBarButton x:Name="buttonWindow" x:FieldModifier="public" Icon="BackToWindow" Click="buttonWindow_Click"/>
             <AppBarButton x:Name="buttonClose" Icon="Clear" Click="buttonClose_Click"/>
         </CommandBar>
         <CommandBar Background="#596275" HorizontalAlignment="Left" OverflowButtonVisibility="Collapsed">
-            <AppBarButton x:Name="buttonReturn" Icon="Back"/>
-            <AppBarButton x:Name="buttonHome" Icon="Home" />
+            <AppBarButton x:Name="buttonReturn" Icon="Back" Click="buttonReturn_Click"/>
+            <AppBarButton x:Name="buttonHome" Icon="Home"/>
         </CommandBar>
 
         <!--Center-->
         <Pivot Margin="0,48,0,48">
+            <PivotItem Header="Extras">
+                
+            </PivotItem>
             <PivotItem Header="Pictures">
                 
             </PivotItem>
@@ -49,6 +51,9 @@
             <AppBarButton Icon="Next" Label="Next"/>
             <AppBarSeparator/>
             <AppBarButton Icon="Volume" Label="Volume"/>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Icon="OpenFile" Label="Open File"/>
+            </CommandBar.SecondaryCommands>
         </CommandBar>
         <muxc:ProgressRing IsActive="False" Height="139" Width="139" />
         <muxc:InfoBar
