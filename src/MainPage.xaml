@@ -1,0 +1,38 @@
+﻿<Page
+    x:Class="FM_Center.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FM_Center"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="#303952">
+        <!--Top-->
+        <CommandBar Background="#596275" IsOpen="False" OverflowButtonVisibility="Collapsed">
+            <AppBarButton x:Name="buttonReduce" Icon="Remove" Click="buttonReduce_Click"/>
+            <AppBarButton x:Name="buttonWindow" Icon="BackToWindow" Click="buttonWindow_Click"/>
+            <AppBarButton x:Name="buttonClose" Icon="Clear" Click="buttonClose_Click"/>
+        </CommandBar>
+        <CommandBar Background="#596275" HorizontalAlignment="Left" OverflowButtonVisibility="Collapsed">
+            <AppBarButton Icon="Back"/>
+            <AppBarButton Icon="Home" />
+        </CommandBar>
+
+        <!--Center-->
+        
+        
+        <!--Bottom-->
+        <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom">
+            <AppBarButton Icon="Previous" Label="Previous"/>
+            <AppBarSeparator/>
+            <AppBarButton Icon="Previous" Label="Previous"/>
+            <AppBarButton Icon="Play" Label="Play"/>
+            <AppBarButton Icon="Next" Label="Next"/>
+            <AppBarSeparator/>
+            <AppBarButton Icon="Volume" Label="Volume"/>
+        </CommandBar>
+    </Grid>
+</Page>
