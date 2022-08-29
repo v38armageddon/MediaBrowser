@@ -24,7 +24,7 @@
         <!--Center-->
         <Pivot Margin="0,48,0,48">
             <PivotItem Header="Pictures">
-
+                
             </PivotItem>
             <PivotItem Header="Music">
 
@@ -36,7 +36,7 @@
 
             </PivotItem>
             <PivotItem Header="Tasks">
-               
+
             </PivotItem>
         </Pivot>
 

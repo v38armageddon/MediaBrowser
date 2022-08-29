@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace FM_Center
+namespace MediaBrowser
 {
     sealed partial class App : Application
     {
