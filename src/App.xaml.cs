@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,13 +26,9 @@ namespace MediaBrowser
         public App()
         {
             this.InitializeComponent();
-            if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Xbox")
-            {
-                MainPage mainPage = new MainPage();
-                mainPage.buttonWindow.Visibility = Visibility.Collapsed;
-                this.RequiresPointerMode = Windows.UI.Xaml.ApplicationRequiresPointerMode.WhenRequested;
-            }
             this.Suspending += OnSuspending;
+            AppCenter.Start("TOKEN",
+                  typeof(Analytics), typeof(Crashes));
         }
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)

@@ -17,13 +17,17 @@
         </CommandBar>
         <CommandBar Background="#596275" HorizontalAlignment="Left" OverflowButtonVisibility="Collapsed">
             <AppBarButton x:Name="buttonReturn" Icon="Back" Click="buttonReturn_Click"/>
-            <AppBarButton x:Name="buttonHome" Icon="Home"/>
+            <AppBarButton x:Name="buttonHome" Icon="Home" Click="buttonHome_Click"/>
         </CommandBar>
 
         <!--Center-->
-        <Pivot Margin="0,48,0,48">
+        <Pivot Margin="0,48,0,48" SelectedIndex="4">
             <PivotItem Header="Extras">
-                
+                <Grid>
+                    <Button Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="Button_Click">
+                        <Image Source="Images/BingMap.jpg"/>
+                    </Button>
+                </Grid>
             </PivotItem>
             <PivotItem Header="Pictures">
                 
@@ -35,22 +39,46 @@
 
             </PivotItem>
             <PivotItem Header="TV">
-
+                
             </PivotItem>
             <PivotItem Header="Tasks">
-
+                <Grid>
+                    <Button Content="Shutdown" Margin="39,63,0,0" VerticalAlignment="Top" Height="136" Width="225">
+                        <Button.Flyout>
+                            <Flyout>
+                                <StackPanel>
+                                    <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Are you sure you want to shutdown?" Margin="0,0,0,12" />
+                                    <Button Click="Shutdown_Click" Content="Yes"/>
+                                    <Button Click="NoShutdown_Click" Content="No" Margin="50,-32,0,0"/>
+                                </StackPanel>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
+                    <Button Content="Reboot" Margin="284,63,0,0" VerticalAlignment="Top" Height="136" Width="225">
+                        <Button.Flyout>
+                            <Flyout>
+                                <StackPanel>
+                                    <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Are you sure you want to shutdown?" Margin="0,0,0,12" />
+                                    <Button Click="Reboot_Click" Content="Yes"/>
+                                    <Button Click="NoReboot_Click" Content="No" Margin="50,-32,0,0"/>
+                                </StackPanel>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
+                </Grid>
             </PivotItem>
         </Pivot>
 
         <!--Bottom-->
         <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom">
-            <AppBarButton Icon="Stop" Label="Stop"/>
+            <AppBarButton x:Name="stopButton" Icon="Stop" Label="Stop"/>
             <AppBarSeparator/>
-            <AppBarButton Icon="Previous" Label="Previous"/>
-            <AppBarButton Icon="Play" Label="Play"/>
-            <AppBarButton Icon="Next" Label="Next"/>
+            <AppBarButton x:Name="previousButton" Icon="Previous" Label="Previous"/>
+            <AppBarButton x:Name="playButton" Icon="Play" Label="Play"/>
+            <AppBarButton x:Name="pauseButton" Icon="Pause" Label="Pause" Visibility="Collapsed"/>
+            <AppBarButton x:Name="nextButton" Icon="Next" Label="Next"/>
             <AppBarSeparator/>
-            <AppBarButton Icon="Volume" Label="Volume"/>
+            <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="OpenFile" Label="Open File"/>
             </CommandBar.SecondaryCommands>
