@@ -21,49 +21,69 @@
         </CommandBar>
 
         <!--Center-->
-        <Pivot Margin="0,48,0,48" SelectedIndex="4">
-            <PivotItem Header="Extras">
+        <Pivot Margin="0,48,0,48" SelectedIndex="1">
+            <PivotItem Header="Tasks">
                 <Grid>
-                    <Button Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="Button_Click">
-                        <Image Source="Images/BingMap.jpg"/>
+                    <Button x:Name="buttonShutdown" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonShutdown_Click">
+                        <StackPanel>
+                            <SymbolIcon Symbol="Stop"/>
+                            <TextBlock Text="Shutdown"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="buttonReboot" Margin="309,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonReboot_Click">
+                        <StackPanel>
+                            <SymbolIcon Symbol="Sync"/>
+                            <TextBlock Text="Reboot"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="buttonAbout" Margin="563,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonAbout_Click">
+                        <StackPanel>
+                            <SymbolIcon Symbol="Help"/>
+                            <TextBlock Text="About"/>
+                        </StackPanel>
                     </Button>
                 </Grid>
             </PivotItem>
             <PivotItem Header="Pictures">
-                
+                <Grid>
+                    <Button x:Name="myPicturesButton" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="myPicturesButton_Click">
+                        <StackPanel>
+                            <SymbolIcon Symbol="Pictures"/>
+                            <TextBlock Text="My Pictures"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="cameraButton" Margin="317,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="Button_Click_1">
+                        <StackPanel>
+                            <SymbolIcon Symbol="Camera"/>
+                            <TextBlock Text="Camera"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
             </PivotItem>
             <PivotItem Header="Music">
-
+                <Grid>
+                    <Button x:Name="myMusicButton" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="myMusicButton_Click">
+                        <StackPanel>
+                            <SymbolIcon Symbol="MusicInfo"/>
+                            <TextBlock Text="My Music"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
             </PivotItem>
             <PivotItem Header="Videos">
-
-            </PivotItem>
-            <PivotItem Header="TV">
-                
-            </PivotItem>
-            <PivotItem Header="Tasks">
                 <Grid>
-                    <Button Content="Shutdown" Margin="39,63,0,0" VerticalAlignment="Top" Height="136" Width="225">
-                        <Button.Flyout>
-                            <Flyout>
-                                <StackPanel>
-                                    <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Are you sure you want to shutdown?" Margin="0,0,0,12" />
-                                    <Button Click="Shutdown_Click" Content="Yes"/>
-                                    <Button Click="NoShutdown_Click" Content="No" Margin="50,-32,0,0"/>
-                                </StackPanel>
-                            </Flyout>
-                        </Button.Flyout>
+                    <Button x:Name="myVideosButton" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="myVideosButton_Click">
+                        <StackPanel>
+                            <SymbolIcon Symbol="Video"/>
+                            <TextBlock Text="My Videos"/>
+                        </StackPanel>
                     </Button>
-                    <Button Content="Reboot" Margin="284,63,0,0" VerticalAlignment="Top" Height="136" Width="225">
-                        <Button.Flyout>
-                            <Flyout>
-                                <StackPanel>
-                                    <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Are you sure you want to shutdown?" Margin="0,0,0,12" />
-                                    <Button Click="Reboot_Click" Content="Yes"/>
-                                    <Button Click="NoReboot_Click" Content="No" Margin="50,-32,0,0"/>
-                                </StackPanel>
-                            </Flyout>
-                        </Button.Flyout>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="Extras">
+                <Grid>
+                    <Button Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="Button_Click">
+                        <Image Source="Images/BingMap.jpg"/>
                     </Button>
                 </Grid>
             </PivotItem>
@@ -79,12 +99,11 @@
             <AppBarButton x:Name="nextButton" Icon="Next" Label="Next"/>
             <AppBarSeparator/>
             <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>
-            <CommandBar.SecondaryCommands>
-                <AppBarButton Icon="OpenFile" Label="Open File"/>
-            </CommandBar.SecondaryCommands>
         </CommandBar>
         <muxc:ProgressRing IsActive="False" Height="139" Width="139" />
         <muxc:InfoBar
+            x:Name="Toaster"
+            x:FieldModifier="public"
             IsOpen="False"
             Severity="Informational"
             Title="Title"
