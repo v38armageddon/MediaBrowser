@@ -10,6 +10,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Background="#303952">
+        <MediaElement x:Name="mediaElement" x:FieldModifier="public" Visibility="Collapsed"/>
+
         <!--Top-->
         <CommandBar Background="#596275" IsOpen="False" OverflowButtonVisibility="Collapsed">
             <AppBarButton x:Name="buttonWindow" x:FieldModifier="public" Icon="BackToWindow" Click="buttonWindow_Click"/>
@@ -104,7 +106,7 @@
         <muxc:InfoBar
             x:Name="Toaster"
             x:FieldModifier="public"
-            IsOpen="False"
+            IsOpen="false"
             Severity="Informational"
             Title="Title"
             Message="Essential app message for your users to be informed of, acknowledge, or take action on."

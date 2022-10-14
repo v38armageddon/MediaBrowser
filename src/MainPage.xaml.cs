@@ -29,6 +29,18 @@ namespace MediaBrowser
         public MainPage()
         {
             this.InitializeComponent();
+            FirstLoad();
+        }
+
+        public void FirstLoad()
+        {
+            bool load = true;
+            if (load == true)
+            {
+                mediaElement.Source = new Uri("ms-appx:///Sounds/windows-media-center-startup.wav");
+                mediaElement.Play();
+            }
+            load = false;
         }
 
         // Top

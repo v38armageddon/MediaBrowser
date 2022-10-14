@@ -5,10 +5,44 @@
     xmlns:local="using:MediaBrowser.Apps"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Background="#303952">
+        <!--Top-->
+        <CommandBar Background="#596275" IsOpen="False" OverflowButtonVisibility="Collapsed">
+            <AppBarButton x:Name="buttonWindow" x:FieldModifier="public" Icon="BackToWindow" Click="buttonWindow_Click"/>
+            <AppBarButton x:Name="buttonClose" Icon="Clear" Click="buttonClose_Click"/>
+        </CommandBar>
+        <CommandBar Background="#596275" HorizontalAlignment="Left" OverflowButtonVisibility="Collapsed">
+            <AppBarButton x:Name="buttonReturn" Icon="Back" Click="buttonReturn_Click"/>
+            <AppBarButton x:Name="buttonHome" Icon="Home" Click="buttonHome_Click"/>
+        </CommandBar>
 
+        <!--Center-->
+        
+
+        <!--Bottom-->
+        <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom">
+            <AppBarButton x:Name="stopButton" Icon="Stop" Label="Stop"/>
+            <AppBarSeparator/>
+            <AppBarButton x:Name="previousButton" Icon="Previous" Label="Previous"/>
+            <AppBarButton x:Name="playButton" Icon="Play" Label="Play"/>
+            <AppBarButton x:Name="pauseButton" Icon="Pause" Label="Pause" Visibility="Collapsed"/>
+            <AppBarButton x:Name="nextButton" Icon="Next" Label="Next"/>
+            <AppBarSeparator/>
+            <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>
+        </CommandBar>
+        <muxc:ProgressRing IsActive="False" Height="139" Width="139" />
+        <muxc:InfoBar
+            x:Name="Toaster"
+            x:FieldModifier="public"
+            IsOpen="False"
+            Severity="Informational"
+            Title="Title"
+            Message="Essential app message for your users to be informed of, acknowledge, or take action on."
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom" Margin="0,0,10,53" Width="381"/>
     </Grid>
 </Page>

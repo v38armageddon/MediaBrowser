@@ -20,7 +20,7 @@
             <AppBarButton x:Name="buttonHome" Icon="Home" Click="buttonHome_Click"/>
         </CommandBar>
         <!--Center-->
-        <my:MapControl Margin="0,48,0,48" MapServiceToken="ygCg0AsDLdXjqpgV4wuZ~owxXRfQKTXk48glIiKMJLA~Ar303-ABLGOJLjH5F7LskjY9W2xVIzhRQlKzPlefE8YL9KbxFjUpxqhspbMmMj-f"/>
+        <my:MapControl Margin="0,48,0,48" MapServiceToken="TOKEN"/>
         
         <!--Bottom-->
         <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom">
