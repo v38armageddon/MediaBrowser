@@ -28,7 +28,11 @@ namespace MediaBrowser.Apps
         public CameraPage()
         {
             this.InitializeComponent();
-            
+            if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Xbox")
+            {
+                buttonWindow.Visibility = Visibility.Collapsed;
+                buttonClose.Visibility = Visibility.Collapsed;
+            }
         }
         // Top
         private void buttonWindow_Click(object sender, RoutedEventArgs e)

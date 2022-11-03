@@ -23,7 +23,7 @@
         <!--Center-->
 
         <!--Bottom-->
-        <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom">
+        <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom" OverflowButtonVisibility="Collapsed">
             <AppBarButton x:Name="stopButton" Icon="Stop" Label="Stop"/>
             <AppBarSeparator/>
             <AppBarButton x:Name="previousButton" Icon="Previous" Label="Previous"/>

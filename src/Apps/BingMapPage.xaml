@@ -23,7 +23,7 @@
         <my:MapControl Margin="0,48,0,48" MapServiceToken="TOKEN"/>
         
         <!--Bottom-->
-        <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom">
+        <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom" OverflowButtonVisibility="Collapsed">
             <AppBarButton Icon="Stop" Label="Stop"/>
             <AppBarSeparator/>
             <AppBarButton Icon="Previous" Label="Previous"/>

@@ -23,6 +23,11 @@ namespace MediaBrowser.Apps
         public PicturePage()
         {
             this.InitializeComponent();
+            if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Xbox")
+            {
+                buttonWindow.Visibility = Visibility.Collapsed;
+                buttonClose.Visibility = Visibility.Collapsed;
+            }
         }
 
         // Top

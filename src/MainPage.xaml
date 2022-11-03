@@ -70,6 +70,12 @@
                             <TextBlock Text="My Music"/>
                         </StackPanel>
                     </Button>
+                    <Button x:Name="spotifyButton" Margin="317,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="spotifyButton_Click">
+                        <StackPanel>
+                            <BitmapIcon UriSource="Images/spotify.png" Height="30" Width="30"/>
+                            <TextBlock Text="Spotify"/>
+                        </StackPanel>
+                    </Button>
                 </Grid>
             </PivotItem>
             <PivotItem Header="Videos">
@@ -92,7 +98,7 @@
         </Pivot>
 
         <!--Bottom-->
-        <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom">
+        <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom" OverflowButtonVisibility="Collapsed">
             <AppBarButton x:Name="stopButton" Icon="Stop" Label="Stop"/>
             <AppBarSeparator/>
             <AppBarButton x:Name="previousButton" Icon="Previous" Label="Previous"/>
@@ -101,6 +107,7 @@
             <AppBarButton x:Name="nextButton" Icon="Next" Label="Next"/>
             <AppBarSeparator/>
             <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>
+            
         </CommandBar>
         <muxc:ProgressRing IsActive="False" Height="139" Width="139" />
         <muxc:InfoBar
