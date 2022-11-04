@@ -70,12 +70,6 @@
                             <TextBlock Text="My Music"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="spotifyButton" Margin="317,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="spotifyButton_Click">
-                        <StackPanel>
-                            <BitmapIcon UriSource="Images/spotify.png" Height="30" Width="30"/>
-                            <TextBlock Text="Spotify"/>
-                        </StackPanel>
-                    </Button>
                 </Grid>
             </PivotItem>
             <PivotItem Header="Videos">
@@ -110,14 +104,5 @@
             
         </CommandBar>
         <muxc:ProgressRing IsActive="False" Height="139" Width="139" />
-        <muxc:InfoBar
-            x:Name="Toaster"
-            x:FieldModifier="public"
-            IsOpen="false"
-            Severity="Informational"
-            Title="Title"
-            Message="Essential app message for your users to be informed of, acknowledge, or take action on."
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom" Margin="0,0,10,53" Width="381"/>
     </Grid>
 </Page>

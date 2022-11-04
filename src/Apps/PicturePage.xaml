@@ -34,14 +34,5 @@
             <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>
         </CommandBar>
         <muxc:ProgressRing IsActive="False" Height="139" Width="139" />
-        <muxc:InfoBar
-            x:Name="Toaster"
-            x:FieldModifier="public"
-            IsOpen="False"
-            Severity="Informational"
-            Title="Title"
-            Message="Essential app message for your users to be informed of, acknowledge, or take action on."
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom" Margin="0,0,10,53" Width="381"/>
     </Grid>
 </Page>

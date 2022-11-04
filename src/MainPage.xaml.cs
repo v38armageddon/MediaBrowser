@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading;
 using Windows.ApplicationModel.Activation;
 using Windows.Devices.Enumeration;
 using Windows.Foundation;
@@ -105,34 +106,6 @@ namespace MediaBrowser
         {
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(MusicPage), null, new DrillInNavigationTransitionInfo());
-        }
-
-        private async void spotifyButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Xbox")
-            {
-                var uriSpotify = new Uri(@"ms-store://9NFQ49H668TB");
-
-                // Set the recommended app
-                var options = new LauncherOptions();
-                options.PreferredApplicationPackageFamilyName = "SpotifyAB.SpotifyMusic-forXbox_zpdnekdrzea0";
-                options.PreferredApplicationDisplayName = "Spotify | Xbox";
-
-                // Launch the URI and pass in the recommended app
-                // in case the user has no apps installed to handle the URI
-                var success = await Launcher.LaunchUriAsync(uriSpotify, options);
-
-                if (success)
-                {
-                    // URI launched
-                }
-                else
-                {
-                    Toaster.Severity = Microsoft.UI.Xaml.Controls.InfoBarSeverity.Error;
-                    Toaster.Title = "Error";
-                    Toaster.Message = "Spotify can't be launched, did you try to install it?";
-                }
-            }
         }
 
         // Videos
