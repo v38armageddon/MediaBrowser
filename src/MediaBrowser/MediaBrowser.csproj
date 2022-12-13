@@ -26,7 +26,7 @@
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <PackageCertificateThumbprint>3CEE8EC945955282948139716882A687C400CBE3</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
-    <AppxPackageDir>C:\Users\v38armageddon\Documents\AppX\</AppxPackageDir>
+    <AppxPackageDir>E:\v38armageddon\Documents\AppX\</AppxPackageDir>
     <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">

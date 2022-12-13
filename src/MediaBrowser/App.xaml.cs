@@ -26,6 +26,10 @@ namespace MediaBrowser
         public App()
         {
             this.InitializeComponent();
+            if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Xbox")
+            {
+                this.RequiresPointerMode = Windows.UI.Xaml.ApplicationRequiresPointerMode.WhenRequested;
+            }
             this.Suspending += OnSuspending;
             AppCenter.Start("TOKEN",
                   typeof(Analytics), typeof(Crashes));
@@ -58,10 +62,6 @@ namespace MediaBrowser
             {
                 if (rootFrame.Content == null)
                 {
-                    if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Xbox")
-                    {
-                        ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
-                    }
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
                 Window.Current.Activate();

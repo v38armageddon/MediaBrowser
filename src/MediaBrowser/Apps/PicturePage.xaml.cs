@@ -17,7 +17,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace MediaBrowser.Apps
 {
@@ -67,14 +67,15 @@ namespace MediaBrowser.Apps
         // Bottom
         private async void openFileButton_Click(object sender, RoutedEventArgs e)
         {
-            //FileOpenPicker p = new FileOpenPicker();
-            //p.FileTypeFilter.Add(".jpg");
-            //p.FileTypeFilter.Add(".png");
-            //p.FileTypeFilter.Add(".bmp");
-            //p.FileTypeFilter.Add(".ico");
-            //StorageFile file = await p.PickMultipleFilesAsync();
-            //var source = MediaSource.CreateFromStorageFile(file);
-            //image.Source = source;
+            FileOpenPicker p = new FileOpenPicker();
+            p.FileTypeFilter.Add(".jpg");
+            p.FileTypeFilter.Add(".png");
+            p.FileTypeFilter.Add(".bmp");
+            p.FileTypeFilter.Add(".ico");
+            var files = await p.PickSingleFileAsync();
+            BitmapImage image = new BitmapImage();
+            image.SetSource(await files.OpenAsync(FileAccessMode.Read));
+            Image.Source = image;
         }
     }
 }

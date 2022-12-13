@@ -60,7 +60,6 @@
     <uap3:Capability Name="backgroundMediaPlayback"/>
     <uap:Capability Name="videosLibrary"/>
     <uap:Capability Name="removableStorage"/>
-    <iot:Capability Name="systemManagement"/>
     <DeviceCapability Name="webcam"/>
     <DeviceCapability Name="microphone"/>
   </Capabilities>

@@ -31,10 +31,10 @@
             <AppBarButton x:Name="playButton" Icon="Play" Label="Play" Click="playButton_Click"/>
             <AppBarButton x:Name="pauseButton" Icon="Pause" Label="Pause" Visibility="Collapsed" Click="pauseButton_Click"/>
             <AppBarButton x:Name="nextButton" Icon="Next" Label="Next" Click="nextButton_Click"/>
-            <AppBarSeparator/>
-            <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>
+            <!--<AppBarSeparator/>
+            <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>-->
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="openFileButton" Icon="OpenFile" Label="Open musics" Click="openFileButton_ClickAsync"/>
+                <AppBarButton x:Name="openFileButton" Icon="OpenFile" Label="Open music" Click="openFileButton_ClickAsync"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
         <muxc:ProgressRing IsActive="False" Height="139" Width="139" />

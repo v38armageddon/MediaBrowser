@@ -21,20 +21,20 @@
         </CommandBar>
 
         <!--Center-->
-        <Image x:Name="image" Margin="0,48,0,48"/>
+        <Image x:Name="Image" Margin="0,48,0,48"/>
 
         <!--Bottom-->
-        <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom" OverflowButtonVisibility="Collapsed">
+        <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom">
             <AppBarButton x:Name="stopButton" Icon="Stop" Label="Stop"/>
             <AppBarSeparator/>
             <AppBarButton x:Name="previousButton" Icon="Previous" Label="Previous"/>
             <AppBarButton x:Name="playButton" Icon="Play" Label="Play"/>
             <AppBarButton x:Name="pauseButton" Icon="Pause" Label="Pause" Visibility="Collapsed"/>
             <AppBarButton x:Name="nextButton" Icon="Next" Label="Next"/>
-            <AppBarSeparator/>
-            <!--<AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>-->
+            <!--<AppBarSeparator/>
+            <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>-->
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="openFileButton" Icon="OpenFile" Label="Open Files" Click="openFileButton_Click"/>
+                <AppBarButton x:Name="openFileButton" Icon="OpenFile" Label="Open Picture" Click="openFileButton_Click"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
         <muxc:ProgressRing IsActive="False" Height="139" Width="139" />
