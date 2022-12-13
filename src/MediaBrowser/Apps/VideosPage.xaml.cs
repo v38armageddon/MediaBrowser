@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media.Playback;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -14,7 +15,11 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-
+using Windows.System;
+using System.Threading.Tasks;
+using Windows.Storage.Pickers;
+using Windows.Storage;
+using Windows.Media.Core;
 
 namespace MediaBrowser.Apps
 {
@@ -62,9 +67,50 @@ namespace MediaBrowser.Apps
         }
 
         // Center
-
+        private async void openFileButton_ClickAsync(object sender, RoutedEventArgs e)
+        {
+            FileOpenPicker p = new FileOpenPicker();
+            p.FileTypeFilter.Add(".mp4");
+            p.FileTypeFilter.Add(".mkv");
+            p.FileTypeFilter.Add(".wmv");
+            p.FileTypeFilter.Add(".mov");
+            StorageFile file = await p.PickSingleFileAsync();
+            var source = MediaSource.CreateFromStorageFile(file);
+            mediaPlayerElement.Source = source;
+            mediaPlayerElement.AutoPlay = true;
+            playButton.Visibility = Visibility.Collapsed;
+            pauseButton.Visibility = Visibility.Visible;
+        }
 
         // Bottom
+        private void stopButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaPlayerElement.AutoPlay = false;
+            mediaPlayerElement.Source = null;
+        }
 
+        private void previousButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaPlayerElement.MediaPlayer.StepBackwardOneFrame();
+        }
+
+        private void playButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaPlayerElement.MediaPlayer.Play();
+            playButton.Visibility = Visibility.Collapsed;
+            pauseButton.Visibility = Visibility.Visible;
+        }
+
+        private void pauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaPlayerElement.MediaPlayer.Pause();
+            playButton.Visibility = Visibility.Visible;
+            pauseButton.Visibility = Visibility.Collapsed;
+        }
+
+        private void nextButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaPlayerElement.MediaPlayer.StepForwardOneFrame();
+        }
     }
 }

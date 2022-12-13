@@ -34,6 +34,7 @@ namespace MediaBrowser.Apps
                 buttonClose.Visibility = Visibility.Collapsed;
             }
         }
+
         // Top
         private void buttonWindow_Click(object sender, RoutedEventArgs e)
         {
@@ -67,5 +68,14 @@ namespace MediaBrowser.Apps
 
         // Center
 
+        // Bottom
+        private async void playButton_Click(object sender, RoutedEventArgs e)
+        {
+            MediaCapture mediaCaptureMgr = new MediaCapture();
+            await mediaCaptureMgr.InitializeAsync();
+
+            PreviewControl.Source = mediaCaptureMgr;
+            await mediaCaptureMgr.StartPreviewAsync();
+        }
     }
 }

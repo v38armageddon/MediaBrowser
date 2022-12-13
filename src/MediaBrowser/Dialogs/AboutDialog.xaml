@@ -14,8 +14,13 @@
     <Grid>
         <StackPanel>
             <TextBlock Text="Version: 1"/>
-            <TextBlock Text="Creator: v38armageddon"/>
             <TextBlock Text="License: MS-PL"/>
+            <TextBlock Foreground="White">
+            <Hyperlink NavigateUri="https://github.com/v38armageddon/MediaBrowser">View on GitHub</Hyperlink>
+            </TextBlock>
+            <TextBlock Foreground="White">
+                <Hyperlink NavigateUri="https://gist.github.com/v38armageddon/d4b6a4a207d19a85c82ce102bd9f2864">Privacy Statement</Hyperlink>
+            </TextBlock>
         </StackPanel>
     </Grid>
 </ContentDialog>

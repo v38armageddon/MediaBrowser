@@ -27,6 +27,7 @@ namespace MediaBrowser
 {
     public sealed partial class MainPage : Page
     {
+        MediaPlayerElement mediaPlayer = new MediaPlayerElement();
         public MainPage()
         {
             this.InitializeComponent();
@@ -56,16 +57,6 @@ namespace MediaBrowser
         private void buttonClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();
-        }
-
-        private void buttonReturn_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void buttonHome_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         // Center
@@ -121,8 +112,5 @@ namespace MediaBrowser
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(BingMapPage), null, new DrillInNavigationTransitionInfo());
         }
-
-        // Bottom
-
     }
 }

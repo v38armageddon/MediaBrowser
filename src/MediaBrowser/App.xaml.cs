@@ -27,7 +27,7 @@ namespace MediaBrowser
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            AppCenter.Start("f8a89e91-0621-48d5-85fb-6a783f7436f3",
+            AppCenter.Start("TOKEN",
                   typeof(Analytics), typeof(Crashes));
         }
 

@@ -28,11 +28,11 @@
             <AppBarButton x:Name="stopButton" Icon="Stop" Label="Stop"/>
             <AppBarSeparator/>
             <AppBarButton x:Name="previousButton" Icon="Previous" Label="Previous"/>
-            <AppBarButton x:Name="playButton" Icon="Play" Label="Play"/>
+            <AppBarButton x:Name="playButton" Icon="Play" Label="Play" Click="playButton_Click"/>
             <AppBarButton x:Name="pauseButton" Icon="Pause" Label="Pause" Visibility="Collapsed"/>
             <AppBarButton x:Name="nextButton" Icon="Next" Label="Next"/>
-            <AppBarSeparator/>
-            <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>
+            <!--<AppBarSeparator/>
+            <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>-->
         </CommandBar>
         <muxc:ProgressRing IsActive="False" Height="139" Width="139" />
     </Grid>

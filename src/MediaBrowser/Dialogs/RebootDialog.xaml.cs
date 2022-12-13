@@ -44,16 +44,6 @@ namespace MediaBrowser.Dialogs
 
                 ThreadPoolTimer PeriodicTimer = ThreadPoolTimer.CreatePeriodicTimer((source) =>
                 {
-                    mainPage.Toaster.Severity = Microsoft.UI.Xaml.Controls.InfoBarSeverity.Error;
-                    mainPage.Toaster.Title = "Error";
-                    mainPage.Toaster.Message = "Please restart manually the software.";
-#pragma warning disable CS4014
-                    Dispatcher.RunAsync(CoreDispatcherPriority.High,
-                        () =>
-                        {
-                            mainPage.Toaster.IsOpen = true;
-                        });
-#pragma warning restore CS4014
 
                 }, period);
             }

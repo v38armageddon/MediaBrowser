@@ -11,6 +11,8 @@ MediaBrowser is a modern "Windows Media Center" like, you can view your pictures
 ## Installation
 Minimum Windows version required: Windows 10 2004.
 
+Minimum Xbox required: Xbox One
+
 ### Recommended installation
 The best method to get MediaBrowser is to install from the Microsoft Store.
 

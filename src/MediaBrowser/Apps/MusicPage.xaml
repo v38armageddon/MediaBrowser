@@ -21,18 +21,21 @@
         </CommandBar>
 
         <!--Center-->
-        
+        <MediaPlayerElement x:Name="mediaPlayerElement" Margin="0,48,0,48"/>
 
         <!--Bottom-->
-        <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom" OverflowButtonVisibility="Collapsed">
-            <AppBarButton x:Name="stopButton" Icon="Stop" Label="Stop"/>
+        <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom">
+            <AppBarButton x:Name="stopButton" Icon="Stop" Label="Stop" Click="stopButton_Click"/>
             <AppBarSeparator/>
-            <AppBarButton x:Name="previousButton" Icon="Previous" Label="Previous"/>
-            <AppBarButton x:Name="playButton" Icon="Play" Label="Play"/>
-            <AppBarButton x:Name="pauseButton" Icon="Pause" Label="Pause" Visibility="Collapsed"/>
-            <AppBarButton x:Name="nextButton" Icon="Next" Label="Next"/>
+            <AppBarButton x:Name="previousButton" Icon="Previous" Label="Previous" Click="previousButton_Click"/>
+            <AppBarButton x:Name="playButton" Icon="Play" Label="Play" Click="playButton_Click"/>
+            <AppBarButton x:Name="pauseButton" Icon="Pause" Label="Pause" Visibility="Collapsed" Click="pauseButton_Click"/>
+            <AppBarButton x:Name="nextButton" Icon="Next" Label="Next" Click="nextButton_Click"/>
             <AppBarSeparator/>
             <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="openFileButton" Icon="OpenFile" Label="Open musics" Click="openFileButton_ClickAsync"/>
+            </CommandBar.SecondaryCommands>
         </CommandBar>
         <muxc:ProgressRing IsActive="False" Height="139" Width="139" />
     </Grid>

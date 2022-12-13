@@ -5,6 +5,9 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media.Core;
+using Windows.Storage.Pickers;
+using Windows.Storage;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -59,6 +62,19 @@ namespace MediaBrowser.Apps
         {
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(MainPage), null, new DrillInNavigationTransitionInfo());
+        }
+
+        // Bottom
+        private async void openFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            //FileOpenPicker p = new FileOpenPicker();
+            //p.FileTypeFilter.Add(".jpg");
+            //p.FileTypeFilter.Add(".png");
+            //p.FileTypeFilter.Add(".bmp");
+            //p.FileTypeFilter.Add(".ico");
+            //StorageFile file = await p.PickMultipleFilesAsync();
+            //var source = MediaSource.CreateFromStorageFile(file);
+            //image.Source = source;
         }
     }
 }

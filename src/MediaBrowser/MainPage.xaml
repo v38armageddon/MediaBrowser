@@ -18,8 +18,8 @@
             <AppBarButton x:Name="buttonClose" Icon="Clear" Click="buttonClose_Click"/>
         </CommandBar>
         <CommandBar Background="#596275" HorizontalAlignment="Left" OverflowButtonVisibility="Collapsed">
-            <AppBarButton x:Name="buttonReturn" Icon="Back" Click="buttonReturn_Click"/>
-            <AppBarButton x:Name="buttonHome" Icon="Home" Click="buttonHome_Click"/>
+            <AppBarButton x:Name="buttonReturn" Icon="Back"/>
+            <AppBarButton x:Name="buttonHome" Icon="Home"/>
         </CommandBar>
 
         <!--Center-->
@@ -93,15 +93,14 @@
 
         <!--Bottom-->
         <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom" OverflowButtonVisibility="Collapsed">
-            <AppBarButton x:Name="stopButton" Icon="Stop" Label="Stop"/>
+            <!--<AppBarButton x:Name="stopButton" Icon="Stop" Label="Stop" Click="stopButton_Click"/>
             <AppBarSeparator/>
-            <AppBarButton x:Name="previousButton" Icon="Previous" Label="Previous"/>
-            <AppBarButton x:Name="playButton" Icon="Play" Label="Play"/>
-            <AppBarButton x:Name="pauseButton" Icon="Pause" Label="Pause" Visibility="Collapsed"/>
-            <AppBarButton x:Name="nextButton" Icon="Next" Label="Next"/>
+            <AppBarButton x:Name="previousButton" Icon="Previous" Label="Previous" Click="previousButton_Click"/>
+            <AppBarButton x:Name="playButton" Icon="Play" Label="Play" Visibility="Collapsed" Click="playButton_Click"/>
+            <AppBarButton x:Name="pauseButton" Icon="Pause" Label="Pause" Click="pauseButton_Click"/>
+            <AppBarButton x:Name="nextButton" Icon="Next" Label="Next" Click="nextButton_Click"/>
             <AppBarSeparator/>
-            <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>
-            
+            <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>-->
         </CommandBar>
         <muxc:ProgressRing IsActive="False" Height="139" Width="139" />
     </Grid>
