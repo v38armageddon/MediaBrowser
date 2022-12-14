@@ -73,6 +73,7 @@ namespace MediaBrowser.Apps
             p.FileTypeFilter.Add(".wav");
             p.FileTypeFilter.Add(".flac");
             StorageFile file = await p.PickSingleFileAsync();
+            if (file == null) return;
             var source = MediaSource.CreateFromStorageFile(file);
             mediaPlayerElement.Source = source;
             mediaPlayerElement.AutoPlay = true;

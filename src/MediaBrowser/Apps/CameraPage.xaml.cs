@@ -71,11 +71,12 @@ namespace MediaBrowser.Apps
         // Bottom
         private async void playButton_Click(object sender, RoutedEventArgs e)
         {
-            MediaCapture mediaCaptureMgr = new MediaCapture();
-            await mediaCaptureMgr.InitializeAsync();
-
-            PreviewControl.Source = mediaCaptureMgr;
-            await mediaCaptureMgr.StartPreviewAsync();
+            using (MediaCapture mediaCaptureMgr = new MediaCapture())
+            {
+                await mediaCaptureMgr.InitializeAsync();
+                PreviewControl.Source = mediaCaptureMgr;
+                await mediaCaptureMgr.StartPreviewAsync();
+            }
         }
     }
 }

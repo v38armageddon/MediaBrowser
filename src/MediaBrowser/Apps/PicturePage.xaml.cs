@@ -73,6 +73,7 @@ namespace MediaBrowser.Apps
             p.FileTypeFilter.Add(".bmp");
             p.FileTypeFilter.Add(".ico");
             var files = await p.PickSingleFileAsync();
+            if (files == null) return;
             BitmapImage image = new BitmapImage();
             image.SetSource(await files.OpenAsync(FileAccessMode.Read));
             Image.Source = image;
