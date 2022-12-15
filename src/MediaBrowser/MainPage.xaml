@@ -14,7 +14,9 @@
 
         <!--Top-->
         <CommandBar Background="#596275" IsOpen="False" OverflowButtonVisibility="Collapsed">
-            <AppBarButton x:Name="buttonWindow" x:FieldModifier="public" Icon="BackToWindow" Click="buttonWindow_Click"/>
+            <AppBarButton x:Name="buttonWindow" x:FieldModifier="public" Click="buttonWindow_Click">
+                <SymbolIcon x:Name="symbolButtonWindow" Symbol="BackToWindow"/>
+            </AppBarButton>
             <AppBarButton x:Name="buttonClose" Icon="Clear" Click="buttonClose_Click"/>
         </CommandBar>
         <CommandBar Background="#596275" HorizontalAlignment="Left" OverflowButtonVisibility="Collapsed">

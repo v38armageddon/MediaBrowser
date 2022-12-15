@@ -42,10 +42,12 @@ namespace MediaBrowser.Apps
             if (!currentSize.IsFullScreenMode)
             {
                 currentSize.TryEnterFullScreenMode();
+                symbolButtonWindow.Symbol = Symbol.BackToWindow;
             }
             else
             {
                 currentSize.ExitFullScreenMode();
+                symbolButtonWindow.Symbol = Symbol.FullScreen;
             }
         }
 
@@ -73,10 +75,19 @@ namespace MediaBrowser.Apps
         {
             using (MediaCapture mediaCaptureMgr = new MediaCapture())
             {
+                if (mediaCaptureMgr == null)
+                {
+                    infoBar.IsOpen = true;
+                }
                 await mediaCaptureMgr.InitializeAsync();
                 PreviewControl.Source = mediaCaptureMgr;
                 await mediaCaptureMgr.StartPreviewAsync();
             }
+        }
+
+        private void infoBar_CloseButtonClick(Microsoft.UI.Xaml.Controls.InfoBar sender, object args)
+        {
+            infoBar.IsOpen = false;
         }
     }
 }

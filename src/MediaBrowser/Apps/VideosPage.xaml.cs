@@ -1,4 +1,4 @@
-﻿                     using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -42,10 +42,12 @@ namespace MediaBrowser.Apps
             if (!currentSize.IsFullScreenMode)
             {
                 currentSize.TryEnterFullScreenMode();
+                symbolButtonWindow.Symbol = Symbol.BackToWindow;
             }
             else
             {
                 currentSize.ExitFullScreenMode();
+                symbolButtonWindow.Symbol = Symbol.FullScreen;
             }
         }
 
