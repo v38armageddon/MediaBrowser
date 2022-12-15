@@ -40,10 +40,12 @@ namespace MediaBrowser.Apps
             if (!currentSize.IsFullScreenMode)
             {
                 currentSize.TryEnterFullScreenMode();
+                symbolButtonWindow.Symbol = Symbol.FullScreen;
             }
             else
             {
                 currentSize.ExitFullScreenMode();
+                symbolButtonWindow.Symbol = Symbol.FullScreen;
             }
         }
 

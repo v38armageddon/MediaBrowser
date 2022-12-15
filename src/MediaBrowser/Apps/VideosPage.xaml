@@ -12,7 +12,9 @@
     <Grid Background="#303952">
         <!--Top-->
         <CommandBar x:Name="commandBar1" Background="#596275" IsOpen="False" OverflowButtonVisibility="Collapsed">
-            <AppBarButton x:Name="buttonWindow" x:FieldModifier="public" Icon="BackToWindow" Click="buttonWindow_Click"/>
+            <AppBarButton x:Name="buttonWindow" x:FieldModifier="public" Click="buttonWindow_Click">
+                <SymbolIcon x:Name="symbolButtonWindow" Symbol="BackToWindow"/>
+            </AppBarButton>
             <AppBarButton x:Name="buttonClose" Icon="Clear" Click="buttonClose_Click"/>
         </CommandBar>
         <CommandBar x:Name="commandBar2" Background="#596275" HorizontalAlignment="Left" OverflowButtonVisibility="Collapsed">
@@ -31,8 +33,8 @@
             <AppBarButton x:Name="playButton" Icon="Play" Label="Play" Click="playButton_Click"/>
             <AppBarButton x:Name="pauseButton" Icon="Pause" Label="Pause" Visibility="Collapsed" Click="pauseButton_Click"/>
             <AppBarButton x:Name="nextButton" Icon="Next" Label="Next" Click="nextButton_Click"/>
-            <!--<AppBarSeparator/>
-            <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>-->
+            <AppBarSeparator/>
+            <!--<AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>-->
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Name="openFileButton" Icon="OpenFile" Label="Open video" Click="openFileButton_ClickAsync"/>
             </CommandBar.SecondaryCommands>
