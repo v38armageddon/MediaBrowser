@@ -60,6 +60,7 @@
     <uap3:Capability Name="backgroundMediaPlayback"/>
     <uap:Capability Name="videosLibrary"/>
     <uap:Capability Name="removableStorage"/>
+    <Capability Name="privateNetworkClientServer"/>
     <DeviceCapability Name="webcam"/>
     <DeviceCapability Name="microphone"/>
   </Capabilities>
