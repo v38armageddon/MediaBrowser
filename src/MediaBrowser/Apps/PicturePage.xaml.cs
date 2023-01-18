@@ -18,11 +18,15 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Imaging;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MediaBrowser.Apps
 {
     public sealed partial class PicturePage : Page
     {
+        private List<StorageFile> files = new List<StorageFile>();
+        private int currentFileIndex = 0;
+
         public PicturePage()
         {
             this.InitializeComponent();
@@ -51,7 +55,7 @@ namespace MediaBrowser.Apps
 
         private void buttonClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Exit();
+            Windows.UI.Xaml.Application.Current.Exit();
         }
 
         private void buttonReturn_Click(object sender, RoutedEventArgs e)
@@ -74,10 +78,33 @@ namespace MediaBrowser.Apps
             p.FileTypeFilter.Add(".png");
             p.FileTypeFilter.Add(".bmp");
             p.FileTypeFilter.Add(".ico");
-            var files = await p.PickSingleFileAsync();
-            if (files == null) return;
-            BitmapImage image = new BitmapImage();
-            image.SetSource(await files.OpenAsync(FileAccessMode.Read));
+            var selectedFiles = await p.PickMultipleFilesAsync();
+            if (selectedFiles.Count == 0) return;
+            files = selectedFiles.ToList();
+            var image = new BitmapImage();
+            image.SetSource(await files[currentFileIndex].OpenAsync(FileAccessMode.Read));
+            Image.Source = image;
+        }
+
+        private async void previousButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentFileIndex == 0)
+                currentFileIndex = files.Count - 1;
+            else
+                currentFileIndex--;
+            var image = new BitmapImage();
+            image.SetSource(await files[currentFileIndex].OpenAsync(FileAccessMode.Read));
+            Image.Source = image;
+        }
+
+        private async void nextButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentFileIndex == files.Count - 1)
+                currentFileIndex = 0;
+            else
+                currentFileIndex++;
+            var image = new BitmapImage();
+            image.SetSource(await files[currentFileIndex].OpenAsync(FileAccessMode.Read));
             Image.Source = image;
         }
     }

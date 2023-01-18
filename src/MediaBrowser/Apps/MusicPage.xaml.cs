@@ -23,6 +23,9 @@ namespace MediaBrowser.Apps
 {
     public sealed partial class MusicPage : Page
     {
+        private List<StorageFile> files = new List<StorageFile>();
+        private int currentFileIndex = 0;
+
         public MusicPage()
         {
             this.InitializeComponent();
@@ -74,9 +77,10 @@ namespace MediaBrowser.Apps
             p.FileTypeFilter.Add(".ogg");
             p.FileTypeFilter.Add(".wav");
             p.FileTypeFilter.Add(".flac");
-            StorageFile file = await p.PickSingleFileAsync();
-            if (file == null) return;
-            var source = MediaSource.CreateFromStorageFile(file);
+            var selectedFiles = await p.PickMultipleFilesAsync();
+            if (selectedFiles.Count == 0) return;
+            files = selectedFiles.ToList();
+            var source = MediaSource.CreateFromStorageFile(files[currentFileIndex]);
             mediaPlayerElement.Source = source;
             mediaPlayerElement.AutoPlay = true;
             playButton.Visibility = Visibility.Collapsed;
@@ -92,7 +96,13 @@ namespace MediaBrowser.Apps
 
         private void previousButton_Click(object sender, RoutedEventArgs e)
         {
-            mediaPlayerElement.MediaPlayer.StepBackwardOneFrame();
+            if (currentFileIndex == 0)
+                currentFileIndex = files.Count - 1;
+            else
+                currentFileIndex--;
+            var source = MediaSource.CreateFromStorageFile(files[currentFileIndex]);
+            mediaPlayerElement.Source = source;
+            mediaPlayerElement.MediaPlayer.Play();
         }
 
         private void playButton_Click(object sender, RoutedEventArgs e)
@@ -111,7 +121,13 @@ namespace MediaBrowser.Apps
 
         private void nextButton_Click(object sender, RoutedEventArgs e)
         {
-            mediaPlayerElement.MediaPlayer.StepForwardOneFrame();
+            if (currentFileIndex == files.Count - 1)
+                currentFileIndex = 0;
+            else
+                currentFileIndex++;
+            var source = MediaSource.CreateFromStorageFile(files[currentFileIndex]);
+            mediaPlayerElement.Source = source;
+            mediaPlayerElement.MediaPlayer.Play();
         }
     }
 }
