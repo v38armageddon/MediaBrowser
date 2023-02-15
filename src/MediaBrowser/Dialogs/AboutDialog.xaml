@@ -8,6 +8,7 @@
     mc:Ignorable="d"
     Title="About MediaBrowser"
     PrimaryButtonText="Rate"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     SecondaryButtonText="Close"
     Background="#303952">
 

@@ -25,10 +25,9 @@ namespace MediaBrowser.Dialogs
             this.InitializeComponent();
         }
 
-        private async Task ContentDialog_PrimaryButtonClickAsync(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        private async void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             await Launcher.LaunchUriAsync(new Uri("ms-windows-store://review/?PFN=9PL4TWB5SLBQ"));
-
         }
     }
 }
