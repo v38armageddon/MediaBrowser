@@ -34,13 +34,13 @@
                             <TextBlock Text="Shutdown"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="buttonReboot" Margin="309,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonReboot_Click">
+                    <Button x:Name="buttonReboot" Margin="317,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonReboot_Click">
                         <StackPanel>
                             <SymbolIcon Symbol="Sync"/>
                             <TextBlock Text="Reboot"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="buttonAbout" Margin="563,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonAbout_Click">
+                    <Button x:Name="buttonAbout" Margin="571,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonAbout_Click">
                         <StackPanel>
                             <SymbolIcon Symbol="Help"/>
                             <TextBlock Text="About"/>
@@ -62,6 +62,12 @@
                             <TextBlock Text="Camera"/>
                         </StackPanel>
                     </Button>
+                    <Button x:Name="xboxNetworkPictureButton" Margin="571,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="xboxNetworkPictureButton_Click" Visibility="Collapsed">
+                        <StackPanel>
+                            <SymbolIcon Symbol="Library"/>
+                            <TextBlock Text="My Network Pictures"/>
+                        </StackPanel>
+                    </Button>
                 </Grid>
             </PivotItem>
             <PivotItem Header="Music">
@@ -72,6 +78,12 @@
                             <TextBlock Text="My Music"/>
                         </StackPanel>
                     </Button>
+                    <Button x:Name="xboxNetworkMusicButton" Margin="317,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="xboxNetworkMusicButton_Click" Visibility="Collapsed">
+                        <StackPanel>
+                            <SymbolIcon Symbol="Library"/>
+                            <TextBlock Text="My Network Music"/>
+                        </StackPanel>
+                    </Button>
                 </Grid>
             </PivotItem>
             <PivotItem Header="Videos">
@@ -80,6 +92,12 @@
                         <StackPanel>
                             <SymbolIcon Symbol="Video"/>
                             <TextBlock Text="My Videos"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="xboxNetworkVideoButton" Margin="317,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="xboxNetworkVideoButton_Click" Visibility="Collapsed">
+                        <StackPanel>
+                            <SymbolIcon Symbol="Library"/>
+                            <TextBlock Text="My Network Videos"/>
                         </StackPanel>
                     </Button>
                 </Grid>

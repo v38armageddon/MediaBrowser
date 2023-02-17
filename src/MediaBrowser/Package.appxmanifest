@@ -61,7 +61,9 @@
     <uap:Capability Name="videosLibrary"/>
     <uap:Capability Name="removableStorage"/>
     <Capability Name="privateNetworkClientServer"/>
+    <Capability Name="internetClientServer"/>
     <DeviceCapability Name="webcam"/>
     <DeviceCapability Name="microphone"/>
+    <DeviceCapability Name="broadFileSystemAccess" />
   </Capabilities>
 </Package>

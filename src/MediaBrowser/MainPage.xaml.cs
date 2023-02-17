@@ -35,6 +35,9 @@ namespace MediaBrowser
             {
                 buttonWindow.Visibility = Visibility.Collapsed;
                 buttonClose.Visibility = Visibility.Collapsed;
+                xboxNetworkMusicButton.Visibility = Visibility.Visible;
+                xboxNetworkPictureButton.Visibility = Visibility.Visible;
+                xboxNetworkVideoButton.Visibility = Visibility.Visible;
             }
             //mediaElement.Source = new Uri("ms-appx:///Sounds/startup.wav");
             //mediaElement.Play();
@@ -88,10 +91,16 @@ namespace MediaBrowser
             rootFrame.Navigate(typeof(PicturePage), null, new DrillInNavigationTransitionInfo());
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void cameraButton_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(CameraPage), null, new DrillInNavigationTransitionInfo());
+        }
+
+        private void xboxNetworkPictureButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+            rootFrame.Navigate(typeof(XboxNetworkPicturePage), null, new DrillInNavigationTransitionInfo());
         }
 
         // Music
@@ -101,11 +110,20 @@ namespace MediaBrowser
             rootFrame.Navigate(typeof(MusicPage), null, new DrillInNavigationTransitionInfo());
         }
 
+        private void xboxNetworkMusicButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         // Videos
         private void myVideosButton_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(VideosPage), null, new DrillInNavigationTransitionInfo());
+        }
+
+        private void xboxNetworkVideoButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         // Extras
