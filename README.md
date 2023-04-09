@@ -20,6 +20,6 @@ The best method to get MediaBrowser is to install from the Microsoft Store.
 If you want to install without the Microsoft Store, follow theses steps:
 1. Download the .msix file and the .cer file.
 2. If needed, authorize the all sources in settings.
-3. Install the certificate, see: https://wsldl-pg.github.io/ArchW-docs/Install-Certificate/
+3. Install the certificate
 4. Install the software.
 5. Launch the software via the start menu.
