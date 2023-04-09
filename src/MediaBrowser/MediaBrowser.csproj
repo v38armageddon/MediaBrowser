@@ -135,20 +135,11 @@
     <Compile Include="Apps\CameraPage.xaml.cs">
       <DependentUpon>CameraPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Apps\XboxNetworkMusicPage.xaml.cs">
-      <DependentUpon>XboxNetworkMusicPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Apps\MusicPage.xaml.cs">
       <DependentUpon>MusicPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Apps\XboxNetworkPicturePage.xaml.cs">
-      <DependentUpon>XboxNetworkPicturePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Apps\PicturePage.xaml.cs">
       <DependentUpon>PicturePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Apps\XboxNetworkVideosPage.xaml.cs">
-      <DependentUpon>XboxNetworkVideosPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Apps\VideosPage.xaml.cs">
       <DependentUpon>VideosPage.xaml</DependentUpon>
@@ -161,9 +152,6 @@
     </Compile>
     <Compile Include="Dialogs\ShutdownDialog.xaml.cs">
       <DependentUpon>ShutdownDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\XboxOpenFileIPDialog.xaml.cs">
-      <DependentUpon>XboxOpenFileIPDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -247,25 +235,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Apps\XboxNetworkMusicPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Apps\MusicPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Apps\XboxNetworkPicturePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Apps\PicturePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Apps\XboxNetworkVideosPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Apps\VideosPage.xaml">
       <SubType>Designer</SubType>
@@ -280,10 +256,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\ShutdownDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Dialogs\XboxOpenFileIPDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

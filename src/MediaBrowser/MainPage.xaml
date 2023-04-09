@@ -62,12 +62,6 @@
                             <TextBlock Text="Camera"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="xboxNetworkPictureButton" Margin="571,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="xboxNetworkPictureButton_Click" Visibility="Collapsed">
-                        <StackPanel>
-                            <SymbolIcon Symbol="Library"/>
-                            <TextBlock Text="My Network Pictures"/>
-                        </StackPanel>
-                    </Button>
                 </Grid>
             </PivotItem>
             <PivotItem Header="Music">
@@ -78,12 +72,6 @@
                             <TextBlock Text="My Music"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="xboxNetworkMusicButton" Margin="317,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="xboxNetworkMusicButton_Click" Visibility="Collapsed">
-                        <StackPanel>
-                            <SymbolIcon Symbol="Library"/>
-                            <TextBlock Text="My Network Music"/>
-                        </StackPanel>
-                    </Button>
                 </Grid>
             </PivotItem>
             <PivotItem Header="Videos">
@@ -92,12 +80,6 @@
                         <StackPanel>
                             <SymbolIcon Symbol="Video"/>
                             <TextBlock Text="My Videos"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="xboxNetworkVideoButton" Margin="317,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="xboxNetworkVideoButton_Click" Visibility="Collapsed">
-                        <StackPanel>
-                            <SymbolIcon Symbol="Library"/>
-                            <TextBlock Text="My Network Videos"/>
                         </StackPanel>
                     </Button>
                 </Grid>
@@ -112,16 +94,6 @@
         </Pivot>
 
         <!--Bottom-->
-        <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom" OverflowButtonVisibility="Collapsed">
-            <!--<AppBarButton x:Name="stopButton" Icon="Stop" Label="Stop" Click="stopButton_Click"/>
-            <AppBarSeparator/>
-            <AppBarButton x:Name="previousButton" Icon="Previous" Label="Previous" Click="previousButton_Click"/>
-            <AppBarButton x:Name="playButton" Icon="Play" Label="Play" Visibility="Collapsed" Click="playButton_Click"/>
-            <AppBarButton x:Name="pauseButton" Icon="Pause" Label="Pause" Click="pauseButton_Click"/>
-            <AppBarButton x:Name="nextButton" Icon="Next" Label="Next" Click="nextButton_Click"/>
-            <AppBarSeparator/>
-            <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>-->
-        </CommandBar>
-        <muxc:ProgressRing IsActive="False" Height="139" Width="139" />
+        <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom" OverflowButtonVisibility="Collapsed"/>
     </Grid>
 </Page>

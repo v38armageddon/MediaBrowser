@@ -35,9 +35,6 @@ namespace MediaBrowser
             {
                 buttonWindow.Visibility = Visibility.Collapsed;
                 buttonClose.Visibility = Visibility.Collapsed;
-                xboxNetworkMusicButton.Visibility = Visibility.Visible;
-                xboxNetworkPictureButton.Visibility = Visibility.Visible;
-                xboxNetworkVideoButton.Visibility = Visibility.Visible;
             }
             //mediaElement.Source = new Uri("ms-appx:///Sounds/startup.wav");
             //mediaElement.Play();
@@ -97,12 +94,6 @@ namespace MediaBrowser
             rootFrame.Navigate(typeof(CameraPage), null, new DrillInNavigationTransitionInfo());
         }
 
-        private void xboxNetworkPictureButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame rootFrame = Window.Current.Content as Frame;
-            rootFrame.Navigate(typeof(XboxNetworkPicturePage), null, new DrillInNavigationTransitionInfo());
-        }
-
         // Music
         private void myMusicButton_Click(object sender, RoutedEventArgs e)
         {
@@ -110,22 +101,11 @@ namespace MediaBrowser
             rootFrame.Navigate(typeof(MusicPage), null, new DrillInNavigationTransitionInfo());
         }
 
-        private void xboxNetworkMusicButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame rootFrame = Window.Current.Content as Frame;
-            rootFrame.Navigate(typeof(XboxNetworkMusicPage), null, new DrillInNavigationTransitionInfo());
-        }
         // Videos
         private void myVideosButton_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(VideosPage), null, new DrillInNavigationTransitionInfo());
-        }
-
-        private void xboxNetworkVideoButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame rootFrame = Window.Current.Content as Frame;
-            rootFrame.Navigate(typeof(XboxNetworkVideosPage), null, new DrillInNavigationTransitionInfo());
         }
 
         // Extras
