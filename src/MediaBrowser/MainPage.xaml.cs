@@ -112,7 +112,8 @@ namespace MediaBrowser
 
         private void xboxNetworkMusicButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Frame rootFrame = Window.Current.Content as Frame;
+            rootFrame.Navigate(typeof(XboxNetworkMusicPage), null, new DrillInNavigationTransitionInfo());
         }
         // Videos
         private void myVideosButton_Click(object sender, RoutedEventArgs e)
@@ -123,7 +124,8 @@ namespace MediaBrowser
 
         private void xboxNetworkVideoButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Frame rootFrame = Window.Current.Content as Frame;
+            rootFrame.Navigate(typeof(XboxNetworkVideosPage), null, new DrillInNavigationTransitionInfo());
         }
 
         // Extras

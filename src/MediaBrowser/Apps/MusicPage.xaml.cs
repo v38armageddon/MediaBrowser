@@ -105,11 +105,19 @@ namespace MediaBrowser.Apps
             mediaPlayerElement.MediaPlayer.Play();
         }
 
+        [Obsolete]
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
-            mediaPlayerElement.MediaPlayer.Play();
-            playButton.Visibility = Visibility.Collapsed;
-            pauseButton.Visibility = Visibility.Visible;
+            if (mediaPlayerElement.Source != null)
+            {
+                if (mediaPlayerElement.MediaPlayer.NaturalDuration == TimeSpan.Zero)
+                {
+                    infoBar.IsOpen = true;
+                }
+                mediaPlayerElement.MediaPlayer.Play();
+                playButton.Visibility = Visibility.Collapsed;
+                pauseButton.Visibility = Visibility.Visible;
+            }
         }
 
         private void pauseButton_Click(object sender, RoutedEventArgs e)
@@ -128,6 +136,25 @@ namespace MediaBrowser.Apps
             var source = MediaSource.CreateFromStorageFile(files[currentFileIndex]);
             mediaPlayerElement.Source = source;
             mediaPlayerElement.MediaPlayer.Play();
+        }
+
+        private void volumeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (volumeBar.Visibility == Visibility.Collapsed) volumeBar.Visibility = Visibility.Visible;
+            else if (volumeBar.Visibility == Visibility.Visible) volumeBar.Visibility = Visibility.Collapsed;
+        }
+
+        private void volumeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            int value = (int)e.NewValue;
+            int NewVolume = ((ushort.MaxValue / 100) * value);
+            uint NewVolumeAllChannels = (((uint)NewVolume & 0x0000ffff) | ((uint)NewVolume << 16));
+            //waveOutSetVolume(IntPtr.Zero, NewVolumeAllChannels);
+        }
+
+        private void infoBar_CloseButtonClick(Microsoft.UI.Xaml.Controls.InfoBar sender, object args)
+        {
+            infoBar.IsOpen = false;
         }
     }
 }

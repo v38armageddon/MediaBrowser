@@ -28,8 +28,6 @@
         <!--Bottom-->
         <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom" OverflowButtonVisibility="Collapsed">
             <AppBarButton x:Name="playButton" Icon="Play" Label="Play" Click="playButton_Click"/>
-            <!--<AppBarSeparator/>
-            <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>-->
         </CommandBar>
         <muxc:ProgressRing IsActive="False" Height="139" Width="139" />
         <muxc:InfoBar

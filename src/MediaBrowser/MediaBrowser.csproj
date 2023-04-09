@@ -162,6 +162,9 @@
     <Compile Include="Dialogs\ShutdownDialog.xaml.cs">
       <DependentUpon>ShutdownDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\XboxOpenFileIPDialog.xaml.cs">
+      <DependentUpon>XboxOpenFileIPDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -280,6 +283,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dialogs\XboxOpenFileIPDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -304,6 +311,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="MediaBrowser_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
