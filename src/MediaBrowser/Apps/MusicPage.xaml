@@ -34,7 +34,7 @@
             <AppBarButton x:Name="pauseButton" Icon="Pause" Label="Pause" Visibility="Collapsed" Click="pauseButton_Click"/>
             <AppBarButton x:Name="nextButton" Icon="Next" Label="Next" Click="nextButton_Click"/>
             <AppBarSeparator/>
-            <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>
+            <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume" Click="volumeButton_Click"/>
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Name="openFileButton" Icon="OpenFile" Label="Open music" Click="openFileButton_ClickAsync"/>
             </CommandBar.SecondaryCommands>

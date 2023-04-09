@@ -36,6 +36,7 @@ namespace MediaBrowser.Apps
             {
                 buttonWindow.Visibility = Visibility.Collapsed;
                 buttonClose.Visibility = Visibility.Collapsed;
+                volumeButton.Visibility = Visibility.Collapsed;
             }
         }
 
