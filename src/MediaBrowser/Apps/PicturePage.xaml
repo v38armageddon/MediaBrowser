@@ -34,5 +34,14 @@
                 <AppBarButton x:Name="openFileButton" Icon="OpenFile" Label="Open Picture" Click="openFileButton_Click"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
+        <muxc:InfoBar
+            x:Name="infoBar"
+            IsOpen="True"
+            Visibility="Collapsed"
+            Severity="Error"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Title="Error"
+            Message="No pictures loaded, make sure you open the file before viewing it." Margin="0,0,0,53" CloseButtonClick="infoBar_CloseButtonClick" />
     </Grid>
 </Page>

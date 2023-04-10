@@ -87,7 +87,6 @@ namespace MediaBrowser.Apps
             }
         }
 
-
         private void infoBar_CloseButtonClick(Microsoft.UI.Xaml.Controls.InfoBar sender, object args)
         {
             infoBar.Visibility = Visibility.Collapsed;

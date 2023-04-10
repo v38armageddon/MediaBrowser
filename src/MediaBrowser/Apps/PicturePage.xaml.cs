@@ -172,5 +172,10 @@ namespace MediaBrowser.Apps
             image.SetSource(await files[currentFileIndex].OpenAsync(FileAccessMode.Read));
             Image.Source = image;
         }
+
+        private void infoBar_CloseButtonClick(Microsoft.UI.Xaml.Controls.InfoBar sender, object args)
+        {
+            infoBar.Visibility = Visibility.Collapsed;
+        }
     }
 }

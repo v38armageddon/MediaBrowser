@@ -103,14 +103,20 @@ namespace MediaBrowser.Apps
 
         private void previousButton_Click(object sender, RoutedEventArgs e)
         {
-            if (mediaPlayerElement.Source == null) return;
-            if (currentFileIndex == 0)
-                currentFileIndex = files.Count - 1;
+            if (mediaPlayerElement.Source == null)
+            {
+                infoBar.Visibility = Visibility.Visible;
+            }
             else
-                currentFileIndex--;
-            var source = MediaSource.CreateFromStorageFile(files[currentFileIndex]);
-            mediaPlayerElement.Source = source;
-            mediaPlayerElement.MediaPlayer.Play();
+            {
+                if (currentFileIndex == 0)
+                    currentFileIndex = files.Count - 1;
+                else
+                    currentFileIndex--;
+                var source = MediaSource.CreateFromStorageFile(files[currentFileIndex]);
+                mediaPlayerElement.Source = source;
+                mediaPlayerElement.MediaPlayer.Play();
+            }
         }
 
         [Obsolete]
@@ -130,6 +136,8 @@ namespace MediaBrowser.Apps
 
         private void pauseButton_Click(object sender, RoutedEventArgs e)
         {
+            if (mediaPlayerElement.Source == null)
+                infoBar.Visibility = Visibility.Visible;
             mediaPlayerElement.MediaPlayer.Pause();
             playButton.Visibility = Visibility.Visible;
             pauseButton.Visibility = Visibility.Collapsed;
@@ -137,14 +145,20 @@ namespace MediaBrowser.Apps
 
         private void nextButton_Click(object sender, RoutedEventArgs e)
         {
-            if (mediaPlayerElement.Source == null) return;
-            if (currentFileIndex == files.Count - 1)
-                currentFileIndex = 0;
+            if (mediaPlayerElement.Source == null)
+            {
+                infoBar.Visibility = Visibility.Visible;
+            }
             else
-                currentFileIndex++;
-            var source = MediaSource.CreateFromStorageFile(files[currentFileIndex]);
-            mediaPlayerElement.Source = source;
-            mediaPlayerElement.MediaPlayer.Play();
+            {
+                if (currentFileIndex == files.Count - 1)
+                    currentFileIndex = 0;
+                else
+                    currentFileIndex++;
+                var source = MediaSource.CreateFromStorageFile(files[currentFileIndex]);
+                mediaPlayerElement.Source = source;
+                mediaPlayerElement.MediaPlayer.Play();
+            }
         }
 
         private void volumeButton_Click(object sender, RoutedEventArgs e)

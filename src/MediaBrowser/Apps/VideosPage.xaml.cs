@@ -107,14 +107,20 @@ namespace MediaBrowser.Apps
 
         private void previousButton_Click(object sender, RoutedEventArgs e)
         {
-            if (mediaPlayerElement.Source == null) return;
-            if (currentFileIndex == 0)
-                currentFileIndex = files.Count - 1;
+            if (mediaPlayerElement.Source == null)
+            {
+                infoBar.Visibility = Visibility.Visible;
+            }
             else
-                currentFileIndex--;
-            var source = MediaSource.CreateFromStorageFile(files[currentFileIndex]);
-            mediaPlayerElement.Source = source;
-            mediaPlayerElement.MediaPlayer.Play();
+            {
+                if (currentFileIndex == 0)
+                    currentFileIndex = files.Count - 1;
+                else
+                    currentFileIndex--;
+                var source = MediaSource.CreateFromStorageFile(files[currentFileIndex]);
+                mediaPlayerElement.Source = source;
+                mediaPlayerElement.MediaPlayer.Play();
+            }
         }
 
         [Obsolete]
@@ -130,25 +136,47 @@ namespace MediaBrowser.Apps
                 playButton.Visibility = Visibility.Collapsed;
                 pauseButton.Visibility = Visibility.Visible;
             }
+            else
+            {
+                infoBar.Visibility = Visibility.Visible;
+            }
         }
 
+        [Obsolete]
         private void pauseButton_Click(object sender, RoutedEventArgs e)
         {
-            mediaPlayerElement.MediaPlayer.Pause();
-            playButton.Visibility = Visibility.Visible;
-            pauseButton.Visibility = Visibility.Collapsed;
+            if (mediaPlayerElement.Source != null)
+            {
+                if (mediaPlayerElement.MediaPlayer.NaturalDuration == TimeSpan.Zero)
+                {
+                    infoBar.Visibility = Visibility.Visible;
+                }
+                mediaPlayerElement.MediaPlayer.Pause();
+                playButton.Visibility = Visibility.Collapsed;
+                pauseButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                infoBar.Visibility = Visibility.Visible;
+            }
         }
 
         private void nextButton_Click(object sender, RoutedEventArgs e)
         {
-            if (mediaPlayerElement.Source == null) return;
-            if (currentFileIndex == files.Count - 1)
-                currentFileIndex = 0;
+            if (mediaPlayerElement.Source == null)
+            {
+                infoBar.Visibility = Visibility.Visible;
+            }
             else
-                currentFileIndex++;
-            var source = MediaSource.CreateFromStorageFile(files[currentFileIndex]);
-            mediaPlayerElement.Source = source;
-            mediaPlayerElement.MediaPlayer.Play();
+            {
+                if (currentFileIndex == files.Count - 1)
+                    currentFileIndex = 0;
+                else
+                    currentFileIndex++;
+                var source = MediaSource.CreateFromStorageFile(files[currentFileIndex]);
+                mediaPlayerElement.Source = source;
+                mediaPlayerElement.MediaPlayer.Play();
+            }
         }
 
         private void volumeButton_Click(object sender, RoutedEventArgs e)
@@ -168,11 +196,6 @@ namespace MediaBrowser.Apps
         private void infoBar_CloseButtonClick(Microsoft.UI.Xaml.Controls.InfoBar sender, object args)
         {
             infoBar.Visibility = Visibility.Collapsed;
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
         }
     }
 }
