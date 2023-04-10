@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -27,6 +28,10 @@ namespace MediaBrowser
             {
                 buttonWindow.Visibility = Visibility.Collapsed;
                 buttonClose.Visibility = Visibility.Collapsed;
+            }
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("BingMapPage"))
+            {
+                this.DataContext = ApplicationData.Current.LocalSettings.Values["BingMapPage"];
             }
         }
 
@@ -55,12 +60,18 @@ namespace MediaBrowser
         {
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(MainPage), null, new DrillInNavigationTransitionInfo());
+            ApplicationData.Current.LocalSettings.Values["BingMapPage"] = this.DataContext;
         }
 
         private void buttonHome_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(MainPage), null, new DrillInNavigationTransitionInfo());
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
         }
     }
 }

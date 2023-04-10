@@ -41,7 +41,8 @@
         </CommandBar>
         <muxc:InfoBar
             x:Name="infoBar"
-            IsOpen="False"
+            IsOpen="True"
+            Visibility="Collapsed"
             Severity="Error"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"

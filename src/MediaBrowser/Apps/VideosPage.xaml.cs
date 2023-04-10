@@ -38,6 +38,10 @@ namespace MediaBrowser.Apps
                 buttonClose.Visibility = Visibility.Collapsed;
                 volumeButton.Visibility = Visibility.Collapsed;
             }
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("VideosPage"))
+            {
+                this.DataContext = ApplicationData.Current.LocalSettings.Values["VideosPage"];
+            }
         }
 
         // Top
@@ -65,12 +69,14 @@ namespace MediaBrowser.Apps
         {
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(MainPage), null, new DrillInNavigationTransitionInfo());
+            ApplicationData.Current.LocalSettings.Values["CurrentPage"] = this.DataContext;
         }
 
         private void buttonHome_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(MainPage), null, new DrillInNavigationTransitionInfo());
+            mediaPlayerElement.Source = null;
         }
 
         // Center
@@ -101,6 +107,7 @@ namespace MediaBrowser.Apps
 
         private void previousButton_Click(object sender, RoutedEventArgs e)
         {
+            if (mediaPlayerElement.Source == null) return;
             if (currentFileIndex == 0)
                 currentFileIndex = files.Count - 1;
             else
@@ -117,7 +124,7 @@ namespace MediaBrowser.Apps
             {
                 if (mediaPlayerElement.MediaPlayer.NaturalDuration == TimeSpan.Zero)
                 {
-                    infoBar.IsOpen = true;
+                    infoBar.Visibility = Visibility.Visible;
                 }
                 mediaPlayerElement.MediaPlayer.Play();
                 playButton.Visibility = Visibility.Collapsed;
@@ -134,6 +141,7 @@ namespace MediaBrowser.Apps
 
         private void nextButton_Click(object sender, RoutedEventArgs e)
         {
+            if (mediaPlayerElement.Source == null) return;
             if (currentFileIndex == files.Count - 1)
                 currentFileIndex = 0;
             else
@@ -159,7 +167,12 @@ namespace MediaBrowser.Apps
 
         private void infoBar_CloseButtonClick(Microsoft.UI.Xaml.Controls.InfoBar sender, object args)
         {
-            infoBar.IsOpen = false;
+            infoBar.Visibility = Visibility.Collapsed;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
         }
     }
 }

@@ -30,11 +30,9 @@
             <AppBarButton x:Name="previousButton" Icon="Previous" Label="Previous" Click="previousButton_Click"/>
             <AppBarButton x:Name="nextButton" Icon="Next" Label="Next" Click="nextButton_Click"/>
             <AppBarSeparator/>
-            <!--<AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>-->
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Name="openFileButton" Icon="OpenFile" Label="Open Picture" Click="openFileButton_Click"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
-        <muxc:ProgressRing IsActive="False" Height="139" Width="139" />
     </Grid>
 </Page>

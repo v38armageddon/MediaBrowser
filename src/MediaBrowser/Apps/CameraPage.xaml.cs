@@ -68,26 +68,34 @@ namespace MediaBrowser.Apps
             rootFrame.Navigate(typeof(MainPage), null, new DrillInNavigationTransitionInfo());
         }
 
-        // Center
-
         // Bottom
         private async void playButton_Click(object sender, RoutedEventArgs e)
         {
-            using (MediaCapture mediaCaptureMgr = new MediaCapture())
+            try
             {
-                if (mediaCaptureMgr == null)
+                using (MediaCapture mediaCaptureMgr = new MediaCapture())
                 {
-                    infoBar.IsOpen = true;
+                    await mediaCaptureMgr.InitializeAsync();
+                    PreviewControl.Source = mediaCaptureMgr;
+                    await mediaCaptureMgr.StartPreviewAsync();
                 }
-                await mediaCaptureMgr.InitializeAsync();
-                PreviewControl.Source = mediaCaptureMgr;
-                await mediaCaptureMgr.StartPreviewAsync();
+            }
+            catch (Exception ex)
+            {
+                infoBar.Visibility = Visibility.Visible;
+                infoBar.Message = "Error: " + ex.Message;
             }
         }
 
+
         private void infoBar_CloseButtonClick(Microsoft.UI.Xaml.Controls.InfoBar sender, object args)
         {
-            infoBar.IsOpen = false;
+            infoBar.Visibility = Visibility.Collapsed;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
         }
     }
 }

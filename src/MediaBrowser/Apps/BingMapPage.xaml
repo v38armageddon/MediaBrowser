@@ -31,9 +31,6 @@
             <AppBarButton Icon="Previous" Label="Previous"/>
             <AppBarButton Icon="Play" Label="Play"/>
             <AppBarButton Icon="Next" Label="Next"/>
-            <!--<AppBarSeparator/>
-            <AppBarButton Icon="Volume" Label="Volume"/>-->
         </CommandBar>
-        <muxc:ProgressRing IsActive="False" Height="139" Width="139" />
     </Grid>
 </Page>
