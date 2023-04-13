@@ -11,18 +11,13 @@
 
     <Grid Background="#303952">
         <!--Top-->
-        <CommandBar Background="#596275" IsOpen="False" OverflowButtonVisibility="Collapsed">
-            <AppBarButton x:Name="buttonWindow" x:FieldModifier="public" Click="buttonWindow_Click">
-                <SymbolIcon x:Name="symbolButtonWindow" Symbol="BackToWindow"/>
-            </AppBarButton>
-            <AppBarButton x:Name="buttonClose" Icon="Clear" Click="buttonClose_Click"/>
-        </CommandBar>
+        <CommandBar Background="#596275" OverflowButtonVisibility="Collapsed"/>
         <CommandBar Background="#596275" HorizontalAlignment="Left" OverflowButtonVisibility="Collapsed">
-            <AppBarButton x:Name="buttonReturn" Icon="Back" Click="buttonReturn_Click"/>
-            <AppBarButton x:Name="buttonHome" Icon="Home" Click="buttonHome_Click"/>
+            <AppBarButton x:Name="buttonReturn" Icon="Back"/>
+            <AppBarButton x:Name="buttonHome" Icon="Home"/>
         </CommandBar>
         
         <!--Center-->
-        <my:MapControl Margin="0,40,0,40" MapServiceToken="TOKEN"/>
+        <my:MapControl Margin="0,48,0,48" MapServiceToken="TOKEN"/>
     </Grid>
 </Page>

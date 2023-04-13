@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser", "MediaBrowser\MediaBrowser.csproj", "{BA901D88-E788-4916-B53A-8E6825C5A732}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Xbox", "MediaBrowser.Xbox\MediaBrowser.Xbox.csproj", "{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -41,6 +43,30 @@ Global
 		{BA901D88-E788-4916-B53A-8E6825C5A732}.Release|x86.ActiveCfg = Release|x86
 		{BA901D88-E788-4916-B53A-8E6825C5A732}.Release|x86.Build.0 = Release|x86
 		{BA901D88-E788-4916-B53A-8E6825C5A732}.Release|x86.Deploy.0 = Release|x86
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Debug|ARM.ActiveCfg = Debug|ARM
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Debug|ARM.Build.0 = Debug|ARM
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Debug|ARM.Deploy.0 = Debug|ARM
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Debug|ARM64.Build.0 = Debug|ARM64
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Debug|x64.ActiveCfg = Debug|x64
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Debug|x64.Build.0 = Debug|x64
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Debug|x64.Deploy.0 = Debug|x64
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Debug|x86.ActiveCfg = Debug|x86
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Debug|x86.Build.0 = Debug|x86
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Debug|x86.Deploy.0 = Debug|x86
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Release|ARM.ActiveCfg = Release|ARM
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Release|ARM.Build.0 = Release|ARM
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Release|ARM.Deploy.0 = Release|ARM
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Release|ARM64.ActiveCfg = Release|ARM64
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Release|ARM64.Build.0 = Release|ARM64
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Release|ARM64.Deploy.0 = Release|ARM64
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Release|x64.ActiveCfg = Release|x64
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Release|x64.Build.0 = Release|x64
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Release|x64.Deploy.0 = Release|x64
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Release|x86.ActiveCfg = Release|x86
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Release|x86.Build.0 = Release|x86
+		{60C9AFA2-80CD-4ED2-BDE5-17F91461B8E2}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -68,33 +68,13 @@ namespace MediaBrowser.Apps
         }
 
         // Top
-        private void buttonWindow_Click(object sender, RoutedEventArgs e)
-        {
-            var currentSize = ApplicationView.GetForCurrentView();
-            if (!currentSize.IsFullScreenMode)
-            {
-                currentSize.TryEnterFullScreenMode();
-                symbolButtonWindow.Symbol = Symbol.BackToWindow;
-            }
-            else
-            {
-                currentSize.ExitFullScreenMode();
-                symbolButtonWindow.Symbol = Symbol.FullScreen;
-            }
-        }
-
-        private void buttonClose_Click(object sender, RoutedEventArgs e)
-        {
-            Windows.UI.Xaml.Application.Current.Exit();
-        }
-
         private void buttonReturn_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(MainPage), null, new DrillInNavigationTransitionInfo());
             ApplicationData.Current.LocalSettings.Values["PicturePage"] = this.DataContext;
             ApplicationData.Current.LocalSettings.Values["PicturePageCurrentFileIndex"] = currentFileIndex;
-            //ApplicationData.Current.LocalSettings.Values["ImageSource"] = Image.Source;
+            ApplicationData.Current.LocalSettings.Values["ImageSource"] = Image.Source;
             if (files != null && files.Count > 0)
             {
                 JArray filesArray = new JArray();
@@ -104,14 +84,14 @@ namespace MediaBrowser.Apps
                 }
                 ApplicationData.Current.LocalSettings.Values["PicturePageFiles"] = filesArray.ToString();
             }
-            //if (Image.Source != null)
-            //{
-            //    BitmapImage bitmapImage = Image.Source as BitmapImage;
-            //    if (bitmapImage != null)
-            //    {
-            //        ApplicationData.Current.LocalSettings.Values["ImageSource"] = bitmapImage.UriSource.AbsoluteUri;
-            //    }
-            //}
+            if (Image.Source != null)
+            {
+                BitmapImage bitmapImage = Image.Source as BitmapImage;
+                if (bitmapImage != null)
+                {
+                    ApplicationData.Current.LocalSettings.Values["ImageSource"] = bitmapImage.UriSource.AbsoluteUri;
+                }
+            }
         }
 
         private void buttonHome_Click(object sender, RoutedEventArgs e)

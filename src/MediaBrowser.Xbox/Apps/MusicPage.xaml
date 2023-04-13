@@ -1,0 +1,55 @@
+﻿<Page
+    x:Class="MediaBrowser.Apps.MusicPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MediaBrowser.Apps"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="#303952">
+        <!--Top-->
+        <CommandBar Background="#596275" OverflowButtonVisibility="Collapsed"/>
+        <CommandBar Background="#596275" HorizontalAlignment="Left" OverflowButtonVisibility="Collapsed">
+            <AppBarButton x:Name="buttonReturn" Icon="Back"/>
+            <AppBarButton x:Name="buttonHome" Icon="Home"/>
+        </CommandBar>
+
+        <!--Center-->
+        <MediaPlayerElement x:Name="mediaPlayerElement" Margin="0,48,0,48"/>
+
+        <!--Bottom-->
+        <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom">
+            <AppBarButton x:Name="stopButton" Icon="Stop" Label="Stop" Click="stopButton_Click"/>
+            <AppBarSeparator/>
+            <AppBarButton x:Name="previousButton" Icon="Previous" Label="Previous" Click="previousButton_Click"/>
+            <AppBarButton x:Name="playButton" Icon="Play" Label="Play" Click="playButton_Click"/>
+            <AppBarButton x:Name="pauseButton" Icon="Pause" Label="Pause" Visibility="Collapsed" Click="pauseButton_Click"/>
+            <AppBarButton x:Name="nextButton" Icon="Next" Label="Next" Click="nextButton_Click"/>
+            <AppBarSeparator/>
+            <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume" Click="volumeButton_Click"/>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="openFileButton" Icon="OpenFile" Label="Open music" Click="openFileButton_ClickAsync"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+        <muxc:InfoBar
+            x:Name="infoBar"
+            IsOpen="True"
+            Visibility="Collapsed"
+            Severity="Error"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Title="Error"
+            Message="No music loaded, make sure you open the file before playing it." Margin="0,0,0,53" CloseButtonClick="infoBar_CloseButtonClick" />
+        <Grid x:Name="volumeBar" Height="44" Margin="0,0,0,40" Width="431" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Rectangle>
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="#1e2333" Opacity="0.5"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Slider x:Name="volumeSlider" AutomationProperties.Name="simple slider" Margin="10,0,10,0" Width="NaN" ValueChanged="volumeSlider_ValueChanged"/>
+        </Grid>
+    </Grid>
+</Page>

@@ -39,26 +39,6 @@ namespace MediaBrowser.Apps
         }
 
         // Top
-        private void buttonWindow_Click(object sender, RoutedEventArgs e)
-        {
-            var currentSize = ApplicationView.GetForCurrentView();
-            if (!currentSize.IsFullScreenMode)
-            {
-                currentSize.TryEnterFullScreenMode();
-                symbolButtonWindow.Symbol = Symbol.BackToWindow;
-            }
-            else
-            {
-                currentSize.ExitFullScreenMode();
-                symbolButtonWindow.Symbol = Symbol.FullScreen;
-            }
-        }
-
-        private void buttonClose_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Exit();
-        }
-
         private void buttonReturn_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;

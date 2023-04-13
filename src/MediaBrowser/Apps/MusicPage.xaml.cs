@@ -17,7 +17,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-
+using Newtonsoft.Json.Linq;
 
 namespace MediaBrowser.Apps
 {
@@ -38,6 +38,27 @@ namespace MediaBrowser.Apps
             if (ApplicationData.Current.LocalSettings.Values.ContainsKey("MusicPage"))
             {
                 this.DataContext = ApplicationData.Current.LocalSettings.Values["MusicPage"];
+            }
+            loadSettings();
+        }
+
+        private void loadSettings()
+        {
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("MusicPageCurrentFileIndex"))
+            {
+                currentFileIndex = (int)ApplicationData.Current.LocalSettings.Values["MusicPageCurrentFileIndex"];
+            }
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("MusicPageFiles"))
+            {
+                JArray filesArray = JArray.Parse((string)ApplicationData.Current.LocalSettings.Values["MusicPageFiles"]);
+                foreach (var file in filesArray)
+                {
+                    files.Add(StorageFile.GetFileFromPathAsync((string)file).GetAwaiter().GetResult());
+                }
+            }
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("MusicPageCurrentFile"))
+            {
+                mediaPlayerElement.Source = MediaSource.CreateFromStorageFile(StorageFile.GetFileFromPathAsync((string)ApplicationData.Current.LocalSettings.Values["MusicPageCurrentFile"]).GetAwaiter().GetResult());
             }
         }
 
@@ -67,6 +88,20 @@ namespace MediaBrowser.Apps
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(MainPage), null, new DrillInNavigationTransitionInfo());
             ApplicationData.Current.LocalSettings.Values["MusicPage"] = this.DataContext;
+            ApplicationData.Current.LocalSettings.Values["MusicPageCurrentFileIndex"] = currentFileIndex;
+            if (files != null && files.Count > 0)
+            {
+                JArray filesArray = new JArray();
+                foreach (var file in files)
+                {
+                    filesArray.Add(file.Path);
+                }
+                ApplicationData.Current.LocalSettings.Values["MusicPageFiles"] = filesArray.ToString();
+            }
+            if (mediaPlayerElement.Source != null)
+            {
+                ApplicationData.Current.LocalSettings.Values["MusicPageCurrentFile"] = files[currentFileIndex].Path;
+            }
         }
 
         private void buttonHome_Click(object sender, RoutedEventArgs e)
@@ -119,15 +154,14 @@ namespace MediaBrowser.Apps
             }
         }
 
-        [Obsolete]
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
-            if (mediaPlayerElement.Source != null)
+            if (mediaPlayerElement.Source == null)
             {
-                if (mediaPlayerElement.MediaPlayer.NaturalDuration == TimeSpan.Zero)
-                {
-                    infoBar.Visibility = Visibility.Visible;
-                }
+                infoBar.Visibility = Visibility.Visible;
+            }
+            else
+            {
                 mediaPlayerElement.MediaPlayer.Play();
                 playButton.Visibility = Visibility.Collapsed;
                 pauseButton.Visibility = Visibility.Visible;
@@ -137,10 +171,15 @@ namespace MediaBrowser.Apps
         private void pauseButton_Click(object sender, RoutedEventArgs e)
         {
             if (mediaPlayerElement.Source == null)
+            {
                 infoBar.Visibility = Visibility.Visible;
-            mediaPlayerElement.MediaPlayer.Pause();
-            playButton.Visibility = Visibility.Visible;
-            pauseButton.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                mediaPlayerElement.MediaPlayer.Pause();
+                playButton.Visibility = Visibility.Visible;
+                pauseButton.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void nextButton_Click(object sender, RoutedEventArgs e)

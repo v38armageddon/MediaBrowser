@@ -5,7 +5,9 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using Windows.Media.Playback;
+using Windows.Media.Core;
+using Windows.Storage.Pickers;
+using Windows.Storage;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -15,73 +17,82 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using Windows.System;
-using System.Threading.Tasks;
-using Windows.Storage.Pickers;
-using Windows.Storage;
-using Windows.Media.Core;
+using Newtonsoft.Json.Linq;
 
 namespace MediaBrowser.Apps
 {
-    public sealed partial class VideosPage : Page
+    public sealed partial class MusicPage : Page
     {
         private List<StorageFile> files = new List<StorageFile>();
         private int currentFileIndex = 0;
-        private List<string> extensionFile = new List<string>();
 
-        public VideosPage()
+        public MusicPage()
         {
             this.InitializeComponent();
-            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("VideosPage"))
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("MusicPage"))
             {
-                this.DataContext = ApplicationData.Current.LocalSettings.Values["VideosPage"];
+                this.DataContext = ApplicationData.Current.LocalSettings.Values["MusicPage"];
+            }
+            loadSettings();
+        }
+
+        private void loadSettings()
+        {
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("MusicPageCurrentFileIndex"))
+            {
+                currentFileIndex = (int)ApplicationData.Current.LocalSettings.Values["MusicPageCurrentFileIndex"];
+            }
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("MusicPageFiles"))
+            {
+                JArray filesArray = JArray.Parse((string)ApplicationData.Current.LocalSettings.Values["MusicPageFiles"]);
+                foreach (var file in filesArray)
+                {
+                    files.Add(StorageFile.GetFileFromPathAsync((string)file).GetAwaiter().GetResult());
+                }
+            }
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("MusicPageCurrentFile"))
+            {
+                mediaPlayerElement.Source = MediaSource.CreateFromStorageFile(StorageFile.GetFileFromPathAsync((string)ApplicationData.Current.LocalSettings.Values["MusicPageCurrentFile"]).GetAwaiter().GetResult());
             }
         }
 
         // Top
-        private void buttonWindow_Click(object sender, RoutedEventArgs e)
-        {
-            var currentSize = ApplicationView.GetForCurrentView();
-            if (!currentSize.IsFullScreenMode)
-            {
-                currentSize.TryEnterFullScreenMode();
-                symbolButtonWindow.Symbol = Symbol.BackToWindow;
-            }
-            else
-            {
-                currentSize.ExitFullScreenMode();
-                symbolButtonWindow.Symbol = Symbol.FullScreen;
-            }
-        }
-
-        private void buttonClose_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Exit();
-        }
-
         private void buttonReturn_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(MainPage), null, new DrillInNavigationTransitionInfo());
-            ApplicationData.Current.LocalSettings.Values["CurrentPage"] = this.DataContext;
+            ApplicationData.Current.LocalSettings.Values["MusicPage"] = this.DataContext;
+            ApplicationData.Current.LocalSettings.Values["MusicPageCurrentFileIndex"] = currentFileIndex;
+            if (files != null && files.Count > 0)
+            {
+                JArray filesArray = new JArray();
+                foreach (var file in files)
+                {
+                    filesArray.Add(file.Path);
+                }
+                ApplicationData.Current.LocalSettings.Values["MusicPageFiles"] = filesArray.ToString();
+            }
+            if (mediaPlayerElement.Source != null)
+            {
+                ApplicationData.Current.LocalSettings.Values["MusicPageCurrentFile"] = files[currentFileIndex].Path;
+            }
         }
 
         private void buttonHome_Click(object sender, RoutedEventArgs e)
         {
+            mediaPlayerElement.Source = null;
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(MainPage), null, new DrillInNavigationTransitionInfo());
-            mediaPlayerElement.Source = null;
         }
 
         // Center
         private async void openFileButton_ClickAsync(object sender, RoutedEventArgs e)
         {
             FileOpenPicker p = new FileOpenPicker();
-            p.FileTypeFilter.Add(".mp4");
-            p.FileTypeFilter.Add(".mkv");
-            p.FileTypeFilter.Add(".wmv");
-            p.FileTypeFilter.Add(".mov");
-            p.FileTypeFilter.Add(".avi");
+            p.FileTypeFilter.Add(".mp3");
+            p.FileTypeFilter.Add(".ogg");
+            p.FileTypeFilter.Add(".wav");
+            p.FileTypeFilter.Add(".flac");
             var selectedFiles = await p.PickMultipleFilesAsync();
             if (selectedFiles.Count == 0) return;
             files = selectedFiles.ToList();
@@ -117,41 +128,31 @@ namespace MediaBrowser.Apps
             }
         }
 
-        [Obsolete]
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
-            if (mediaPlayerElement.Source != null)
+            if (mediaPlayerElement.Source == null)
             {
-                if (mediaPlayerElement.MediaPlayer.NaturalDuration == TimeSpan.Zero)
-                {
-                    infoBar.Visibility = Visibility.Visible;
-                }
+                infoBar.Visibility = Visibility.Visible;
+            }
+            else
+            {
                 mediaPlayerElement.MediaPlayer.Play();
                 playButton.Visibility = Visibility.Collapsed;
                 pauseButton.Visibility = Visibility.Visible;
             }
-            else
-            {
-                infoBar.Visibility = Visibility.Visible;
-            }
         }
 
-        [Obsolete]
         private void pauseButton_Click(object sender, RoutedEventArgs e)
         {
-            if (mediaPlayerElement.Source != null)
+            if (mediaPlayerElement.Source == null)
             {
-                if (mediaPlayerElement.MediaPlayer.NaturalDuration == TimeSpan.Zero)
-                {
-                    infoBar.Visibility = Visibility.Visible;
-                }
-                mediaPlayerElement.MediaPlayer.Pause();
-                playButton.Visibility = Visibility.Collapsed;
-                pauseButton.Visibility = Visibility.Visible;
+                infoBar.Visibility = Visibility.Visible;
             }
             else
             {
-                infoBar.Visibility = Visibility.Visible;
+                mediaPlayerElement.MediaPlayer.Pause();
+                playButton.Visibility = Visibility.Visible;
+                pauseButton.Visibility = Visibility.Collapsed;
             }
         }
 

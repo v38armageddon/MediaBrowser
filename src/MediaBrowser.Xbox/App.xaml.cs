@@ -10,7 +10,6 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using Windows.Storage;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -27,10 +26,7 @@ namespace MediaBrowser
         public App()
         {
             this.InitializeComponent();
-            if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Xbox")
-            {
-                this.RequiresPointerMode = Windows.UI.Xaml.ApplicationRequiresPointerMode.WhenRequested;
-            }
+            this.RequiresPointerMode = Windows.UI.Xaml.ApplicationRequiresPointerMode.WhenRequested;
             this.Suspending += OnSuspending;
             AppCenter.Start("TOKEN",
                   typeof(Analytics), typeof(Crashes));
@@ -77,7 +73,6 @@ namespace MediaBrowser
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            ApplicationData.Current.LocalSettings.Values.Clear();
             deferral.Complete();
         }
     }
