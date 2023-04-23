@@ -86,10 +86,5 @@ namespace MediaBrowser.Apps
         {
             infoBar.Visibility = Visibility.Collapsed;
         }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-        }
     }
 }

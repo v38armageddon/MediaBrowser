@@ -48,11 +48,17 @@ namespace MediaBrowser.Apps
         {
             try
             {
-                using (MediaCapture mediaCaptureMgr = new MediaCapture())
+                var camera = await Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(Windows.Devices.Enumeration.DeviceClass.VideoCapture);
+                var kinect = camera.FirstOrDefault(x => x.Name.Contains("Kinect"));
+                if (kinect != null)
                 {
-                    await mediaCaptureMgr.InitializeAsync();
-                    PreviewControl.Source = mediaCaptureMgr;
-                    await mediaCaptureMgr.StartPreviewAsync();
+                    var mediaCapture = new MediaCapture();
+                    await mediaCapture.InitializeAsync(new MediaCaptureInitializationSettings
+                    {
+                        VideoDeviceId = kinect.Id
+                    });
+                    PreviewControl.Source = mediaCapture;
+                    await mediaCapture.StartPreviewAsync();
                 }
             }
             catch (Exception ex)
@@ -65,11 +71,6 @@ namespace MediaBrowser.Apps
         private void infoBar_CloseButtonClick(Microsoft.UI.Xaml.Controls.InfoBar sender, object args)
         {
             infoBar.Visibility = Visibility.Collapsed;
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
         }
     }
 }

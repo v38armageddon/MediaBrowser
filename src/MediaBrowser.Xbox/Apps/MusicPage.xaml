@@ -13,8 +13,8 @@
         <!--Top-->
         <CommandBar Background="#596275" OverflowButtonVisibility="Collapsed"/>
         <CommandBar Background="#596275" HorizontalAlignment="Left" OverflowButtonVisibility="Collapsed">
-            <AppBarButton x:Name="buttonReturn" Icon="Back"/>
-            <AppBarButton x:Name="buttonHome" Icon="Home"/>
+            <AppBarButton x:Name="buttonReturn" Icon="Back" Click="buttonReturn_Click"/>
+            <AppBarButton x:Name="buttonHome" Icon="Home" Click="buttonHome_Click"/>
         </CommandBar>
 
         <!--Center-->

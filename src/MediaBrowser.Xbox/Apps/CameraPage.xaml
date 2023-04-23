@@ -13,8 +13,8 @@
         <!--Top-->
         <CommandBar Background="#596275" OverflowButtonVisibility="Collapsed"/>
         <CommandBar Background="#596275" HorizontalAlignment="Left" OverflowButtonVisibility="Collapsed">
-            <AppBarButton x:Name="buttonReturn" Icon="Back"/>
-            <AppBarButton x:Name="buttonHome" Icon="Home"/>
+            <AppBarButton x:Name="buttonReturn" Icon="Back" Click="buttonReturn_Click"/>
+            <AppBarButton x:Name="buttonHome" Icon="Home" Click="buttonHome_Click"/>
         </CommandBar>
 
         <!--Center-->
@@ -32,6 +32,6 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             Title="Error"
-            Message="No camera detected, make sure your camera is connected and try later." Margin="0,0,0,53" CloseButtonClick="infoBar_CloseButtonClick" />
+            Message="No Kinect detected, make sure your Kinect is connected and try later." Margin="0,0,0,53" CloseButtonClick="infoBar_CloseButtonClick" />
     </Grid>
 </Page>

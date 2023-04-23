@@ -85,6 +85,7 @@ namespace MediaBrowser.Apps
 
         private void buttonClose_Click(object sender, RoutedEventArgs e)
         {
+            ApplicationData.Current.LocalSettings.Values.Clear();
             Windows.UI.Xaml.Application.Current.Exit();
         }
 
@@ -117,6 +118,7 @@ namespace MediaBrowser.Apps
         private void buttonHome_Click(object sender, RoutedEventArgs e)
         {
             Image.Source = null;
+            ApplicationData.Current.LocalSettings.Values.Clear();
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(MainPage), null, new DrillInNavigationTransitionInfo());
         }
@@ -139,24 +141,38 @@ namespace MediaBrowser.Apps
 
         private async void previousButton_Click(object sender, RoutedEventArgs e)
         {
-            if (currentFileIndex == 0)
-                currentFileIndex = files.Count - 1;
+            if (Image.Source == null)
+            {
+                infoBar.Visibility = Visibility.Visible;
+            }
             else
-                currentFileIndex--;
-            var image = new BitmapImage();
-            image.SetSource(await files[currentFileIndex].OpenAsync(FileAccessMode.Read));
-            Image.Source = image;
+            {
+                if (currentFileIndex == 0)
+                    currentFileIndex = files.Count - 1;
+                else
+                    currentFileIndex--;
+                var image = new BitmapImage();
+                image.SetSource(await files[currentFileIndex].OpenAsync(FileAccessMode.Read));
+                Image.Source = image;
+            }
         }
 
         private async void nextButton_Click(object sender, RoutedEventArgs e)
         {
-            if (currentFileIndex == files.Count - 1)
-                currentFileIndex = 0;
+            if (Image.Source == null)
+            {
+                infoBar.Visibility = Visibility.Visible;
+            }
             else
-                currentFileIndex++;
-            var image = new BitmapImage();
-            image.SetSource(await files[currentFileIndex].OpenAsync(FileAccessMode.Read));
-            Image.Source = image;
+            {
+                if (currentFileIndex == files.Count - 1)
+                    currentFileIndex = 0;
+                else
+                    currentFileIndex++;
+                var image = new BitmapImage();
+                image.SetSource(await files[currentFileIndex].OpenAsync(FileAccessMode.Read));
+                Image.Source = image;
+            }
         }
 
         private void infoBar_CloseButtonClick(Microsoft.UI.Xaml.Controls.InfoBar sender, object args)
