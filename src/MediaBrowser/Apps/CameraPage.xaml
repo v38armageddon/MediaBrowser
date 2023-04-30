@@ -12,7 +12,9 @@
     <Grid Background="#303952">
         <!--Top-->
         <CommandBar Background="#596275" IsOpen="False" OverflowButtonVisibility="Collapsed">
-            <AppBarButton x:Name="buttonWindow" x:FieldModifier="public" Icon="BackToWindow" Click="buttonWindow_Click"/>
+            <AppBarButton x:Name="buttonWindow" x:FieldModifier="public" Click="buttonWindow_Click">
+                <SymbolIcon x:Name="symbolButtonWindow" Symbol="BackToWindow"/>
+            </AppBarButton>
             <AppBarButton x:Name="buttonClose" Icon="Clear" Click="buttonClose_Click"/>
         </CommandBar>
         <CommandBar Background="#596275" HorizontalAlignment="Left" OverflowButtonVisibility="Collapsed">
@@ -25,15 +27,16 @@
 
         <!--Bottom-->
         <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom" OverflowButtonVisibility="Collapsed">
-            <AppBarButton x:Name="stopButton" Icon="Stop" Label="Stop"/>
-            <AppBarSeparator/>
-            <AppBarButton x:Name="previousButton" Icon="Previous" Label="Previous"/>
             <AppBarButton x:Name="playButton" Icon="Play" Label="Play" Click="playButton_Click"/>
-            <AppBarButton x:Name="pauseButton" Icon="Pause" Label="Pause" Visibility="Collapsed"/>
-            <AppBarButton x:Name="nextButton" Icon="Next" Label="Next"/>
-            <!--<AppBarSeparator/>
-            <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>-->
         </CommandBar>
-        <muxc:ProgressRing IsActive="False" Height="139" Width="139" />
+        <muxc:InfoBar
+            x:Name="infoBar"
+            IsOpen="True"
+            Visibility="Collapsed"
+            Severity="Error"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Title="Error"
+            Message="No camera detected, make sure your camera is connected and try later." Margin="0,0,0,53" CloseButtonClick="infoBar_CloseButtonClick" />
     </Grid>
 </Page>

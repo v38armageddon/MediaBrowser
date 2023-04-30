@@ -47,10 +47,12 @@ namespace MediaBrowser
             if (!currentSize.IsFullScreenMode)
             {
                 currentSize.TryEnterFullScreenMode();
+                symbolButtonWindow.Symbol = Symbol.BackToWindow;
             }
             else
             {
                 currentSize.ExitFullScreenMode();
+                symbolButtonWindow.Symbol = Symbol.FullScreen;
             }
         }
 
@@ -86,7 +88,7 @@ namespace MediaBrowser
             rootFrame.Navigate(typeof(PicturePage), null, new DrillInNavigationTransitionInfo());
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void cameraButton_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(CameraPage), null, new DrillInNavigationTransitionInfo());

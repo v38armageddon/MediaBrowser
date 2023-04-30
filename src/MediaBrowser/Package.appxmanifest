@@ -10,10 +10,10 @@
 
   <Identity
     Name="34823v38armageddon.MediaBrowser"
-    Publisher="CN=EF25BC35-CB3A-4D06-953A-49E6117D3FA3"
-    Version="1.0.0.0" />
+    Publisher="CN=v38armageddon"
+    Version="2.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="1d5812b6-847f-4ddb-88fb-039e71245445" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="0eb54717-07d7-4d4f-878e-277c1ee43e17" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>MediaBrowser</DisplayName>
@@ -46,7 +46,7 @@
             <uap:ShowOn Tile="square310x310Logo"/>
           </uap:ShowNameOnTiles>
         </uap:DefaultTile >
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        <uap:SplashScreen Image="Assets\SplashScreen.png"  BackgroundColor="#1e2333"/>
         <uap:InitialRotationPreference>
           <uap:Rotation Preference="landscape"/></uap:InitialRotationPreference>
       </uap:VisualElements>
@@ -60,7 +60,10 @@
     <uap3:Capability Name="backgroundMediaPlayback"/>
     <uap:Capability Name="videosLibrary"/>
     <uap:Capability Name="removableStorage"/>
+    <Capability Name="privateNetworkClientServer"/>
+    <Capability Name="internetClientServer"/>
     <DeviceCapability Name="webcam"/>
     <DeviceCapability Name="microphone"/>
+    <DeviceCapability Name="broadFileSystemAccess" />
   </Capabilities>
 </Package>

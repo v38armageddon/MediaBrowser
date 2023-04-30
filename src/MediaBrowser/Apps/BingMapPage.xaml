@@ -12,26 +12,17 @@
     <Grid Background="#303952">
         <!--Top-->
         <CommandBar Background="#596275" IsOpen="False" OverflowButtonVisibility="Collapsed">
-            <AppBarButton x:Name="buttonWindow" x:FieldModifier="public" Icon="BackToWindow" Click="buttonWindow_Click"/>
+            <AppBarButton x:Name="buttonWindow" x:FieldModifier="public" Click="buttonWindow_Click">
+                <SymbolIcon x:Name="symbolButtonWindow" Symbol="BackToWindow"/>
+            </AppBarButton>
             <AppBarButton x:Name="buttonClose" Icon="Clear" Click="buttonClose_Click"/>
         </CommandBar>
         <CommandBar Background="#596275" HorizontalAlignment="Left" OverflowButtonVisibility="Collapsed">
             <AppBarButton x:Name="buttonReturn" Icon="Back" Click="buttonReturn_Click"/>
             <AppBarButton x:Name="buttonHome" Icon="Home" Click="buttonHome_Click"/>
         </CommandBar>
-        <!--Center-->
-        <my:MapControl Margin="0,48,0,48" MapServiceToken="TOKEN"/>
         
-        <!--Bottom-->
-        <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom" OverflowButtonVisibility="Collapsed">
-            <AppBarButton Icon="Stop" Label="Stop"/>
-            <AppBarSeparator/>
-            <AppBarButton Icon="Previous" Label="Previous"/>
-            <AppBarButton Icon="Play" Label="Play"/>
-            <AppBarButton Icon="Next" Label="Next"/>
-            <!--<AppBarSeparator/>
-            <AppBarButton Icon="Volume" Label="Volume"/>-->
-        </CommandBar>
-        <muxc:ProgressRing IsActive="False" Height="139" Width="139" />
+        <!--Center-->
+        <my:MapControl Margin="0,40,0,40" MapServiceToken="TOKEN"/>
     </Grid>
 </Page>

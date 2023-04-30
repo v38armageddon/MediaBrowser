@@ -28,11 +28,6 @@ namespace MediaBrowser.Apps
         public CameraPage()
         {
             this.InitializeComponent();
-            if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Xbox")
-            {
-                buttonWindow.Visibility = Visibility.Collapsed;
-                buttonClose.Visibility = Visibility.Collapsed;
-            }
         }
 
         // Top
@@ -42,10 +37,12 @@ namespace MediaBrowser.Apps
             if (!currentSize.IsFullScreenMode)
             {
                 currentSize.TryEnterFullScreenMode();
+                symbolButtonWindow.Symbol = Symbol.BackToWindow;
             }
             else
             {
                 currentSize.ExitFullScreenMode();
+                symbolButtonWindow.Symbol = Symbol.FullScreen;
             }
         }
 
@@ -66,16 +63,28 @@ namespace MediaBrowser.Apps
             rootFrame.Navigate(typeof(MainPage), null, new DrillInNavigationTransitionInfo());
         }
 
-        // Center
-
         // Bottom
         private async void playButton_Click(object sender, RoutedEventArgs e)
         {
-            MediaCapture mediaCaptureMgr = new MediaCapture();
-            await mediaCaptureMgr.InitializeAsync();
+            try
+            {
+                using (MediaCapture mediaCaptureMgr = new MediaCapture())
+                {
+                    await mediaCaptureMgr.InitializeAsync();
+                    PreviewControl.Source = mediaCaptureMgr;
+                    await mediaCaptureMgr.StartPreviewAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                infoBar.Visibility = Visibility.Visible;
+                infoBar.Message = "Error: " + ex.Message;
+            }
+        }
 
-            PreviewControl.Source = mediaCaptureMgr;
-            await mediaCaptureMgr.StartPreviewAsync();
+        private void infoBar_CloseButtonClick(Microsoft.UI.Xaml.Controls.InfoBar sender, object args)
+        {
+            infoBar.Visibility = Visibility.Collapsed;
         }
     }
 }

@@ -14,7 +14,9 @@
 
         <!--Top-->
         <CommandBar Background="#596275" IsOpen="False" OverflowButtonVisibility="Collapsed">
-            <AppBarButton x:Name="buttonWindow" x:FieldModifier="public" Icon="BackToWindow" Click="buttonWindow_Click"/>
+            <AppBarButton x:Name="buttonWindow" x:FieldModifier="public" Click="buttonWindow_Click">
+                <SymbolIcon x:Name="symbolButtonWindow" Symbol="BackToWindow"/>
+            </AppBarButton>
             <AppBarButton x:Name="buttonClose" Icon="Clear" Click="buttonClose_Click"/>
         </CommandBar>
         <CommandBar Background="#596275" HorizontalAlignment="Left" OverflowButtonVisibility="Collapsed">
@@ -32,13 +34,13 @@
                             <TextBlock Text="Shutdown"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="buttonReboot" Margin="309,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonReboot_Click">
+                    <Button x:Name="buttonReboot" Margin="317,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonReboot_Click">
                         <StackPanel>
                             <SymbolIcon Symbol="Sync"/>
                             <TextBlock Text="Reboot"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="buttonAbout" Margin="563,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonAbout_Click">
+                    <Button x:Name="buttonAbout" Margin="571,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonAbout_Click">
                         <StackPanel>
                             <SymbolIcon Symbol="Help"/>
                             <TextBlock Text="About"/>
@@ -54,7 +56,7 @@
                             <TextBlock Text="My Pictures"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="cameraButton" Margin="317,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="Button_Click_1">
+                    <Button x:Name="cameraButton" Margin="317,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="cameraButton_Click">
                         <StackPanel>
                             <SymbolIcon Symbol="Camera"/>
                             <TextBlock Text="Camera"/>
@@ -92,16 +94,6 @@
         </Pivot>
 
         <!--Bottom-->
-        <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom" OverflowButtonVisibility="Collapsed">
-            <!--<AppBarButton x:Name="stopButton" Icon="Stop" Label="Stop" Click="stopButton_Click"/>
-            <AppBarSeparator/>
-            <AppBarButton x:Name="previousButton" Icon="Previous" Label="Previous" Click="previousButton_Click"/>
-            <AppBarButton x:Name="playButton" Icon="Play" Label="Play" Visibility="Collapsed" Click="playButton_Click"/>
-            <AppBarButton x:Name="pauseButton" Icon="Pause" Label="Pause" Click="pauseButton_Click"/>
-            <AppBarButton x:Name="nextButton" Icon="Next" Label="Next" Click="nextButton_Click"/>
-            <AppBarSeparator/>
-            <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume"/>-->
-        </CommandBar>
-        <muxc:ProgressRing IsActive="False" Height="139" Width="139" />
+        <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom" OverflowButtonVisibility="Collapsed"/>
     </Grid>
 </Page>

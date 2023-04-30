@@ -1,0 +1,94 @@
+<Page
+    x:Class="MediaBrowser.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MediaBrowser"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="#303952">
+        <MediaElement x:Name="mediaElement" x:FieldModifier="public" Visibility="Collapsed"/>
+
+        <!--Top-->
+        <CommandBar Background="#596275" OverflowButtonVisibility="Collapsed"/>
+        <CommandBar Background="#596275" HorizontalAlignment="Left" OverflowButtonVisibility="Collapsed">
+            <AppBarButton x:Name="buttonReturn" Icon="Back"/>
+            <AppBarButton x:Name="buttonHome" Icon="Home"/>
+        </CommandBar>
+
+        <!--Center-->
+        <Pivot Margin="0,48,0,48" SelectedIndex="1">
+            <PivotItem Header="Tasks">
+                <Grid>
+                    <Button x:Name="buttonShutdown" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonShutdown_Click">
+                        <StackPanel>
+                            <SymbolIcon Symbol="Stop"/>
+                            <TextBlock Text="Shutdown"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="buttonReboot" Margin="317,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonReboot_Click">
+                        <StackPanel>
+                            <SymbolIcon Symbol="Sync"/>
+                            <TextBlock Text="Reboot"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="buttonAbout" Margin="571,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonAbout_Click">
+                        <StackPanel>
+                            <SymbolIcon Symbol="Help"/>
+                            <TextBlock Text="About"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="Pictures">
+                <Grid>
+                    <Button x:Name="myPicturesButton" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="myPicturesButton_Click">
+                        <StackPanel>
+                            <SymbolIcon Symbol="Pictures"/>
+                            <TextBlock Text="My Pictures"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="cameraButton" Margin="317,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="cameraButton_Click">
+                        <StackPanel>
+                            <SymbolIcon Symbol="Camera"/>
+                            <TextBlock Text="Camera"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="Music">
+                <Grid>
+                    <Button x:Name="myMusicButton" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="myMusicButton_Click">
+                        <StackPanel>
+                            <SymbolIcon Symbol="MusicInfo"/>
+                            <TextBlock Text="My Music"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="Videos">
+                <Grid>
+                    <Button x:Name="myVideosButton" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="myVideosButton_Click">
+                        <StackPanel>
+                            <SymbolIcon Symbol="Video"/>
+                            <TextBlock Text="My Videos"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="Extras">
+                <Grid>
+                    <Button Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="Button_Click">
+                        <Image Source="Images/BingMap.jpg"/>
+                    </Button>
+                </Grid>
+            </PivotItem>
+        </Pivot>
+
+        <!--Bottom-->
+        <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom" OverflowButtonVisibility="Collapsed"/>
+    </Grid>
+</Page>

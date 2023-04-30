@@ -18,19 +18,53 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Imaging;
+using static System.Net.Mime.MediaTypeNames;
+using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
+using Windows.Graphics.Imaging;
+using Windows.Storage.Streams;
 
 namespace MediaBrowser.Apps
 {
     public sealed partial class PicturePage : Page
     {
+        private List<StorageFile> files = new List<StorageFile>();
+        private int currentFileIndex = 0;
+
         public PicturePage()
         {
             this.InitializeComponent();
-            if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Xbox")
+            loadSettings();
+        }
+
+        private void loadSettings()
+        {
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("PicturePage"))
             {
-                buttonWindow.Visibility = Visibility.Collapsed;
-                buttonClose.Visibility = Visibility.Collapsed;
+                this.DataContext = ApplicationData.Current.LocalSettings.Values["PicturePage"];
             }
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("PicturePageCurrentFileIndex"))
+            {
+                currentFileIndex = (int)ApplicationData.Current.LocalSettings.Values["PicturePageCurrentFileIndex"];
+            }
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("PicturePageFiles"))
+            {
+                JArray filesArray = JArray.Parse((string)ApplicationData.Current.LocalSettings.Values["PicturePageFiles"]);
+                foreach (var file in filesArray)
+                {
+                    files.Add(StorageFile.GetFileFromPathAsync((string)file).GetAwaiter().GetResult());
+                }
+            }
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("ImageSource"))
+            {
+                string imageSourceString = ApplicationData.Current.LocalSettings.Values["ImageSource"].ToString();
+                Uri imageSourceUri;
+                if (Uri.TryCreate(imageSourceString, UriKind.Absolute, out imageSourceUri))
+                {
+                    Image.Source = new BitmapImage(imageSourceUri);
+                }
+            }
+
         }
 
         // Top
@@ -40,26 +74,51 @@ namespace MediaBrowser.Apps
             if (!currentSize.IsFullScreenMode)
             {
                 currentSize.TryEnterFullScreenMode();
+                symbolButtonWindow.Symbol = Symbol.BackToWindow;
             }
             else
             {
                 currentSize.ExitFullScreenMode();
+                symbolButtonWindow.Symbol = Symbol.FullScreen;
             }
         }
 
         private void buttonClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Exit();
+            ApplicationData.Current.LocalSettings.Values.Clear();
+            Windows.UI.Xaml.Application.Current.Exit();
         }
 
         private void buttonReturn_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(MainPage), null, new DrillInNavigationTransitionInfo());
+            ApplicationData.Current.LocalSettings.Values["PicturePage"] = this.DataContext;
+            ApplicationData.Current.LocalSettings.Values["PicturePageCurrentFileIndex"] = currentFileIndex;
+            //ApplicationData.Current.LocalSettings.Values["ImageSource"] = Image.Source;
+            if (files != null && files.Count > 0)
+            {
+                JArray filesArray = new JArray();
+                foreach (var file in files)
+                {
+                    filesArray.Add(file.Path);
+                }
+                ApplicationData.Current.LocalSettings.Values["PicturePageFiles"] = filesArray.ToString();
+            }
+            //if (Image.Source != null)
+            //{
+            //    BitmapImage bitmapImage = Image.Source as BitmapImage;
+            //    if (bitmapImage != null)
+            //    {
+            //        ApplicationData.Current.LocalSettings.Values["ImageSource"] = bitmapImage.UriSource.AbsoluteUri;
+            //    }
+            //}
         }
 
         private void buttonHome_Click(object sender, RoutedEventArgs e)
         {
+            Image.Source = null;
+            ApplicationData.Current.LocalSettings.Values.Clear();
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(MainPage), null, new DrillInNavigationTransitionInfo());
         }
@@ -72,10 +131,53 @@ namespace MediaBrowser.Apps
             p.FileTypeFilter.Add(".png");
             p.FileTypeFilter.Add(".bmp");
             p.FileTypeFilter.Add(".ico");
-            var files = await p.PickSingleFileAsync();
-            BitmapImage image = new BitmapImage();
-            image.SetSource(await files.OpenAsync(FileAccessMode.Read));
+            var selectedFiles = await p.PickMultipleFilesAsync();
+            if (selectedFiles.Count == 0) return;
+            files = selectedFiles.ToList();
+            var image = new BitmapImage();
+            image.SetSource(await files[currentFileIndex].OpenAsync(FileAccessMode.Read));
             Image.Source = image;
+        }
+
+        private async void previousButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Image.Source == null)
+            {
+                infoBar.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                if (currentFileIndex == 0)
+                    currentFileIndex = files.Count - 1;
+                else
+                    currentFileIndex--;
+                var image = new BitmapImage();
+                image.SetSource(await files[currentFileIndex].OpenAsync(FileAccessMode.Read));
+                Image.Source = image;
+            }
+        }
+
+        private async void nextButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Image.Source == null)
+            {
+                infoBar.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                if (currentFileIndex == files.Count - 1)
+                    currentFileIndex = 0;
+                else
+                    currentFileIndex++;
+                var image = new BitmapImage();
+                image.SetSource(await files[currentFileIndex].OpenAsync(FileAccessMode.Read));
+                Image.Source = image;
+            }
+        }
+
+        private void infoBar_CloseButtonClick(Microsoft.UI.Xaml.Controls.InfoBar sender, object args)
+        {
+            infoBar.Visibility = Visibility.Collapsed;
         }
     }
 }
