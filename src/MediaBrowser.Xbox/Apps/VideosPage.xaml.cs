@@ -173,6 +173,12 @@ namespace MediaBrowser.Apps
             infoBar.Visibility = Visibility.Collapsed;
         }
 
+        private void videoSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            int sliderValue = Convert.ToInt32(e.NewValue.ToString());
+            mediaPlayerElement.MediaPlayer.PlaybackSession.Position = new TimeSpan(0, 0, sliderValue);
+        }
+
         private void videoSlider_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
         {
             dispatcherTimer.Stop();
