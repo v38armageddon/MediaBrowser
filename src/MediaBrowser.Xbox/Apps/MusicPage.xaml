@@ -32,6 +32,7 @@
                 <AppBarButton x:Name="openFileButton" Icon="OpenFile" Label="Open music" Click="openFileButton_ClickAsync"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
+        <Slider x:Name="musicSlider" ValueChanged="musicSlider_ValueChanged" VerticalAlignment="Bottom" Margin="10,0,404,10" ManipulationCompleted="musicSlider_ManipulationCompleted" ManipulationStarted="musicSlider_ManipulationStarted"/>
         <muxc:InfoBar
             x:Name="infoBar"
             IsOpen="True"

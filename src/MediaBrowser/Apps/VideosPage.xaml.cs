@@ -28,7 +28,6 @@ namespace MediaBrowser.Apps
     {
         private List<StorageFile> files = new List<StorageFile>();
         private int currentFileIndex = 0;
-        private List<string> extensionFile = new List<string>();
         private DispatcherTimer dispatcherTimer;
         private TimeSpan durationMF;
 

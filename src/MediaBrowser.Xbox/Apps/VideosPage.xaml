@@ -34,6 +34,7 @@
                 <AppBarButton x:Name="openFileButton" Icon="OpenFile" Label="Open video" Click="openFileButton_ClickAsync"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
+        <Slider x:Name="videoSlider" ValueChanged="videoSlider_ValueChanged" VerticalAlignment="Bottom" Margin="10,0,404,10" ManipulationCompleted="videoSlider_ManipulationCompleted" ManipulationStarted="videoSlider_ManipulationStarted"/>
         <muxc:InfoBar
             x:Name="infoBar"
             IsOpen="True"

@@ -20,6 +20,7 @@ using System.Threading.Tasks;
 using Windows.Storage.Pickers;
 using Windows.Storage;
 using Windows.Media.Core;
+using Windows.UI.Core;
 
 namespace MediaBrowser.Apps
 {
@@ -27,11 +28,17 @@ namespace MediaBrowser.Apps
     {
         private List<StorageFile> files = new List<StorageFile>();
         private int currentFileIndex = 0;
-        private List<string> extensionFile = new List<string>();
+        private DispatcherTimer dispatcherTimer;
+        private TimeSpan durationMF;
 
         public VideosPage()
         {
             this.InitializeComponent();
+            // This is for the videoSlider for obtaining the current position of the video
+            dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            videoSlider.TickFrequency = 1.00;
+            dispatcherTimer.Tick += DispatcherTimerTick_EventHandler;
         }
 
         // Top
@@ -58,18 +65,31 @@ namespace MediaBrowser.Apps
             p.FileTypeFilter.Add(".mov");
             p.FileTypeFilter.Add(".avi");
             var selectedFiles = await p.PickMultipleFilesAsync();
+
+            // If the user doesn't select any file, then return
             if (selectedFiles.Count == 0) return;
+
+            // Add the files to the list
             files = selectedFiles.ToList();
             var source = MediaSource.CreateFromStorageFile(files[currentFileIndex]);
-            mediaPlayerElement.Source = source;
-            mediaPlayerElement.AutoPlay = true;
-            playButton.Visibility = Visibility.Collapsed;
-            pauseButton.Visibility = Visibility.Visible;
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                mediaPlayerElement.Source = source;
+
+                // Play the video
+                mediaPlayerElement.AutoPlay = true;
+                playButton.Visibility = Visibility.Collapsed;
+                pauseButton.Visibility = Visibility.Visible;
+                mediaPlayerElement.MediaPlayer.PlaybackSession.NaturalDurationChanged += NaturalDurationChanged_EventHandler;
+                dispatcherTimer.Start();
+            });
         }
 
         // Bottom
         private void stopButton_Click(object sender, RoutedEventArgs e)
         {
+            dispatcherTimer.Stop();
+            videoSlider.Value = 0;
             mediaPlayerElement.AutoPlay = false;
             mediaPlayerElement.Source = null;
         }
@@ -92,15 +112,15 @@ namespace MediaBrowser.Apps
             }
         }
 
-        [Obsolete]
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
             if (mediaPlayerElement.Source != null)
             {
-                if (mediaPlayerElement.MediaPlayer.NaturalDuration == TimeSpan.Zero)
+                if (mediaPlayerElement.MediaPlayer.PlaybackSession.NaturalDuration == TimeSpan.Zero)
                 {
                     infoBar.Visibility = Visibility.Visible;
                 }
+                dispatcherTimer.Start();
                 mediaPlayerElement.MediaPlayer.Play();
                 playButton.Visibility = Visibility.Collapsed;
                 pauseButton.Visibility = Visibility.Visible;
@@ -111,18 +131,18 @@ namespace MediaBrowser.Apps
             }
         }
 
-        [Obsolete]
         private void pauseButton_Click(object sender, RoutedEventArgs e)
         {
             if (mediaPlayerElement.Source != null)
             {
-                if (mediaPlayerElement.MediaPlayer.NaturalDuration == TimeSpan.Zero)
+                if (mediaPlayerElement.MediaPlayer.PlaybackSession.NaturalDuration == TimeSpan.Zero)
                 {
                     infoBar.Visibility = Visibility.Visible;
                 }
+                dispatcherTimer.Stop();
                 mediaPlayerElement.MediaPlayer.Pause();
-                playButton.Visibility = Visibility.Collapsed;
-                pauseButton.Visibility = Visibility.Visible;
+                playButton.Visibility = Visibility.Visible;
+                pauseButton.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -151,6 +171,31 @@ namespace MediaBrowser.Apps
         private void infoBar_CloseButtonClick(Microsoft.UI.Xaml.Controls.InfoBar sender, object args)
         {
             infoBar.Visibility = Visibility.Collapsed;
+        }
+
+        private void videoSlider_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
+        {
+            dispatcherTimer.Stop();
+        }
+
+        private void videoSlider_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
+        {
+            dispatcherTimer.Start();
+        }
+
+        // void, async, Task, bool n stuff
+        private void DispatcherTimerTick_EventHandler(object sender, object e)
+        {
+            videoSlider.Value += 1;
+        }
+
+        private async void NaturalDurationChanged_EventHandler(MediaPlaybackSession sender, object args)
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                durationMF = sender.NaturalDuration;
+                videoSlider.Maximum = durationMF.TotalSeconds;
+            });
         }
     }
 }
