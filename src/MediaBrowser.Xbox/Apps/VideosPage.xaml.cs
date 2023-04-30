@@ -32,10 +32,6 @@ namespace MediaBrowser.Apps
         public VideosPage()
         {
             this.InitializeComponent();
-            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("VideosPage"))
-            {
-                this.DataContext = ApplicationData.Current.LocalSettings.Values["VideosPage"];
-            }
         }
 
         // Top
@@ -43,7 +39,6 @@ namespace MediaBrowser.Apps
         {
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(MainPage), null, new DrillInNavigationTransitionInfo());
-            ApplicationData.Current.LocalSettings.Values["CurrentPage"] = this.DataContext;
         }
 
         private void buttonHome_Click(object sender, RoutedEventArgs e)
@@ -151,20 +146,6 @@ namespace MediaBrowser.Apps
                 mediaPlayerElement.Source = source;
                 mediaPlayerElement.MediaPlayer.Play();
             }
-        }
-
-        private void volumeButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (volumeBar.Visibility == Visibility.Collapsed) volumeBar.Visibility = Visibility.Visible;
-            else if (volumeBar.Visibility == Visibility.Visible) volumeBar.Visibility = Visibility.Collapsed;
-        }
-
-        private void volumeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
-        {
-            int value = (int)e.NewValue;
-            int NewVolume = ((ushort.MaxValue / 100) * value);
-            uint NewVolumeAllChannels = (((uint)NewVolume & 0x0000ffff) | ((uint)NewVolume << 16));
-            //waveOutSetVolume(IntPtr.Zero, NewVolumeAllChannels);
         }
 
         private void infoBar_CloseButtonClick(Microsoft.UI.Xaml.Controls.InfoBar sender, object args)

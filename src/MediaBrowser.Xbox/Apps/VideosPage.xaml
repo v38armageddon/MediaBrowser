@@ -43,13 +43,5 @@
             VerticalAlignment="Bottom"
             Title="Error"
             Message="No video loaded, make sure you open the file before playing it." Margin="0,0,0,53" CloseButtonClick="infoBar_CloseButtonClick" />
-        <Grid x:Name="volumeBar" Height="44" Margin="0,0,0,40" Width="431" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-            <Rectangle>
-                <Rectangle.Fill>
-                    <SolidColorBrush Color="#1e2333" Opacity="0.5"/>
-                </Rectangle.Fill>
-            </Rectangle>
-            <Slider x:Name="volumeSlider" AutomationProperties.Name="simple slider" Margin="10,0,10,0" Width="NaN" ValueChanged="volumeSlider_ValueChanged"/>
-        </Grid>
     </Grid>
 </Page>

@@ -74,6 +74,7 @@ namespace MediaBrowser.Apps
         }
 
         // Center
+        [Obsolete]
         private async void openFileButton_ClickAsync(object sender, RoutedEventArgs e)
         {
             FileOpenPicker p = new FileOpenPicker();
@@ -90,6 +91,7 @@ namespace MediaBrowser.Apps
             mediaPlayerElement.AutoPlay = true;
             playButton.Visibility = Visibility.Collapsed;
             pauseButton.Visibility = Visibility.Visible;
+            videoSlider.Maximum = mediaPlayerElement.MediaPlayer.NaturalDuration.TotalSeconds;
         }
 
         // Bottom
@@ -181,15 +183,18 @@ namespace MediaBrowser.Apps
 
         private void volumeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            int value = (int)e.NewValue;
-            int NewVolume = ((ushort.MaxValue / 100) * value);
-            uint NewVolumeAllChannels = (((uint)NewVolume & 0x0000ffff) | ((uint)NewVolume << 16));
-            //waveOutSetVolume(IntPtr.Zero, NewVolumeAllChannels);
+            double volume = volumeSlider.Value / 100.0; // Scale the value to be between 0 and 1
+            mediaPlayerElement.MediaPlayer.Volume = volume;
         }
 
         private void infoBar_CloseButtonClick(Microsoft.UI.Xaml.Controls.InfoBar sender, object args)
         {
             infoBar.Visibility = Visibility.Collapsed;
+        }
+
+        private void videoSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromSeconds(videoSlider.Value);
         }
     }
 }

@@ -28,8 +28,6 @@
             <AppBarButton x:Name="playButton" Icon="Play" Label="Play" Click="playButton_Click"/>
             <AppBarButton x:Name="pauseButton" Icon="Pause" Label="Pause" Visibility="Collapsed" Click="pauseButton_Click"/>
             <AppBarButton x:Name="nextButton" Icon="Next" Label="Next" Click="nextButton_Click"/>
-            <AppBarSeparator/>
-            <AppBarButton x:Name="volumeButton" Icon="Volume" Label="Volume" Click="volumeButton_Click"/>
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Name="openFileButton" Icon="OpenFile" Label="Open music" Click="openFileButton_ClickAsync"/>
             </CommandBar.SecondaryCommands>
@@ -43,13 +41,5 @@
             VerticalAlignment="Bottom"
             Title="Error"
             Message="No music loaded, make sure you open the file before playing it." Margin="0,0,0,53" CloseButtonClick="infoBar_CloseButtonClick" />
-        <Grid x:Name="volumeBar" Height="44" Margin="0,0,0,40" Width="431" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-            <Rectangle>
-                <Rectangle.Fill>
-                    <SolidColorBrush Color="#1e2333" Opacity="0.5"/>
-                </Rectangle.Fill>
-            </Rectangle>
-            <Slider x:Name="volumeSlider" AutomationProperties.Name="simple slider" Margin="10,0,10,0" Width="NaN" ValueChanged="volumeSlider_ValueChanged"/>
-        </Grid>
     </Grid>
 </Page>

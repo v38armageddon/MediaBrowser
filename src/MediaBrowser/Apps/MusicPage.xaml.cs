@@ -209,7 +209,8 @@ namespace MediaBrowser.Apps
 
         private void volumeSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            
+            double volume = volumeSlider.Value / 100.0; // Scale the value to be between 0 and 1
+            mediaPlayerElement.MediaPlayer.Volume = volume;
         }
 
         private void infoBar_CloseButtonClick(Microsoft.UI.Xaml.Controls.InfoBar sender, object args)
