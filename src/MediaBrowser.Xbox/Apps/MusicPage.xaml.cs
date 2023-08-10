@@ -100,7 +100,6 @@ namespace MediaBrowser.Apps
             }
             else
             {
-                musicSlider.Value = 0;
                 if (currentFileIndex == 0)
                     currentFileIndex = files.Count - 1;
                 else
@@ -149,7 +148,6 @@ namespace MediaBrowser.Apps
             }
             else
             {
-                musicSlider.Value = 0;
                 if (currentFileIndex == files.Count - 1)
                     currentFileIndex = 0;
                 else
@@ -167,7 +165,6 @@ namespace MediaBrowser.Apps
 
         private void musicSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            if (mediaPlayerElement.Source == null) return;
             int sliderValue = Convert.ToInt32(e.NewValue.ToString());
             mediaPlayerElement.MediaPlayer.PlaybackSession.Position = new TimeSpan(0, 0, sliderValue);
         }
