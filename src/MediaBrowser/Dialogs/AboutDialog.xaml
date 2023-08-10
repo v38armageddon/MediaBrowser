@@ -16,7 +16,7 @@
         <StackPanel>
             <Image Source="/Images/logo.png" Height="80" Width="81"/>
             <Image Source="/Images/Logo banner.png" Height="50" Width="235" />
-            <TextBlock Text="Version: 2" HorizontalAlignment="Center"/>
+            <TextBlock Text="Version: 2.1" HorizontalAlignment="Center"/>
             <TextBlock Text="License: GPL-3" HorizontalAlignment="Center"/>
             <TextBlock Foreground="White" HorizontalAlignment="Center">
                 <Hyperlink NavigateUri="https://github.com/v38armageddon/MediaBrowser">View on GitHub</Hyperlink>
