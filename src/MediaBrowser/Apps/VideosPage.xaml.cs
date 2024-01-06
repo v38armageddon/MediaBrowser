@@ -1,4 +1,21 @@
-﻿using System;
+﻿/*
+ * MediaBrowser, A Modern version of Windows Media Center
+ * Copyright (C) 2022 - 2024 - v38armageddon
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -100,6 +117,7 @@ namespace MediaBrowser.Apps
             var source = MediaSource.CreateFromStorageFile(files[currentFileIndex]);
             await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+                videoSlider.Value = 0; // Reset the Slider everytime if there is a change
                 mediaPlayerElement.Source = source;
 
                 // Play the video
@@ -213,7 +231,15 @@ namespace MediaBrowser.Apps
 
         private void videoSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            int sliderValue = Convert.ToInt32(e.NewValue.ToString());
+            int sliderValue = Convert.ToInt32(Math.Round(e.NewValue).ToString());
+            // If the slider is at the end, stop the video
+            if (sliderValue >= videoSlider.Maximum)
+            {
+                dispatcherTimer.Stop();
+                mediaPlayerElement.Source = null;
+                videoSlider.Value = 0;
+                mediaPlayerElement.MediaPlayer.PlaybackSession.Position = new TimeSpan(0, 0, sliderValue);
+            }
             mediaPlayerElement.MediaPlayer.PlaybackSession.Position = new TimeSpan(0, 0, sliderValue);
         }
 
