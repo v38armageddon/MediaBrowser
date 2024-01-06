@@ -16,8 +16,8 @@ Minimum Xbox required: Xbox One
 ### Microsoft Store
 The best method to get MediaBrowser is to install from the Microsoft Store.
 
-<a href="https://apps.microsoft.com/store/detail/9PL4TWB5SLBQ?launch=true&cid=v38armageddon&mode=mini">
-	<img src="https://get.microsoft.com/images/en%20dark.svg"/>
+<a href="https://apps.microsoft.com/detail/MediaBrowser/9PL4TWB5SLBQ?launch=true&mode=mini">
+	<img src="https://get.microsoft.com/images/en-us%20dark.svg" width="200"/>
 </a>
 
 ### Build from Source
