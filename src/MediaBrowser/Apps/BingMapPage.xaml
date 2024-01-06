@@ -40,6 +40,6 @@
         </CommandBar>
         
         <!--Center-->
-        <my:MapControl Margin="0,40,0,40" MapServiceToken="TOKEN"/>
+        <my:MapControl Margin="0,48,0,48" MapServiceToken="TOKEN"/>
     </Grid>
 </Page>
