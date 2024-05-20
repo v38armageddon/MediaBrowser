@@ -43,7 +43,13 @@ namespace MediaBrowser.Dialogs
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            Application.Current.Exit();
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "shutdown",
+                Arguments = "/r /t 0",
+                CreateNoWindow = true,
+                UseShellExecute = false
+            });
         }
     }
 }

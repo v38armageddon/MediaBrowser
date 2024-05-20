@@ -151,6 +151,9 @@
     <Compile Include="Dialogs\RebootDialog.xaml.cs">
       <DependentUpon>RebootDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\ExitDialog.xaml.cs">
+      <DependentUpon>ExitDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\ShutdownDialog.xaml.cs">
       <DependentUpon>ShutdownDialog.xaml</DependentUpon>
     </Compile>
@@ -257,6 +260,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dialogs\ExitDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Dialogs\ShutdownDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -290,7 +297,7 @@
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>MediaBrowser_TemporaryKey.pfx</AssemblyOriginatorKeyFile>

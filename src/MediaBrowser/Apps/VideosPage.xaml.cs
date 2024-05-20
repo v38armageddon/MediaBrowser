@@ -231,16 +231,19 @@ namespace MediaBrowser.Apps
 
         private void videoSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            int sliderValue = Convert.ToInt32(Math.Round(e.NewValue).ToString());
+            int sliderValue = (int)Math.Round(e.NewValue);
+            int maxValue = (int)Math.Round(videoSlider.Maximum);
+
             // If the slider is at the end, stop the video
-            if (sliderValue >= videoSlider.Maximum)
+            if (sliderValue >= maxValue)
             {
                 dispatcherTimer.Stop();
                 mediaPlayerElement.Source = null;
                 videoSlider.Value = 0;
-                mediaPlayerElement.MediaPlayer.PlaybackSession.Position = new TimeSpan(0, 0, sliderValue);
+                // In any case, the video update it's position
+                //mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromSeconds(sliderValue);
             }
-            mediaPlayerElement.MediaPlayer.PlaybackSession.Position = new TimeSpan(0, 0, sliderValue);
+            mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromSeconds(sliderValue);
         }
 
         private void videoSlider_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)

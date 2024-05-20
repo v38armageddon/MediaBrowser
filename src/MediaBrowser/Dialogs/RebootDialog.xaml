@@ -30,6 +30,6 @@
     Background="#303952">
 
     <Grid>
-        <TextBlock Text="Are you sure you want to reboot the software?"/>
+        <TextBlock Text="Are you sure you want to reboot the system?"/>
     </Grid>
 </ContentDialog>

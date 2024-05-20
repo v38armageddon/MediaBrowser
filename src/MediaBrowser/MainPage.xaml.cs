@@ -92,6 +92,12 @@ namespace MediaBrowser
             await rebootDialog.ShowAsync();
         }
 
+        private async void buttonExit_Click(object sender, RoutedEventArgs e)
+        {
+            Dialogs.ExitDialog exitDialog = new Dialogs.ExitDialog();
+            await exitDialog.ShowAsync();
+        }
+
         private async void buttonAbout_Click(object sender, RoutedEventArgs e)
         {
             Dialogs.AboutDialog aboutDialog = new Dialogs.AboutDialog();
