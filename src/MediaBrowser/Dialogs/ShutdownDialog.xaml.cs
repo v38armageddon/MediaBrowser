@@ -23,6 +23,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -43,13 +44,7 @@ namespace MediaBrowser.Dialogs
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            Process.Start(new ProcessStartInfo
-            {
-                FileName = "shutdown",
-                Arguments = "/r /t 0",
-                CreateNoWindow = true,
-                UseShellExecute = false
-            });
+            ShutdownManager.BeginShutdown(ShutdownKind.Shutdown, TimeSpan.Zero);
         }
     }
 }

@@ -24,6 +24,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.System.Threading;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -44,15 +45,9 @@ namespace MediaBrowser.Dialogs
             this.InitializeComponent();
         }
 
-        private async void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            Process.Start(new ProcessStartInfo
-            {
-                FileName = "shutdown",
-                Arguments = "/r /t 0",
-                CreateNoWindow = true,
-                UseShellExecute = false
-            });
+            ShutdownManager.BeginShutdown(ShutdownKind.Restart, TimeSpan.Zero);
         }
     }
 }
