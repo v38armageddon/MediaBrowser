@@ -62,6 +62,7 @@
     <uap:Capability Name="removableStorage"/>
     <Capability Name="privateNetworkClientServer"/>
     <Capability Name="internetClientServer"/>
+    <iot:Capability Name="systemManagement"/>
     <DeviceCapability Name="webcam"/>
     <DeviceCapability Name="microphone"/>
     <DeviceCapability Name="broadFileSystemAccess" />
