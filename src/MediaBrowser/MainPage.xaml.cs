@@ -80,18 +80,6 @@ namespace MediaBrowser
 
         // Center
         // Tasks
-        private async void buttonShutdown_Click(object sender, RoutedEventArgs e)
-        {
-            Dialogs.ShutdownDialog shutdownDialog = new Dialogs.ShutdownDialog();
-            await shutdownDialog.ShowAsync();
-        }
-
-        private async void buttonReboot_Click(object sender, RoutedEventArgs e)
-        {
-            Dialogs.RebootDialog rebootDialog = new Dialogs.RebootDialog();
-            await rebootDialog.ShowAsync();
-        }
-
         private async void buttonExit_Click(object sender, RoutedEventArgs e)
         {
             Dialogs.ExitDialog exitDialog = new Dialogs.ExitDialog();

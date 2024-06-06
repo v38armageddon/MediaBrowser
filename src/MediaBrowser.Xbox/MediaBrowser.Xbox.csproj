@@ -135,8 +135,9 @@
     <Compile Include="Apps\PicturePage.xaml.cs" />
     <Compile Include="Apps\VideosPage.xaml.cs" />
     <Compile Include="Dialogs\AboutDialog.xaml.cs" />
-    <Compile Include="Dialogs\RebootDialog.xaml.cs" />
-    <Compile Include="Dialogs\ShutdownDialog.xaml.cs" />
+    <Compile Include="Dialogs\ExitDialog.xaml.cs">
+      <DependentUpon>ExitDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -235,11 +236,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Dialogs\RebootDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Dialogs\ShutdownDialog.xaml">
+    <Page Include="Dialogs\ExitDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -45,18 +45,6 @@
         <Pivot Margin="0,48,0,48" SelectedIndex="1">
             <PivotItem Header="Tasks">
                 <StackPanel Orientation="Horizontal">
-                    <Button x:Name="buttonShutdown" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonShutdown_Click">
-                        <StackPanel>
-                            <SymbolIcon Symbol="Stop"/>
-                            <TextBlock Text="Shutdown"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="buttonReboot" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonReboot_Click">
-                        <StackPanel>
-                            <SymbolIcon Symbol="Sync"/>
-                            <TextBlock Text="Reboot"/>
-                        </StackPanel>
-                    </Button>
                     <Button x:Name="buttonExit" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonExit_Click">
                         <StackPanel>
                             <SymbolIcon Symbol="DockBottom"/>
@@ -72,47 +60,47 @@
                 </StackPanel>
             </PivotItem>
             <PivotItem Header="Pictures">
-                <Grid>
+                <StackPanel Orientation="Horizontal">
                     <Button x:Name="myPicturesButton" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="myPicturesButton_Click">
                         <StackPanel>
                             <SymbolIcon Symbol="Pictures"/>
                             <TextBlock Text="My Pictures"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="cameraButton" Margin="317,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="cameraButton_Click">
+                    <Button x:Name="cameraButton" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="cameraButton_Click">
                         <StackPanel>
                             <SymbolIcon Symbol="Camera"/>
                             <TextBlock Text="Camera"/>
                         </StackPanel>
                     </Button>
-                </Grid>
+                </StackPanel>
             </PivotItem>
             <PivotItem Header="Music">
-                <Grid>
+                <StackPanel Orientation="Horizontal">
                     <Button x:Name="myMusicButton" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="myMusicButton_Click">
                         <StackPanel>
                             <SymbolIcon Symbol="MusicInfo"/>
                             <TextBlock Text="My Music"/>
                         </StackPanel>
                     </Button>
-                </Grid>
+                </StackPanel>
             </PivotItem>
             <PivotItem Header="Videos">
-                <Grid>
+                <StackPanel Orientation="Horizontal">
                     <Button x:Name="myVideosButton" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="myVideosButton_Click">
                         <StackPanel>
                             <SymbolIcon Symbol="Video"/>
                             <TextBlock Text="My Videos"/>
                         </StackPanel>
                     </Button>
-                </Grid>
+                </StackPanel>
             </PivotItem>
             <PivotItem Header="Extras">
-                <Grid>
+                <StackPanel Orientation="Horizontal">
                     <Button Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="Button_Click">
                         <Image Source="Images/BingMap.jpg"/>
                     </Button>
-                </Grid>
+                </StackPanel>
             </PivotItem>
         </Pivot>
 
