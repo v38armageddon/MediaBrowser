@@ -133,13 +133,17 @@ namespace MediaBrowser.Apps
 
             // Add the files to the list
             files = selectedFiles.ToList();
-            var source = MediaSource.CreateFromStorageFile(files[currentFileIndex]);
+
+            // Preload the music into memory
+            var stream = await files[currentFileIndex].OpenAsync(FileAccessMode.Read);
+            var source = MediaSource.CreateFromStream(stream, files[currentFileIndex].ContentType);
+
             await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 musicSlider.Value = 0; // Reset the Slider everytime if there is a change
                 mediaPlayerElement.Source = source;
 
-                // Play the video
+                // Play the music
                 mediaPlayerElement.AutoPlay = true;
                 playButton.Visibility = Visibility.Collapsed;
                 pauseButton.Visibility = Visibility.Visible;
@@ -242,16 +246,19 @@ namespace MediaBrowser.Apps
 
         private void musicSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            int sliderValue = Convert.ToInt32(Math.Round(e.NewValue).ToString());
+            int sliderValue = (int)Math.Round(e.NewValue);
+            int maxValue = (int)Math.Round(musicSlider.Maximum);
+
             // If the slider is at the end, stop the video
-            if (sliderValue >= musicSlider.Maximum)
+            if (sliderValue >= maxValue)
             {
                 dispatcherTimer.Stop();
                 mediaPlayerElement.Source = null;
                 musicSlider.Value = 0;
-                mediaPlayerElement.MediaPlayer.PlaybackSession.Position = new TimeSpan(0, 0, sliderValue);
+                // In any case, the video update it's position
+                //mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromSeconds(sliderValue);
             }
-            mediaPlayerElement.MediaPlayer.PlaybackSession.Position = new TimeSpan(0, 0, sliderValue);
+            mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromSeconds(sliderValue);
         }
 
         private void musicSlider_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)

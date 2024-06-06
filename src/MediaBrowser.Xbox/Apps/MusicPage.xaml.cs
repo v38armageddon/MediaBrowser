@@ -86,7 +86,11 @@ namespace MediaBrowser.Apps
 
             // Add the files to the list
             files = selectedFiles.ToList();
-            var source = MediaSource.CreateFromStorageFile(files[currentFileIndex]);
+
+            // Preload the music into memory
+            var stream = await files[currentFileIndex].OpenAsync(FileAccessMode.Read);
+            var source = MediaSource.CreateFromStream(stream, files[currentFileIndex].ContentType);
+            
             await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 musicSlider.Value = 0; // Reset the Slider everytime if there is a change
