@@ -49,7 +49,7 @@ namespace MediaBrowser.Apps
 
         public MusicPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Xbox")
             {
                 buttonWindow.Visibility = Visibility.Collapsed;
@@ -255,7 +255,7 @@ namespace MediaBrowser.Apps
                 dispatcherTimer.Stop();
                 mediaPlayerElement.Source = null;
                 musicSlider.Value = 0;
-                // In any case, the video update it's position
+                // In any case, the music update it's position
                 //mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromSeconds(sliderValue);
             }
             mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromSeconds(sliderValue);

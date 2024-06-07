@@ -15,9 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -43,14 +40,12 @@ namespace MediaBrowser
     {
         public App()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Xbox")
             {
-                this.RequiresPointerMode = Windows.UI.Xaml.ApplicationRequiresPointerMode.WhenRequested;
+                RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
             }
-            this.Suspending += OnSuspending;
-            AppCenter.Start("TOKEN",
-                  typeof(Analytics), typeof(Crashes));
+            Suspending += OnSuspending;
         }
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)

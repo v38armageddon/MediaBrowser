@@ -49,7 +49,7 @@ namespace MediaBrowser.Apps
 
         public MusicPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             // This is for the musicSlider for obtaining the current position of the video
             dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
@@ -96,7 +96,7 @@ namespace MediaBrowser.Apps
                 musicSlider.Value = 0; // Reset the Slider everytime if there is a change
                 mediaPlayerElement.Source = source;
 
-                // Play the video
+                // Play the music
                 mediaPlayerElement.AutoPlay = true;
                 playButton.Visibility = Visibility.Collapsed;
                 pauseButton.Visibility = Visibility.Visible;
@@ -187,14 +187,17 @@ namespace MediaBrowser.Apps
 
         private void musicSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            int sliderValue = Convert.ToInt32(Math.Round(e.NewValue).ToString());
+            int sliderValue = (int)Math.Round(e.NewValue);
+            int maxValue = (int)Math.Round(musicSlider.Maximum);
+
             // If the slider is at the end, stop the video
-            if (sliderValue >= musicSlider.Maximum)
+            if (sliderValue >= maxValue)
             {
                 dispatcherTimer.Stop();
                 mediaPlayerElement.Source = null;
                 musicSlider.Value = 0;
-                mediaPlayerElement.MediaPlayer.PlaybackSession.Position = new TimeSpan(0, 0, sliderValue);
+                // In any case, the music update it's position
+                //mediaPlayerElement.MediaPlayer.PlaybackSession.Position = new TimeSpan(0, 0, sliderValue);
             }
             mediaPlayerElement.MediaPlayer.PlaybackSession.Position = new TimeSpan(0, 0, sliderValue);
         }
