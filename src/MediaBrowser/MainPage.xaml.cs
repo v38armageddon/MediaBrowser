@@ -1,4 +1,21 @@
-﻿using MediaBrowser.Apps;
+﻿/*
+ * MediaBrowser, A Modern version of Windows Media Center
+ * Copyright (C) 2022 - 2024 - v38armageddon
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+using MediaBrowser.Apps;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -63,16 +80,10 @@ namespace MediaBrowser
 
         // Center
         // Tasks
-        private async void buttonShutdown_Click(object sender, RoutedEventArgs e)
+        private async void buttonExit_Click(object sender, RoutedEventArgs e)
         {
-            Dialogs.ShutdownDialog shutdownDialog = new Dialogs.ShutdownDialog();
-            await shutdownDialog.ShowAsync();
-        }
-
-        private async void buttonReboot_Click(object sender, RoutedEventArgs e)
-        {
-            Dialogs.RebootDialog rebootDialog = new Dialogs.RebootDialog();
-            await rebootDialog.ShowAsync();
+            Dialogs.ExitDialog exitDialog = new Dialogs.ExitDialog();
+            await exitDialog.ShowAsync();
         }
 
         private async void buttonAbout_Click(object sender, RoutedEventArgs e)

@@ -1,4 +1,4 @@
-<!--
+﻿<!--
     MediaBrowser, A Modern Version of Windows Media Center
     Copyright (C) 2022 - 2024 - v38armageddon
     
@@ -15,23 +15,21 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
-<Application
-    x:Class="MediaBrowser.App"
+<ContentDialog
+    x:Class="MediaBrowser.Dialogs.ExitDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:MediaBrowser"
-    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    RequestedTheme="Dark">
+    xmlns:local="using:MediaBrowser.Dialogs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Warning"
+    PrimaryButtonText="Yes"
+    SecondaryButtonText="No"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    Background="#303952">
 
-    <Application.Resources>
-        <muxc:XamlControlsResources>
-            <muxc:XamlControlsResources.MergedDictionaries>
-                <ResourceDictionary>
-                    <CornerRadius x:Key="OverlayCornerRadius">0</CornerRadius>
-                    <CornerRadius x:Key="ControlCornerRadius">0</CornerRadius>
-                </ResourceDictionary>
-            </muxc:XamlControlsResources.MergedDictionaries>
-        </muxc:XamlControlsResources>
-    </Application.Resources>
-
-</Application>
+    <Grid>
+        <TextBlock Text="Are you sure you want to exit the software?"/>
+    </Grid>
+</ContentDialog>

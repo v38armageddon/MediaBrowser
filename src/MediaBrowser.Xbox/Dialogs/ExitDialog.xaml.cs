@@ -17,13 +17,12 @@
 */
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -35,16 +34,16 @@ using Windows.UI.Xaml.Navigation;
 
 namespace MediaBrowser.Dialogs
 {
-    public sealed partial class AboutDialog : ContentDialog
+    public sealed partial class ExitDialog : ContentDialog
     {
-        public AboutDialog()
+        public ExitDialog()
         {
             this.InitializeComponent();
         }
 
-        private async void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            await Launcher.LaunchUriAsync(new Uri("ms-windows-store://review/?PFN=9PL4TWB5SLBQ"));
+            Application.Current.Exit();
         }
     }
 }

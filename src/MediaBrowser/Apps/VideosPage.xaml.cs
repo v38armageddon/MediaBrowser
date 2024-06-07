@@ -1,4 +1,21 @@
-﻿using System;
+﻿/*
+ * MediaBrowser, A Modern version of Windows Media Center
+ * Copyright (C) 2022 - 2024 - v38armageddon
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -97,9 +114,14 @@ namespace MediaBrowser.Apps
 
             // Add the files to the list
             files = selectedFiles.ToList();
-            var source = MediaSource.CreateFromStorageFile(files[currentFileIndex]);
+
+            // Preload the video into memory
+            var stream = await files[currentFileIndex].OpenAsync(FileAccessMode.Read);
+            var source = MediaSource.CreateFromStream(stream, files[currentFileIndex].ContentType);
+
             await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+                videoSlider.Value = 0; // Reset the Slider everytime if there is a change
                 mediaPlayerElement.Source = source;
 
                 // Play the video
@@ -213,8 +235,19 @@ namespace MediaBrowser.Apps
 
         private void videoSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            int sliderValue = Convert.ToInt32(e.NewValue.ToString());
-            mediaPlayerElement.MediaPlayer.PlaybackSession.Position = new TimeSpan(0, 0, sliderValue);
+            int sliderValue = (int)Math.Round(e.NewValue);
+            int maxValue = (int)Math.Round(videoSlider.Maximum);
+
+            // If the slider is at the end, stop the video
+            if (sliderValue >= maxValue)
+            {
+                dispatcherTimer.Stop();
+                mediaPlayerElement.Source = null;
+                videoSlider.Value = 0;
+                // In any case, the video update it's position
+                //mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromSeconds(sliderValue);
+            }
+            mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromSeconds(sliderValue);
         }
 
         private void videoSlider_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)

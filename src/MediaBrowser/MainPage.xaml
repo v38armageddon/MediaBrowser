@@ -1,3 +1,20 @@
+<!--
+    MediaBrowser, A Modern Version of Windows Media Center
+    Copyright (C) 2022 - 2024 - v38armageddon
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
 <Page
     x:Class="MediaBrowser.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -27,69 +44,63 @@
         <!--Center-->
         <Pivot Margin="0,48,0,48" SelectedIndex="1">
             <PivotItem Header="Tasks">
-                <Grid>
-                    <Button x:Name="buttonShutdown" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonShutdown_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="buttonExit" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonExit_Click">
                         <StackPanel>
-                            <SymbolIcon Symbol="Stop"/>
-                            <TextBlock Text="Shutdown"/>
+                            <SymbolIcon Symbol="DockBottom"/>
+                            <TextBlock Text="Exit"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="buttonReboot" Margin="317,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonReboot_Click">
-                        <StackPanel>
-                            <SymbolIcon Symbol="Sync"/>
-                            <TextBlock Text="Reboot"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="buttonAbout" Margin="571,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonAbout_Click">
+                    <Button x:Name="buttonAbout" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="buttonAbout_Click">
                         <StackPanel>
                             <SymbolIcon Symbol="Help"/>
                             <TextBlock Text="About"/>
                         </StackPanel>
                     </Button>
-                </Grid>
+                </StackPanel>
             </PivotItem>
             <PivotItem Header="Pictures">
-                <Grid>
+                <StackPanel Orientation="Horizontal">
                     <Button x:Name="myPicturesButton" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="myPicturesButton_Click">
                         <StackPanel>
                             <SymbolIcon Symbol="Pictures"/>
                             <TextBlock Text="My Pictures"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="cameraButton" Margin="317,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="cameraButton_Click">
+                    <Button x:Name="cameraButton" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="cameraButton_Click">
                         <StackPanel>
                             <SymbolIcon Symbol="Camera"/>
                             <TextBlock Text="Camera"/>
                         </StackPanel>
                     </Button>
-                </Grid>
+                </StackPanel>
             </PivotItem>
             <PivotItem Header="Music">
-                <Grid>
+                <StackPanel Orientation="Horizontal">
                     <Button x:Name="myMusicButton" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="myMusicButton_Click">
                         <StackPanel>
                             <SymbolIcon Symbol="MusicInfo"/>
                             <TextBlock Text="My Music"/>
                         </StackPanel>
                     </Button>
-                </Grid>
+                </StackPanel>
             </PivotItem>
             <PivotItem Header="Videos">
-                <Grid>
+                <StackPanel Orientation="Horizontal">
                     <Button x:Name="myVideosButton" Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="myVideosButton_Click">
                         <StackPanel>
                             <SymbolIcon Symbol="Video"/>
                             <TextBlock Text="My Videos"/>
                         </StackPanel>
                     </Button>
-                </Grid>
+                </StackPanel>
             </PivotItem>
             <PivotItem Header="Extras">
-                <Grid>
+                <StackPanel Orientation="Horizontal">
                     <Button Margin="54,43,0,0" VerticalAlignment="Top" Height="136" Width="225" Click="Button_Click">
                         <Image Source="Images/BingMap.jpg"/>
                     </Button>
-                </Grid>
+                </StackPanel>
             </PivotItem>
         </Pivot>
 
