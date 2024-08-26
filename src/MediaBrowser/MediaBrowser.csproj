@@ -25,7 +25,7 @@
     <AppxBundlePlatforms>x64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
-    <AppxPackageDir>E:\v38armageddon\Documents\AppX\</AppxPackageDir>
+    <AppxPackageDir>D:\v38armageddon\Documents\AppX\</AppxPackageDir>
     <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
     <PackageCertificateKeyFile />
     <PackageCertificateThumbprint>E2D164D2BE9F88EBE1DA0FC37CDB5E05702E653C</PackageCertificateThumbprint>
