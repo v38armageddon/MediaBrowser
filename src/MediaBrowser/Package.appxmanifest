@@ -9,9 +9,9 @@
   IgnorableNamespaces="uap mp uap3 iot">
 
   <Identity
-    Name="34823v38armageddon.MediaBrowser"
+    Name="34823v38armageddon.268037BDE8D5B"
     Publisher="CN=EF25BC35-CB3A-4D06-953A-49E6117D3FA3"
-    Version="2.5.0.0" />
+    Version="2.5.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="ec6ee603-233b-4460-bbd3-c127760dc201" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
