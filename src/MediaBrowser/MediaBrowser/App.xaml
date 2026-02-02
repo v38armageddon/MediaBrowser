@@ -30,7 +30,7 @@
             <!-- Add resources here -->
             <CornerRadius x:Key="OverlayCornerRadius">0</CornerRadius>
             <CornerRadius x:Key="ControlCornerRadius">0</CornerRadius>
-            <MapResources xmlns="using:Uno.UI.Maps"/>
+            <MapResources x:Key="MapResources" xmlns="using:Uno.UI.Maps"/>
         </ResourceDictionary>
     </Application.Resources>
 

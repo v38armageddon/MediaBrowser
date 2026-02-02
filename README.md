@@ -1,5 +1,4 @@
 # ![MediaBrowser Logo](Assets/logo.png) MediaBrowser
-
 MediaBrowser is a modern "Windows Media Center" like, you can view your pictures, listening to your music and watch videos.
 
 ## Features

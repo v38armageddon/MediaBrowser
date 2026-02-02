@@ -15,6 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
+using Microsoft.UI.Windowing;
 using Uno.Resizetizer;
 using Windows.UI.ViewManagement;
 
@@ -23,12 +24,17 @@ namespace MediaBrowser;
 public partial class App : Application
 {
     /// <summary>
-    /// Initializes the singleton application object. This is the first line of authored code
-    /// executed, and as such is the logical equivalent of main() or WinMain().
+    /// Initializes the singleton application object. This is the first line of authored code executed, and as such is
+    /// the logical equivalent of main() or WinMain().
     /// </summary>
     public App()
     {
         this.InitializeComponent();
+#if HAS_UNO
+        ApplicationHelper.RequestedCustomTheme = nameof(ApplicationTheme.Dark);
+#else
+        this.RequestedTheme = ApplicationTheme.Dark;
+#endif
     }
 
     public Window? MainWindow { get; private set; }
@@ -107,9 +113,8 @@ public partial class App : Application
 
         if (rootFrame.Content == null)
         {
-            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
-            var view = ApplicationView.GetForCurrentView();
-            view.FullScreenSystemOverlayMode = FullScreenSystemOverlayMode.Minimal;
+            CommonBarControls.ToggleFullScreen();
+            // NOTE: ElementSoundPlayer is not implemented in Uno yet
             ElementSoundPlayer.State = ElementSoundPlayerState.On;
 
             // When the navigation stack isn't restored navigate to the first page,

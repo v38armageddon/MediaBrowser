@@ -19,84 +19,91 @@ using MediaBrowser.Apps;
 using MediaBrowser.Models;
 using Microsoft.UI.Xaml.Media.Animation;
 
-namespace MediaBrowser
+namespace MediaBrowser;
+
+public sealed partial class MainPage : Page
 {
-    public sealed partial class MainPage : Page
+    public MainPage()
     {
-        MediaPlayerElement mediaPlayer = new MediaPlayerElement();
-        public MainPage()
+        this.InitializeComponent();
+        this.Loaded += OnLoaded;
+#if DESKTOP
+        if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Xbox")
         {
-            this.InitializeComponent();
-            this.Loaded += OnLoaded; // ou MainPivot.Loaded
-            //mediaElement.Source = new Uri("ms-appx:///Sounds/startup.wav");
-            //mediaElement.Play();
+            buttonWindow.Visibility = Visibility.Collapsed;
+            buttonClose.Visibility = Visibility.Collapsed;
         }
-
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            this.Loaded -= OnLoaded;
-            mainPivot.SelectedIndex = 1;
-        }
-
-        // Top
-        private void buttonWindow_Click(object sender, RoutedEventArgs e)
-        {
-            CommonBarControls.ToggleFullScreen();
-        }
-
-        private void buttonClose_Click(object sender, RoutedEventArgs e)
-        {
-            CommonBarControls.ExitApplication();
-        }
-
-        // Center
-        // Tasks
-        private async void buttonExit_Click(object sender, RoutedEventArgs e)
-        {
-            Dialogs.ExitDialog exitDialog = new Dialogs.ExitDialog();
-            exitDialog.XamlRoot = this.XamlRoot;
-            await exitDialog.ShowAsync();
-        }
-
-        private async void buttonAbout_Click(object sender, RoutedEventArgs e)
-        {
-            Dialogs.AboutDialog aboutDialog = new Dialogs.AboutDialog();
-            aboutDialog.XamlRoot = this.XamlRoot;
-            await aboutDialog.ShowAsync();
-        }
-
-        // Picture
-        private void myPicturesButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame rootFrame = Window.Current.Content as Frame;
-            rootFrame.Navigate(typeof(PicturePage), null, new DrillInNavigationTransitionInfo());
-        }
-
-        private void cameraButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame rootFrame = Window.Current.Content as Frame;
-            rootFrame.Navigate(typeof(CameraPage), null, new DrillInNavigationTransitionInfo());
-        }
-
-        // Music
-        private void myMusicButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame rootFrame = Window.Current.Content as Frame;
-            rootFrame.Navigate(typeof(MusicPage), null, new DrillInNavigationTransitionInfo());
-        }
-
-        // Videos
-        private void myVideosButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame rootFrame = Window.Current.Content as Frame;
-            rootFrame.Navigate(typeof(VideosPage), null, new DrillInNavigationTransitionInfo());
-        }
-
-        // Extras
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Frame rootFrame = Window.Current.Content as Frame;
-            rootFrame.Navigate(typeof(BingMapPage), null, new DrillInNavigationTransitionInfo());
-        }
+#else
+        buttonWindow.Visibility = Visibility.Collapsed;
+        buttonClose.Visibility = Visibility.Collapsed;
+#endif
     }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        this.Loaded -= OnLoaded;
+        mainPivot.SelectedIndex = 1;
+    }
+
+    #region Top
+    private void buttonWindow_Click(object sender, RoutedEventArgs e)
+    {
+        CommonBarControls.ToggleFullScreen();
+    }
+
+    private void buttonClose_Click(object sender, RoutedEventArgs e)
+    {
+        CommonBarControls.ExitApplication();
+    }
+    #endregion
+    #region Center
+    // Tasks
+    private async void buttonExit_Click(object sender, RoutedEventArgs e)
+    {
+        Dialogs.ExitDialog exitDialog = new Dialogs.ExitDialog();
+        exitDialog.XamlRoot = this.XamlRoot;
+        await exitDialog.ShowAsync();
+    }
+
+    private async void buttonAbout_Click(object sender, RoutedEventArgs e)
+    {
+        Dialogs.AboutDialog aboutDialog = new Dialogs.AboutDialog();
+        aboutDialog.XamlRoot = this.XamlRoot;
+        await aboutDialog.ShowAsync();
+    }
+
+    // Picture
+    private void myPicturesButton_Click(object sender, RoutedEventArgs e)
+    {
+        Frame rootFrame = Window.Current.Content as Frame;
+        rootFrame.Navigate(typeof(PicturePage), null, new DrillInNavigationTransitionInfo());
+    }
+
+    private void cameraButton_Click(object sender, RoutedEventArgs e)
+    {
+        Frame rootFrame = Window.Current.Content as Frame;
+        rootFrame.Navigate(typeof(CameraPage), null, new DrillInNavigationTransitionInfo());
+    }
+
+    // Music
+    private void myMusicButton_Click(object sender, RoutedEventArgs e)
+    {
+        Frame rootFrame = Window.Current.Content as Frame;
+        rootFrame.Navigate(typeof(MusicPage), null, new DrillInNavigationTransitionInfo());
+    }
+
+    // Videos
+    private void myVideosButton_Click(object sender, RoutedEventArgs e)
+    {
+        Frame rootFrame = Window.Current.Content as Frame;
+        rootFrame.Navigate(typeof(VideosPage), null, new DrillInNavigationTransitionInfo());
+    }
+
+    // Extras
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        Frame rootFrame = Window.Current.Content as Frame;
+        rootFrame.Navigate(typeof(BingMapPage), null, new DrillInNavigationTransitionInfo());
+    }
+    #endregion
 }

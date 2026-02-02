@@ -39,7 +39,7 @@
         </CommandBar>
 
         <!--Center-->
-        <!--<CaptureElement x:Name="PreviewControl" Stretch="Uniform" Margin="0,48,0,48"/>-->
+        <MediaPlayerElement x:Name="cameraPreview" Stretch="Uniform" Margin="0,48,0,48"/>
 
         <!--Bottom-->
         <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom" OverflowButtonVisibility="Collapsed">
