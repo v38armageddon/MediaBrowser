@@ -27,7 +27,7 @@ public sealed partial class MainPage : Page
     {
         this.InitializeComponent();
         this.Loaded += OnLoaded;
-#if DESKTOP
+#if DESKTOP || WINAPPSDK_PACKAGED
         if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Xbox")
         {
             buttonWindow.Visibility = Visibility.Collapsed;
@@ -37,6 +37,7 @@ public sealed partial class MainPage : Page
         buttonWindow.Visibility = Visibility.Collapsed;
         buttonClose.Visibility = Visibility.Collapsed;
 #endif
+        SettingsHandler.SetTheme(Convert.ToInt32(new SettingsHandler().LoadSettingsXML()["Theme"]));
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)
@@ -76,34 +77,54 @@ public sealed partial class MainPage : Page
     private void myPicturesButton_Click(object sender, RoutedEventArgs e)
     {
         Frame rootFrame = Window.Current.Content as Frame;
+#if DESKTOP || WINAPPSDK_PACKAGED
         rootFrame.Navigate(typeof(PicturePage), null, new DrillInNavigationTransitionInfo());
+#elif ANDROID
+        rootFrame.Navigate(typeof(PicturePage));
+#endif
     }
 
     private void cameraButton_Click(object sender, RoutedEventArgs e)
     {
         Frame rootFrame = Window.Current.Content as Frame;
+#if DESKTOP || WINAPPSDK_PACKAGED
         rootFrame.Navigate(typeof(CameraPage), null, new DrillInNavigationTransitionInfo());
+#elif ANDROID
+        rootFrame.Navigate(typeof(CameraPage));
+#endif
     }
 
     // Music
     private void myMusicButton_Click(object sender, RoutedEventArgs e)
     {
         Frame rootFrame = Window.Current.Content as Frame;
+#if DESKTOP || WINAPPSDK_PACKAGED
         rootFrame.Navigate(typeof(MusicPage), null, new DrillInNavigationTransitionInfo());
+#elif ANDROID
+        rootFrame.Navigate(typeof(MusicPage));
+#endif
     }
 
     // Videos
     private void myVideosButton_Click(object sender, RoutedEventArgs e)
     {
         Frame rootFrame = Window.Current.Content as Frame;
+#if DESKTOP || WINAPPSDK_PACKAGED
         rootFrame.Navigate(typeof(VideosPage), null, new DrillInNavigationTransitionInfo());
+#elif ANDROID
+        rootFrame.Navigate(typeof(VideosPage));
+#endif
     }
 
     // Extras
     private void Button_Click(object sender, RoutedEventArgs e)
     {
         Frame rootFrame = Window.Current.Content as Frame;
+#if DESKTOP || WINAPPSDK_PACKAGED
         rootFrame.Navigate(typeof(BingMapPage), null, new DrillInNavigationTransitionInfo());
+#elif ANDROID
+        rootFrame.Navigate(typeof(BingMapPage));
+#endif
     }
-    #endregion
+#endregion
 }

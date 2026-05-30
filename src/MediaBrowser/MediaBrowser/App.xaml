@@ -25,6 +25,11 @@
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
                 <!-- Load Uno.UI.Toolkit resources -->
                 <ToolkitResources xmlns="using:Uno.Toolkit.UI" />
+                <!-- Load defined theme -->
+                <ResourceDictionary Source="/Assets/Themes/DefaultTheme.xaml"/>
+                <ResourceDictionary Source="/Assets/Themes/LightTheme.xaml"/>
+                <ResourceDictionary Source="/Assets/Themes/DarkTheme.xaml"/>
+                <ResourceDictionary Source="/Assets/Themes/FrutigerAeroTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <!-- Add resources here -->

@@ -15,24 +15,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-using Uno.UI.Hosting;
+namespace MediaBrowser.Apps;
 
-namespace MediaBrowser;
-
-internal class Program
+public sealed partial class SettingsPage : Page
 {
-    [STAThread]
-    public static void Main(string[] args)
+	public SettingsPage()
+	{
+		this.InitializeComponent();
+	}
+
+    #region Top
+    private void buttonWindow_Click(object sender, RoutedEventArgs e)
     {
-
-        var host = UnoPlatformHostBuilder.Create()
-            .App(() => new App())
-            .UseX11(hostBuilder => hostBuilder.PreloadMediaPlayer(true))
-            .UseLinuxFrameBuffer()
-            .UseMacOS()
-            .UseWin32(hostBuilder => hostBuilder.PreloadMediaPlayer(true))
-            .Build();
-
-        host.Run();
+        CommonBarControls.ToggleFullScreen();
     }
+
+    private void buttonClose_Click(object sender, RoutedEventArgs e)
+    {
+        CommonBarControls.ExitApplication();
+    }
+    #endregion
+    #region Center
+
+    #endregion
 }

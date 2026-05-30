@@ -23,17 +23,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    RequestedTheme="{StaticResource PrimaryTheme}">
 
-    <Grid Background="#303952">
+    <Grid Background="{ThemeResource BackgroundBrush}">
         <!--Top-->
-        <CommandBar Background="#596275" IsOpen="False" OverflowButtonVisibility="Collapsed">
+        <CommandBar Background="{ThemeResource TopBarBrush}" IsOpen="False" OverflowButtonVisibility="Collapsed">
             <AppBarButton x:Name="buttonWindow" x:FieldModifier="public" Click="buttonWindow_Click">
                 <SymbolIcon x:Name="symbolButtonWindow" Symbol="BackToWindow"/>
             </AppBarButton>
             <AppBarButton x:Name="buttonClose" Icon="Clear" Click="buttonClose_Click"/>
         </CommandBar>
-        <CommandBar Background="#596275" HorizontalAlignment="Left" OverflowButtonVisibility="Collapsed">
+        <CommandBar Background="{ThemeResource TopBarBrush}" HorizontalAlignment="Left" OverflowButtonVisibility="Collapsed">
             <AppBarButton x:Name="buttonReturn" Icon="Back"/>
             <AppBarButton x:Name="buttonHome" Icon="Home"/>
         </CommandBar>
@@ -102,6 +103,6 @@
         </Pivot>
 
         <!--Bottom-->
-        <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom" OverflowButtonVisibility="Collapsed"/>
+        <CommandBar Background="{ThemeResource BottomBarBrush}" IsOpen="False" VerticalAlignment="Bottom" OverflowButtonVisibility="Collapsed"/>
     </Grid>
 </Page>

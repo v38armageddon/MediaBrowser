@@ -31,7 +31,6 @@
             <AppBarButton x:Name="buttonWindow" x:FieldModifier="public" Click="buttonWindow_Click">
                 <SymbolIcon x:Name="symbolButtonWindow" Symbol="BackToWindow"/>
             </AppBarButton>
-            <AppBarButton x:Name="buttonClose" Icon="Clear" Click="buttonClose_Click"/>
         </CommandBar>
         <CommandBar Background="#596275" HorizontalAlignment="Left" OverflowButtonVisibility="Collapsed">
             <AppBarButton x:Name="buttonReturn" Icon="Back" Click="buttonReturn_Click"/>

@@ -1,0 +1,9 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ElementTheme x:Key="PrimaryTheme">Dark</ElementTheme>
+    <SolidColorBrush x:Key="TopBarBrush" Color="#596275"/>
+    <SolidColorBrush x:Key="BackgroundBrush" Color="#303952"/>
+    <SolidColorBrush x:Key="BottomBarBrush" Color="#1d2232"/>
+</ResourceDictionary>

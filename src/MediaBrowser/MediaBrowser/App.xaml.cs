@@ -30,11 +30,6 @@ public partial class App : Application
     public App()
     {
         this.InitializeComponent();
-#if HAS_UNO
-        ApplicationHelper.RequestedCustomTheme = nameof(ApplicationTheme.Dark);
-#else
-        this.RequestedTheme = ApplicationTheme.Dark;
-#endif
     }
 
     public Window? MainWindow { get; private set; }

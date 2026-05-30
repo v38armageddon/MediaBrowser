@@ -26,23 +26,23 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Background="#303952">
+        <!--NOTE: Center is at the top for show / hide bar purposes-->
+        <!--Center-->
+        <MediaPlayerElement x:Name="mediaPlayerElement" PointerMoved="mediaPlayerElement_PointerMoved"/>
+        
         <!--Top-->
         <CommandBar x:Name="commandBar1" Background="#596275" IsOpen="False" OverflowButtonVisibility="Collapsed">
             <AppBarButton x:Name="buttonWindow" x:FieldModifier="public" Click="buttonWindow_Click">
                 <SymbolIcon x:Name="symbolButtonWindow" Symbol="BackToWindow"/>
             </AppBarButton>
-            <AppBarButton x:Name="buttonClose" Icon="Clear" Click="buttonClose_Click"/>
         </CommandBar>
         <CommandBar x:Name="commandBar2" Background="#596275" HorizontalAlignment="Left" OverflowButtonVisibility="Collapsed">
             <AppBarButton x:Name="buttonReturn" Icon="Back" Click="buttonReturn_Click"/>
             <AppBarButton x:Name="buttonHome" Icon="Home" Click="buttonHome_Click"/>
         </CommandBar>
 
-        <!--Center-->
-        <MediaPlayerElement x:Name="mediaPlayerElement" Margin="0,48,0,48"/>
-
         <!--Bottom-->
-        <CommandBar Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom">
+        <CommandBar x:Name="bottomCommandBar" Background="#1e2333" IsOpen="False" VerticalAlignment="Bottom">
             <AppBarButton x:Name="stopButton" Icon="Stop" Label="Stop" Click="stopButton_Click"/>
             <AppBarSeparator/>
             <AppBarButton x:Name="previousButton" Icon="Previous" Label="Previous" Click="previousButton_Click"/>

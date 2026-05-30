@@ -48,7 +48,65 @@
     <PackageReference Include="Mapsui" />
     <PackageReference Include="Mapsui.Uno.WinUI" />
     <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="Tmds.DBus.Protocol" />
     <PackageReference Include="Uno.WinUI.Maps" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Assets\DefaultTheme.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Assets\Themes\DefaultTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Assets\Themes\DefaultTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Assets\Themes\LightTheme.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Assets\Themes\LightTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Assets\Themes\LightTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Assets\Themes\DarkTheme.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Assets\Themes\DarkTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Assets\Themes\DarkTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Assets\Themes\FrutigerAeroTheme.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Assets\Themes\FrutigerAeroTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Assets\Themes\FrutigerAeroTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Apps\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
 </Project>
