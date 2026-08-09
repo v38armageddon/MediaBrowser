@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows10.0.26100.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.20348.0</TargetPlatformMinVersion>
+    <Nullable>enable</Nullable>
+    <UseUwp>true</UseUwp>
+    <Platforms>x64</Platforms>
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <PublishAot>true</PublishAot>
+    <PublishProfile>win-$(Platform).pubxml</PublishProfile>
+    <DisableRuntimeMarshalling>true</DisableRuntimeMarshalling>
+    <EnableMsixTooling>true</EnableMsixTooling>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LayoutDir>D:\v38armageddon\Documents\GitHub\v38armageddon\MediaBrowser\src\MediaBrowser.Xbox\bin\x64\Debug\net10.0-windows10.0.26100.0\win-x64\AppX</LayoutDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="LiteDB" />
+  </ItemGroup>
+  <Import Project="..\MediaBrowser.Shared\MediaBrowser.Shared.projitems" Label="Shared" />
+  <ItemGroup>
+    <Page Update="Dialogs\AboutDialog.xaml">
+      <IsDefaultItem>true</IsDefaultItem>
+    </Page>
+    <Page Update="Dialogs\ExitDialog.xaml">
+      <IsDefaultItem>true</IsDefaultItem>
+    </Page>
+  </ItemGroup>
+</Project>

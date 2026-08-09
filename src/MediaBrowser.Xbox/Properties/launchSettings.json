@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "MediaBrowser.Xbox": {
+      "commandName": "MsixPackage"
+    },
+    "PC": {
+      "commandName": "Executable"
+    },
+    "Xbox": {
+      "commandName": "Executable"
+    }
+  }
+}

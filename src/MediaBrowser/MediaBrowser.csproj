@@ -1,0 +1,66 @@
+<Project Sdk="Uno.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net10.0-android;net10.0-windows10.0.26100;net10.0-desktop</TargetFrameworks>
+
+    <OutputType>Exe</OutputType>
+    <UnoSingleProject>true</UnoSingleProject>
+
+    <!-- Display name -->
+    <ApplicationTitle>MediaBrowser</ApplicationTitle>
+    <!-- App Identifier -->
+    <ApplicationId>net.v38armageddon.MediaBrowser</ApplicationId>
+    <!-- Versions -->
+    <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
+    <ApplicationVersion>3</ApplicationVersion>
+    <!-- Package Publisher -->
+    <ApplicationPublisher>v38armageddon</ApplicationPublisher>
+    <!-- Package Description -->
+    <Description>MediaBrowser is a modern "Windows Media Center" like, you can view your pictures, listening to your music and watch videos.</Description>
+    <!--
+      If you encounter this error message:
+
+        error NETSDK1148: A referenced assembly was compiled using a newer version of Microsoft.Windows.SDK.NET.dll.
+        Please update to a newer .NET SDK in order to reference this assembly.
+
+      This means that the two packages below must be aligned with the "build" version number of
+      the "Microsoft.Windows.SDK.BuildTools" package above, and the "revision" version number
+      must be the highest found in https://www.nuget.org/packages/Microsoft.Windows.SDK.NET.Ref.
+    -->
+    <!-- <WindowsSdkPackageVersion>10.0.22621.28</WindowsSdkPackageVersion> -->
+
+    <!--
+      UnoFeatures are used to quickly add and manage features enabled for your app.
+      https://aka.platform.uno/singleproject-features
+    -->
+    <UnoFeatures>
+      Lottie;
+      MediaElement;
+      Hosting;
+      Toolkit;
+      Logging;
+      MVUX;
+      Configuration;
+      Localization;
+      SkiaRenderer;
+    </UnoFeatures>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="LibVLCSharp" />
+    <PackageReference Include="LiteDB" />
+    <PackageReference Include="Mapsui" />
+    <PackageReference Include="Mapsui.Uno.WinUI" />
+    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="Tmds.DBus.Protocol" />
+    <PackageReference Include="Uno.WinUI.Maps" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Assets\DefaultTheme.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Apps\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <Import Project="..\MediaBrowser.Shared\MediaBrowser.Shared.projitems" Label="Shared" />
+
+</Project>

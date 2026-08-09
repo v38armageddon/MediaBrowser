@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>2dba28b7-f7d6-4f70-9795-2d77c9c217cf</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>MediaBrowser.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\AboutDialog.xaml.cs">
+      <IsDefaultItem>true</IsDefaultItem>
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\ExitDialog.xaml.cs">
+      <IsDefaultItem>true</IsDefaultItem>
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)SettingsHandler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Dialogs\AboutDialog.xaml">
+      <IsDefaultItem>true</IsDefaultItem>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Dialogs\ExitDialog.xaml">
+      <IsDefaultItem>true</IsDefaultItem>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw">
+      <IsDefaultItem>true</IsDefaultItem>
+    </PRIResource>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\es\Resources.resw">
+      <IsDefaultItem>true</IsDefaultItem>
+    </PRIResource>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\fr\Resources.resw">
+      <IsDefaultItem>true</IsDefaultItem>
+    </PRIResource>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\pt-BR\Resources.resw">
+      <IsDefaultItem>true</IsDefaultItem>
+    </PRIResource>
+  </ItemGroup>
+</Project>
