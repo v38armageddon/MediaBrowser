@@ -61,6 +61,4 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <Import Project="..\MediaBrowser.Shared\MediaBrowser.Shared.projitems" Label="Shared" />
-
 </Project>

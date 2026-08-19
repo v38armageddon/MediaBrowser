@@ -18,40 +18,14 @@
 using Windows.Media.Core;
 using Windows.Media.Playback;
 using Windows.Storage.Pickers;
-using MediaBrowser.Shared.Services;
 
 namespace MediaBrowser.Apps;
 
 public sealed partial class MusicPage : Page
 {
-    private readonly MediaPlayerService _mediaService = new();
-    private DispatcherTimer _dispatcherTimer;
-    private DispatcherTimer _dispatchTimerMouse;
-
     public MusicPage()
     {
         InitializeComponent();
-        InitializeTimers();
-        SubscribeToMediaServiceEvents();
-    }
-
-    private void InitializeTimers()
-    {
-        _dispatcherTimer = new DispatcherTimer();
-        _dispatcherTimer.Interval = TimeSpan.FromSeconds(1);
-        _dispatcherTimer.Tick += DispatcherTimer_Tick_EventHandler;
-
-        _dispatchTimerMouse = new DispatcherTimer();
-        _dispatchTimerMouse.Interval = TimeSpan.FromSeconds(3);
-        _dispatchTimerMouse.Tick += DispatchTimerMouse_Tick_EventHandler;
-        _dispatchTimerMouse.Start();
-    }
-
-    private void SubscribeToMediaServiceEvents()
-    {
-        _mediaService.MediaChanged += MediaService_MediaChanged;
-        _mediaService.PlaybackStateChanged += MediaService_PlaybackStateChanged;
-        _mediaService.DurationChanged += MediaService_DurationChanged;
     }
 
     #region Top
@@ -97,45 +71,17 @@ public sealed partial class MusicPage : Page
         var selectedFiles = await p.PickMultipleFilesAsync();
         if (selectedFiles.Count == 0) return;
 
-        // Load files into MediaPlayerService
-        _mediaService.LoadFiles(selectedFiles.ToList());
-        await LoadAndPlayMediaAsync();
     }
 
-    private async Task LoadAndPlayMediaAsync()
-    {
-        var currentFile = _mediaService.CurrentFile;
-        if (currentFile == null) return;
-
-        // HACK: Copy to temp folder due to Uno not handling file paths correctly
-        var tempFolder = ApplicationData.Current.TemporaryFolder;
-        var tempFile = await currentFile.CopyAsync(tempFolder, currentFile.Name, NameCollisionOption.ReplaceExisting);
-        var uri = new Uri(tempFile.Path);
-        var source = MediaSource.CreateFromUri(uri);
-
-        await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-        {
-            musicSlider.Value = 0;
-            mediaPlayerElement.Source = source;
-            mediaPlayerElement.MediaPlayer.Play();
-            playButton.Visibility = Visibility.Collapsed;
-            pauseButton.Visibility = Visibility.Visible;
-            mediaPlayerElement.MediaPlayer.PlaybackSession.NaturalDurationChanged += PlaybackSession_NaturalDurationChanged_EventHandler;
-            _dispatcherTimer.Start();
-            _mediaService.SetPlayingState(true);
-        });
-    }
+    
     #endregion
 
     #region Bottom
     private void stopButton_Click(object sender, RoutedEventArgs e)
     {
-        _dispatcherTimer.Stop();
         musicSlider.Value = 0;
         mediaPlayerElement.AutoPlay = false;
         mediaPlayerElement.Source = null;
-        _mediaService.Clear();
-        _mediaService.SetPlayingState(false);
     }
 
     private async void previousButton_Click(object sender, RoutedEventArgs e)
@@ -146,8 +92,7 @@ public sealed partial class MusicPage : Page
         }
         else
         {
-            _mediaService.PlayPrevious();
-            await LoadAndPlayMediaAsync();
+
         }
     }
 
@@ -161,11 +106,9 @@ public sealed partial class MusicPage : Page
             }
             else
             {
-                _dispatcherTimer.Start();
                 mediaPlayerElement.MediaPlayer.Play();
                 playButton.Visibility = Visibility.Collapsed;
                 pauseButton.Visibility = Visibility.Visible;
-                _mediaService.SetPlayingState(true);
             }
         }
         else
@@ -184,11 +127,9 @@ public sealed partial class MusicPage : Page
             }
             else
             {
-                _dispatcherTimer.Stop();
                 mediaPlayerElement.MediaPlayer.Pause();
                 playButton.Visibility = Visibility.Visible;
                 pauseButton.Visibility = Visibility.Collapsed;
-                _mediaService.SetPlayingState(false);
             }
         }
         else
@@ -205,8 +146,7 @@ public sealed partial class MusicPage : Page
         }
         else
         {
-            _mediaService.PlayNext();
-            await LoadAndPlayMediaAsync();
+
         }
     }
 
@@ -225,7 +165,7 @@ public sealed partial class MusicPage : Page
     private void volumeSlider_ValueChanged(object sender, Microsoft.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
     {
         double volume = volumeSlider.Value / 100.0;
-        _mediaService.Volume = volume;
+        
         mediaPlayerElement.MediaPlayer.Volume = volume;
     }
 
@@ -236,67 +176,8 @@ public sealed partial class MusicPage : Page
 
     private async void musicSlider_ValueChanged(object sender, Microsoft.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
     {
-        int sliderValue = (int)Math.Round(e.NewValue);
-        int maxValue = (int)Math.Round(musicSlider.Maximum);
-
-        // If the slider is at the end, auto-play next or stop
-        if (sliderValue >= maxValue)
-        {
-            _dispatcherTimer.Stop();
-            if (_mediaService.Files.Count > 1)
-            {
-                _mediaService.PlayNext();
-                await LoadAndPlayMediaAsync();
-                musicSlider.Value = 0;
-            }
-            else
-            {
-                mediaPlayerElement.Source = null;
-                musicSlider.Value = 0;
-                _mediaService.Clear();
-            }
-        }
-        mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromSeconds(sliderValue);
+        
     }
     #endregion
-
-    // Event Handlers
-    private void DispatcherTimer_Tick_EventHandler(object sender, object e)
-    {
-        musicSlider.Value += 1;
-    }
-
-    private async void PlaybackSession_NaturalDurationChanged_EventHandler(MediaPlaybackSession sender, object args)
-    {
-        await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-        {
-            var duration = sender.NaturalDuration;
-            _mediaService.SetDuration(duration);
-            musicSlider.Maximum = duration.TotalSeconds;
-        });
-    }
-
-    private void DispatchTimerMouse_Tick_EventHandler(object? sender, object e)
-    {
-        if (mediaPlayerElement.Source == null) return;
-
-        // Note: MusicPage does not have command bars to hide
-        // This handler is kept for consistency with other media pages
-    }
-
-    private void MediaService_MediaChanged(object? sender, MediaChangedEventArgs e)
-    {
-        // Media changed event from service (handled by LoadAndPlayMediaAsync)
-    }
-
-    private void MediaService_PlaybackStateChanged(object? sender, PlaybackStateChangedEventArgs e)
-    {
-        // Playback state changed (UI already updated in button handlers)
-    }
-
-    private void MediaService_DurationChanged(object? sender, DurationChangedEventArgs e)
-    {
-        // Duration changed (handled in PlaybackSession_NaturalDurationChanged_EventHandler)
-    }
 }
 

@@ -69,45 +69,12 @@ public sealed partial class VideosPage : Page
 		var selectedFiles = await p.PickMultipleFilesAsync();
 		if (selectedFiles.Count == 0) return;
 
-		// Load files into MediaPlayerService
-		_mediaService.LoadFiles(selectedFiles.ToList());
-		await LoadAndPlayMediaAsync();
-	}
-
-	private async Task LoadAndPlayMediaAsync()
-	{
-		var currentFile = _mediaService.CurrentFile;
-		if (currentFile == null) return;
-
-		// HACK: Copy to temp folder due to Uno not handling file paths correctly
-		var tempFolder = ApplicationData.Current.TemporaryFolder;
-		var tempFile = await currentFile.CopyAsync(tempFolder, currentFile.Name, NameCollisionOption.ReplaceExisting);
-		var uri = new Uri(tempFile.Path);
-		var source = MediaSource.CreateFromUri(uri);
-
-		await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-		{
-			videoSlider.Value = 0;
-			mediaPlayerElement.Source = source;
-			mediaPlayerElement.MediaPlayer.Play();
-			playButton.Visibility = Visibility.Collapsed;
-			pauseButton.Visibility = Visibility.Visible;
-			mediaPlayerElement.MediaPlayer.PlaybackSession.NaturalDurationChanged += PlaybackSession_NaturalDurationChanged_EventHandler;
-			_dispatcherTimer.Start();
-			_mediaService.SetPlayingState(true);
-		});
 	}
 
 
     private void mediaPlayerElement_PointerMoved(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
     {
-        _dispatchTimerMouse.Stop();
-        if (commandBar2.Visibility == Visibility.Collapsed || commandBar1.Visibility == Visibility.Collapsed || bottomCommandBar.Visibility == Visibility.Collapsed)
-        {
-            commandBar1.Visibility = Visibility.Visible;
-            commandBar2.Visibility = Visibility.Visible;
-            bottomCommandBar.Visibility = Visibility.Visible;
-        }
+        
     }
     #endregion
     #region Bottom
@@ -126,7 +93,7 @@ public sealed partial class VideosPage : Page
 		}
 		else
 		{
-			await LoadAndPlayMediaAsync();
+			
 		}
 	}
 
@@ -180,7 +147,7 @@ public sealed partial class VideosPage : Page
 		}
 		else
 		{
-			await LoadAndPlayMediaAsync();
+
 		}
 	}
 
@@ -209,27 +176,7 @@ public sealed partial class VideosPage : Page
 
 	private async void videoSlider_ValueChanged(object sender, Microsoft.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
 	{
-		int sliderValue = (int)Math.Round(e.NewValue);
-		int maxValue = (int)Math.Round(videoSlider.Maximum);
-
-		// If the slider is at the end, auto-play next or stop
-		if (sliderValue >= maxValue)
-		{
-			_dispatcherTimer.Stop();
-			if (_mediaService.Files.Count > 1)
-			{
-				_mediaService.PlayNext();
-				await LoadAndPlayMediaAsync();
-				videoSlider.Value = 0;
-			}
-			else
-			{
-				mediaPlayerElement.Source = null;
-				videoSlider.Value = 0;
-				_mediaService.Clear();
-			}
-		}
-		mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromSeconds(sliderValue);
+		
 	}
 	#endregion
 }

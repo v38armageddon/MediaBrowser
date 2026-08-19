@@ -23,108 +23,106 @@ namespace MediaBrowser;
 
 public sealed partial class MainPage : Page
 {
-    public MainPage()
-    {
-        this.InitializeComponent();
-        this.Loaded += OnLoaded;
+	public MainPage()
+	{
+		this.InitializeComponent();
+		this.Loaded += OnLoaded;
+// FIXME: Find a method to merge Xbox version with Uno version.
+//#if WINAPPSDK_PACKAGED
+//        if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Xbox")
+//        {
+//            buttonWindow.Visibility = Visibility.Collapsed;
+//            buttonClose.Visibility = Visibility.Collapsed;
+//        }
+//#endif
+		SettingsHandler.SetTheme(Convert.ToInt32(new SettingsHandler().LoadSettingsXML()["Theme"]));
+	}
+
+	private void OnLoaded(object sender, RoutedEventArgs e)
+	{
+		this.Loaded -= OnLoaded;
+		mainPivot.SelectedIndex = 1;
+	}
+
+	#region Top
+	private void buttonWindow_Click(object sender, RoutedEventArgs e)
+	{
+		CommonBarControls.ToggleFullScreen();
+	}
+
+	private void buttonClose_Click(object sender, RoutedEventArgs e)
+	{
+		CommonBarControls.ExitApplication();
+	}
+	#endregion
+	#region Center
+	// Tasks
+	private async void buttonExit_Click(object sender, RoutedEventArgs e)
+	{
+		Dialogs.ExitDialog exitDialog = new Dialogs.ExitDialog();
+		exitDialog.XamlRoot = this.XamlRoot;
+		await exitDialog.ShowAsync();
+	}
+
+	private async void buttonAbout_Click(object sender, RoutedEventArgs e)
+	{
+		Dialogs.AboutDialog aboutDialog = new Dialogs.AboutDialog();
+		aboutDialog.XamlRoot = this.XamlRoot;
+		await aboutDialog.ShowAsync();
+	}
+
+	// Picture
+	private void myPicturesButton_Click(object sender, RoutedEventArgs e)
+	{
+		Frame rootFrame = Window.Current.Content as Frame;
 #if DESKTOP || WINAPPSDK_PACKAGED
-        if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Xbox")
-        {
-            buttonWindow.Visibility = Visibility.Collapsed;
-            buttonClose.Visibility = Visibility.Collapsed;
-        }
-#else
-        buttonWindow.Visibility = Visibility.Collapsed;
-        buttonClose.Visibility = Visibility.Collapsed;
-#endif
-        SettingsHandler.SetTheme(Convert.ToInt32(new SettingsHandler().LoadSettingsXML()["Theme"]));
-    }
-
-    private void OnLoaded(object sender, RoutedEventArgs e)
-    {
-        this.Loaded -= OnLoaded;
-        mainPivot.SelectedIndex = 1;
-    }
-
-    #region Top
-    private void buttonWindow_Click(object sender, RoutedEventArgs e)
-    {
-        CommonBarControls.ToggleFullScreen();
-    }
-
-    private void buttonClose_Click(object sender, RoutedEventArgs e)
-    {
-        CommonBarControls.ExitApplication();
-    }
-    #endregion
-    #region Center
-    // Tasks
-    private async void buttonExit_Click(object sender, RoutedEventArgs e)
-    {
-        Dialogs.ExitDialog exitDialog = new Dialogs.ExitDialog();
-        exitDialog.XamlRoot = this.XamlRoot;
-        await exitDialog.ShowAsync();
-    }
-
-    private async void buttonAbout_Click(object sender, RoutedEventArgs e)
-    {
-        Dialogs.AboutDialog aboutDialog = new Dialogs.AboutDialog();
-        aboutDialog.XamlRoot = this.XamlRoot;
-        await aboutDialog.ShowAsync();
-    }
-
-    // Picture
-    private void myPicturesButton_Click(object sender, RoutedEventArgs e)
-    {
-        Frame rootFrame = Window.Current.Content as Frame;
-#if DESKTOP || WINAPPSDK_PACKAGED
-        rootFrame.Navigate(typeof(PicturePage), null, new DrillInNavigationTransitionInfo());
+		rootFrame.Navigate(typeof(PicturePage), null, new DrillInNavigationTransitionInfo());
 #elif ANDROID
-        rootFrame.Navigate(typeof(PicturePage));
+		rootFrame.Navigate(typeof(PicturePage));
 #endif
-    }
+	}
 
-    private void cameraButton_Click(object sender, RoutedEventArgs e)
-    {
-        Frame rootFrame = Window.Current.Content as Frame;
+	private void cameraButton_Click(object sender, RoutedEventArgs e)
+	{
+		Frame rootFrame = Window.Current.Content as Frame;
 #if DESKTOP || WINAPPSDK_PACKAGED
-        rootFrame.Navigate(typeof(CameraPage), null, new DrillInNavigationTransitionInfo());
+		rootFrame.Navigate(typeof(CameraPage), null, new DrillInNavigationTransitionInfo());
 #elif ANDROID
-        rootFrame.Navigate(typeof(CameraPage));
+		rootFrame.Navigate(typeof(CameraPage));
 #endif
-    }
+	}
 
-    // Music
-    private void myMusicButton_Click(object sender, RoutedEventArgs e)
-    {
-        Frame rootFrame = Window.Current.Content as Frame;
+	// Music
+	private void myMusicButton_Click(object sender, RoutedEventArgs e)
+	{
+		Frame rootFrame = Window.Current.Content as Frame;
 #if DESKTOP || WINAPPSDK_PACKAGED
-        rootFrame.Navigate(typeof(MusicPage), null, new DrillInNavigationTransitionInfo());
+		rootFrame.Navigate(typeof(MusicPage), null, new DrillInNavigationTransitionInfo());
 #elif ANDROID
-        rootFrame.Navigate(typeof(MusicPage));
+		rootFrame.Navigate(typeof(MusicPage));
 #endif
-    }
+	}
 
-    // Videos
-    private void myVideosButton_Click(object sender, RoutedEventArgs e)
-    {
-        Frame rootFrame = Window.Current.Content as Frame;
+	// Videos
+	private void myVideosButton_Click(object sender, RoutedEventArgs e)
+	{
+		Frame rootFrame = Window.Current.Content as Frame;
 #if DESKTOP || WINAPPSDK_PACKAGED
-        rootFrame.Navigate(typeof(VideosPage), null, new DrillInNavigationTransitionInfo());
+		rootFrame.Navigate(typeof(VideosPage), null, new DrillInNavigationTransitionInfo());
 #elif ANDROID
-        rootFrame.Navigate(typeof(VideosPage));
+		rootFrame.Navigate(typeof(VideosPage));
 #endif
-    }
+	}
 
-    // Extras
-    private void Button_Click(object sender, RoutedEventArgs e)
-    {
-        Frame rootFrame = Window.Current.Content as Frame;
+	// Extras
+	private void Button_Click(object sender, RoutedEventArgs e)
+	{
+		Frame rootFrame = Window.Current.Content as Frame;
 #if DESKTOP || WINAPPSDK_PACKAGED
-        rootFrame.Navigate(typeof(BingMapPage), null, new DrillInNavigationTransitionInfo());
+		rootFrame.Navigate(typeof(BingMapPage), null, new DrillInNavigationTransitionInfo());
 #elif ANDROID
-        rootFrame.Navigate(typeof(BingMapPage));
+		rootFrame.Navigate(typeof(BingMapPage));
 #endif
-    }
+	}
 #endregion
 }
