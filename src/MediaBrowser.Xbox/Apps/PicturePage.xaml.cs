@@ -36,7 +36,6 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Imaging;
 using static System.Net.Mime.MediaTypeNames;
-using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 using Windows.Graphics.Imaging;
 using Windows.Storage.Streams;
@@ -50,41 +49,10 @@ namespace MediaBrowser.Apps
 
         public PicturePage()
         {
-            this.InitializeComponent();
-            loadSettings();
+            InitializeComponent();
         }
 
-        private void loadSettings()
-        {
-            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("PicturePage"))
-            {
-                this.DataContext = ApplicationData.Current.LocalSettings.Values["PicturePage"];
-            }
-            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("PicturePageCurrentFileIndex"))
-            {
-                currentFileIndex = (int)ApplicationData.Current.LocalSettings.Values["PicturePageCurrentFileIndex"];
-            }
-            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("PicturePageFiles"))
-            {
-                JArray filesArray = JArray.Parse((string)ApplicationData.Current.LocalSettings.Values["PicturePageFiles"]);
-                foreach (var file in filesArray)
-                {
-                    files.Add(StorageFile.GetFileFromPathAsync((string)file).GetAwaiter().GetResult());
-                }
-            }
-            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("ImageSource"))
-            {
-                string imageSourceString = ApplicationData.Current.LocalSettings.Values["ImageSource"].ToString();
-                Uri imageSourceUri;
-                if (Uri.TryCreate(imageSourceString, UriKind.Absolute, out imageSourceUri))
-                {
-                    Image.Source = new BitmapImage(imageSourceUri);
-                }
-            }
-
-        }
-
-        // Top
+        #region Top
         private void buttonReturn_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
@@ -92,15 +60,15 @@ namespace MediaBrowser.Apps
             ApplicationData.Current.LocalSettings.Values["PicturePage"] = this.DataContext;
             ApplicationData.Current.LocalSettings.Values["PicturePageCurrentFileIndex"] = currentFileIndex;
             ApplicationData.Current.LocalSettings.Values["ImageSource"] = Image.Source;
-            if (files != null && files.Count > 0)
-            {
-                JArray filesArray = new JArray();
-                foreach (var file in files)
-                {
-                    filesArray.Add(file.Path);
-                }
-                ApplicationData.Current.LocalSettings.Values["PicturePageFiles"] = filesArray.ToString();
-            }
+            //if (files != null && files.Count > 0)
+            //{
+            //    JArray filesArray = new JArray();
+            //    foreach (var file in files)
+            //    {
+            //        filesArray.Add(file.Path);
+            //    }
+            //    ApplicationData.Current.LocalSettings.Values["PicturePageFiles"] = filesArray.ToString();
+            //}
             if (Image.Source != null)
             {
                 BitmapImage bitmapImage = Image.Source as BitmapImage;
@@ -110,6 +78,7 @@ namespace MediaBrowser.Apps
                 }
             }
         }
+        #endregion
 
         private void buttonHome_Click(object sender, RoutedEventArgs e)
         {
